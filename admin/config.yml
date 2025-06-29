@@ -2,6 +2,7 @@ backend:
   name: github
   repo: supertimmyh/picktopia_website
   branch: main
+  base_url: https://oauth.decapcms.org
 
 # Enable editorial workflow for content review
 publish_mode: editorial_workflow
