@@ -25,20 +25,20 @@ const HeroSection = ({
 
     return (
         <div className={`relative text-white flex items-center justify-center ${sizeClasses[size]}`}>
-            {/* Background Image - Extended to cover full viewport */}
+            {/* Background Image - Only covers hero section */}
             {backgroundImage && (
                 <div 
-                    className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url(${backgroundImage})` }}
                 ></div>
             )}
             
-            {/* Dark Overlay for Readability - Fixed to cover full viewport */}
-            <div className="fixed inset-0 bg-black bg-opacity-60 -z-10"></div>
+            {/* Dark Overlay for Readability - Only covers hero section */}
+            <div className="absolute inset-0 bg-black bg-opacity-60"></div>
             
-            {/* Color Overlay for Brand Consistency - Fixed to cover full viewport */}
+            {/* Color Overlay for Brand Consistency - Only covers hero section */}
             {overlayColor !== 'none' && (
-                <div className={`fixed inset-0 ${overlayClasses[overlayColor]} -z-10`}></div>
+                <div className={`absolute inset-0 ${overlayClasses[overlayColor]}`}></div>
             )}
             
             {/* Content */}
