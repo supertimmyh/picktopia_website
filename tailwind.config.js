@@ -7,12 +7,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'picktopia-blue-dark': '#0F1744',
+        'picktopia-blue-dark': '#082946',
         'picktopia-blue-mid': '#1C275F',
-        'picktopia-orange': '#e1672a',
+        'picktopia-orange': '#e0672b',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        'heading': ['Orbitron', 'monospace'], // Futuristic headers
+        'body': ['Ubuntu', 'monospace'], // Tech body text
+        'brand': ['Orbitron', 'monospace'], // Sci-fi brand elements
+        sans: ['Orbitron', 'monospace'], // Default fallback
       },
     },
   },

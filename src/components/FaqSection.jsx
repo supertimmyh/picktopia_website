@@ -14,7 +14,7 @@ const FaqSection = () => {
         <div className="bg-picktopia-blue-dark text-white py-16 md:py-24">
             <div className="container mx-auto px-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{title}</h2>
-                <div className="max-w-3xl mx-auto rounded-lg overflow-hidden">
+                <div className="max-w-3xl mx-auto">
                     {questions.map((item, index) => (
                         <AccordionItem
                             key={index}

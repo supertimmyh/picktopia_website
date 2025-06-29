@@ -13,8 +13,8 @@ const AnnouncementBar = () => {
     }, [announcements.length]);
 
     return (
-        <div className="bg-gradient-to-r from-picktopia-orange to-orange-500 text-white text-center py-3 text-sm font-bold shadow-lg border-b-2 border-orange-600">
-            <div className="container mx-auto px-6 flex items-center justify-center space-x-2">
+        <div className="bg-gradient-to-r from-picktopia-orange/90 to-orange-500/90 backdrop-blur-sm text-white text-center py-3 text-sm font-bold shadow-lg border-b-2 border-orange-600/50 w-full">
+            <div className="px-6 flex items-center justify-center space-x-2">
                 <span className="inline-block w-2 h-2 bg-white rounded-full animate-pulse"></span>
                 <p className="uppercase tracking-wide">{announcements[currentIndex]}</p>
                 <span className="inline-block w-2 h-2 bg-white rounded-full animate-pulse"></span>

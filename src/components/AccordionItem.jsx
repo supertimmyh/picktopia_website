@@ -2,7 +2,7 @@ import React from 'react';
 import { ChevronDownIcon } from './Icons';
 
 const AccordionItem = ({ question, answer, isOpen, onClick }) => (
-    <div className="border-b-2 border-picktopia-blue-dark">
+    <div className="mb-4 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
         <button
             onClick={onClick}
             className="w-full flex justify-between items-center text-left p-4 bg-picktopia-orange text-white font-bold text-lg focus:outline-none"

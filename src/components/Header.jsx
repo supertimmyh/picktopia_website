@@ -4,12 +4,16 @@ import { SearchIcon, UserIcon, CartIcon, MenuIcon, CloseIcon } from './Icons';
 import AnnouncementBar from './AnnouncementBar';
 import logoSvg from '../assets/logo_simplified.svg';
 
-const Header = ({ onNavClick }) => {
+const Header = ({ onNavClick, currentPage }) => {
     const { navLinks } = CMS_DATA;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    
+    // Use consistent styling for all pages
+    const navbarBg = 'bg-white/90';
+    const textColor = 'text-picktopia-blue-dark';
 
     const NavMenu = ({ isMobile = false }) => (
-      <nav className={`${isMobile ? 'flex flex-col space-y-4 text-2xl items-center' : 'hidden md:flex items-center space-x-6 lg:space-x-8 text-white'}`}>
+      <nav className={`${isMobile ? 'flex flex-col space-y-4 text-2xl items-center text-white' : `hidden md:flex items-center space-x-6 lg:space-x-8 ${textColor}`}`}>
         {navLinks.map(link => (
             <a 
               key={link} 
@@ -28,12 +32,13 @@ const Header = ({ onNavClick }) => {
     );
 
     return (
-        <header className="bg-picktopia-blue-dark sticky top-0 z-50">
+        <>
             <AnnouncementBar />
-            <div className="container mx-auto px-6 py-4 flex justify-between items-center text-white">
-                <a href="#" onClick={(e) => { e.preventDefault(); onNavClick('home'); }} className="flex items-center space-x-3">
+            <header className="sticky top-0 z-50 px-4 pt-2">
+                <div className={`${navbarBg} backdrop-blur-md shadow-lg rounded-2xl mx-auto max-w-7xl px-6 py-4 flex justify-between items-center ${textColor}`}>
+                <a href="#" onClick={(e) => { e.preventDefault(); onNavClick('home'); }} className="flex items-center space-x-1">
                     <img src={logoSvg} alt="Picktopia Logo" className="h-12 w-12 lg:h-16 lg:w-16" />
-                    <div className="flex flex-col text-sm lg:text-base font-bold text-white leading-tight">
+                    <div className={`flex flex-col text-sm lg:text-base font-brand font-black ${textColor} leading-tight tracking-wider`}>
                         <span>PICKLEBALL</span>
                         <span>CLUB</span>
                     </div>
@@ -41,10 +46,8 @@ const Header = ({ onNavClick }) => {
 
                 <NavMenu />
 
-                <div className="flex items-center space-x-4">
-                    <button className="hover:text-picktopia-orange"><SearchIcon /></button>
+                <div className={`flex items-center space-x-4 ${textColor}`}>
                     <button className="hover:text-picktopia-orange"><UserIcon /></button>
-                    <button className="hover:text-picktopia-orange"><CartIcon /></button>
                     <button className="md:hidden hover:text-picktopia-orange" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         {isMobileMenuOpen ? <CloseIcon/> : <MenuIcon />}
                     </button>
@@ -56,7 +59,8 @@ const Header = ({ onNavClick }) => {
                     <NavMenu isMobile={true}/>
                 </div>
             )}
-        </header>
+            </header>
+        </>
     );
 };
 

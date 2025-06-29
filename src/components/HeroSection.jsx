@@ -1,30 +1,63 @@
 import React from 'react';
-import { CMS_DATA } from '../data';
-import heroImage from '../assets/hero-image.jpeg';
 
-const HeroSection = () => {
-    const { title, subtitle, cta } = CMS_DATA.hero;
+const HeroSection = ({ 
+    title, 
+    subtitle, 
+    backgroundImage, 
+    children,
+    size = 'large', // 'small', 'medium', 'large'
+    overlayColor = 'none' // 'orange', 'blue', 'dark', 'none'
+}) => {
+    // Size variants
+    const sizeClasses = {
+        small: 'py-16 md:py-20 min-h-[40vh]',
+        medium: 'py-20 md:py-24 min-h-[50vh]',
+        large: 'py-24 md:py-32 lg:py-40 min-h-[70vh]'
+    };
+
+    // Overlay variants
+    const overlayClasses = {
+        orange: 'bg-gradient-to-r from-picktopia-orange/60 to-orange-500/60',
+        blue: 'bg-gradient-to-r from-picktopia-blue-dark/60 to-picktopia-blue-mid/60',
+        dark: 'bg-black/40',
+        none: 'bg-transparent'
+    };
+
     return (
-        <div className="relative text-white text-center py-24 md:py-36 lg:py-48 flex items-center justify-center min-h-[60vh]">
-            {/* Background Image */}
-            <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${heroImage})` }}
-            ></div>
+        <div className={`relative text-white flex items-center justify-center ${sizeClasses[size]}`}>
+            {/* Background Image - Extended to cover full viewport */}
+            {backgroundImage && (
+                <div 
+                    className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-10"
+                    style={{ backgroundImage: `url(${backgroundImage})` }}
+                ></div>
+            )}
             
-            {/* Dark Overlay Mask */}
-            <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+            {/* Dark Overlay for Readability - Fixed to cover full viewport */}
+            <div className="fixed inset-0 bg-black bg-opacity-60 -z-10"></div>
             
-            {/* Blue Overlay for Brand Consistency */}
-            <div className="absolute inset-0 bg-picktopia-blue-dark bg-opacity-40"></div>
+            {/* Color Overlay for Brand Consistency - Fixed to cover full viewport */}
+            {overlayColor !== 'none' && (
+                <div className={`fixed inset-0 ${overlayClasses[overlayColor]} -z-10`}></div>
+            )}
             
             {/* Content */}
-            <div className="relative z-10 container mx-auto px-6">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 drop-shadow-lg">{title}</h1>
-                <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 drop-shadow-md">{subtitle}</p>
-                <button className="bg-picktopia-orange text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-white hover:text-picktopia-orange transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    {cta}
-                </button>
+            <div className="relative z-10 container mx-auto px-6 text-center">
+                {title && (
+                    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-black mb-6 drop-shadow-lg tracking-wider uppercase">
+                        {title}
+                    </h1>
+                )}
+                {subtitle && (
+                    <p className="font-body text-lg md:text-xl lg:text-2xl font-medium max-w-3xl mx-auto drop-shadow-md mb-8 leading-relaxed">
+                        {subtitle}
+                    </p>
+                )}
+                {children && (
+                    <div className="mt-6">
+                        {children}
+                    </div>
+                )}
             </div>
         </div>
     );

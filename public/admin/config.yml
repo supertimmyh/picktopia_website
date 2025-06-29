@@ -1,0 +1,171 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to main)
+
+# Enable editorial workflow for content review
+publish_mode: editorial_workflow
+
+# Media files configuration
+media_folder: "public/images/uploads" # Media files will be stored in the repo under public/images/uploads
+public_folder: "/images/uploads" # The src attribute for uploaded media
+
+collections:
+  # Pages Collection - Static pages like About Us, Locations, etc.
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About Us"
+        name: "about"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - { label: "Intro Text", name: "intro", widget: "markdown" }
+          - label: "What We Offer"
+            name: "whatWeOffer"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                fields:
+                  - { label: "Feature", name: "feature", widget: "string" }
+          - { label: "Closing Statement", name: "closing", widget: "markdown" }
+          
+      - label: "Play"
+        name: "play"
+        file: "src/content/pages/play.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - { label: "Content", name: "body", widget: "markdown" }
+          
+      - label: "Group Bookings"
+        name: "groupBookings"
+        file: "src/content/pages/group-bookings.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - { label: "Content", name: "body", widget: "markdown" }
+          
+      - label: "Sponsorships"
+        name: "sponsorships"
+        file: "src/content/pages/sponsorships.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+  # Locations Collection - Multiple location entries
+  - name: "locations"
+    label: "Locations"
+    folder: "src/content/locations"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "title", widget: "string" }
+      - { label: "Address", name: "address", widget: "text" }
+      - { label: "Phone", name: "phone", widget: "string" }
+      - { label: "Email", name: "email", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - label: "Hours"
+        name: "hours"
+        widget: "object"
+        fields:
+          - { label: "Monday", name: "monday", widget: "string" }
+          - { label: "Tuesday", name: "tuesday", widget: "string" }
+          - { label: "Wednesday", name: "wednesday", widget: "string" }
+          - { label: "Thursday", name: "thursday", widget: "string" }
+          - { label: "Friday", name: "friday", widget: "string" }
+          - { label: "Saturday", name: "saturday", widget: "string" }
+          - { label: "Sunday", name: "sunday", widget: "string" }
+      - label: "Amenities"
+        name: "amenities"
+        widget: "list"
+        field: { label: "Amenity", name: "amenity", widget: "string" }
+      - { label: "Description", name: "description", widget: "markdown" }
+
+  # Blog Posts Collection
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list", field: { label: "Tag", name: "tag", widget: "string" } }
+
+  # Events Collection
+  - name: "events"
+    label: "Events"
+    folder: "src/content/events"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Event Name", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Registration Link", name: "registrationLink", widget: "string", required: false }
+      - { label: "Price", name: "price", widget: "string", required: false }
+
+  # Settings Collection - Site-wide settings
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "src/content/settings/general.md"
+        fields:
+          - { label: "Site Title", name: "siteTitle", widget: "string" }
+          - { label: "Site Description", name: "siteDescription", widget: "text" }
+          - { label: "Contact Email", name: "contactEmail", widget: "string" }
+          - { label: "Contact Phone", name: "contactPhone", widget: "string" }
+          - label: "Social Media"
+            name: "socialMedia"
+            widget: "object"
+            fields:
+              - { label: "Facebook", name: "facebook", widget: "string", required: false }
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Twitter", name: "twitter", widget: "string", required: false }
+              - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+          
+      - label: "Home Page"
+        name: "home"
+        file: "src/content/settings/home.md"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Call to Action", name: "cta", widget: "string" }
+              - { label: "Background Image", name: "backgroundImage", widget: "image" }
+          - label: "What Is Picktopia"
+            name: "whatIsPicktopia"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Content", name: "content", widget: "text" }
+          - label: "Announcements"
+            name: "announcements"
+            widget: "list"
+            field: { label: "Announcement", name: "announcement", widget: "string" }

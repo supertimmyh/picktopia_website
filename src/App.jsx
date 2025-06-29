@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import GenericPage from './pages/GenericPage';
+import AboutUsCMS from './pages/AboutUsCMS';
+import CMSPage from './pages/CMSPage';
 
 export default function App() {
     const [page, setPage] = useState('home');
@@ -17,15 +18,15 @@ export default function App() {
             case 'home':
                 return <HomePage />;
             case 'about-us':
-                return <GenericPage title="About Us" />;
+                return <AboutUsCMS />; // Using CMS-powered About Us
             case 'play':
-                return <GenericPage title="Play" />;
+                return <CMSPage pageSlug="play" />;
             case 'group-bookings':
-                return <GenericPage title="Group Bookings" />;
+                return <CMSPage pageSlug="group-bookings" />;
             case 'locations':
-                return <GenericPage title="Locations" />;
+                return <CMSPage pageSlug="locations" />;
             case 'sponsorships':
-                return <GenericPage title="Sponsorships" />;
+                return <CMSPage pageSlug="sponsorships" />;
             default:
                 return <HomePage />;
         }
@@ -33,7 +34,7 @@ export default function App() {
 
     return (
         <div className="font-sans">
-            <Header onNavClick={navigateTo} />
+            <Header onNavClick={navigateTo} currentPage={page} />
             <main>
                 {renderPage()}
             </main>
