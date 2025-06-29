@@ -1,6 +1,7 @@
 backend:
-  name: git-gateway
-  branch: main # Branch to update (optional; defaults to main)
+  name: github
+  repo: supertimmyh/picktopia_website
+  branch: main
 
 # Enable editorial workflow for content review
 publish_mode: editorial_workflow
