@@ -2,7 +2,8 @@ backend:
   name: github
   repo: supertimmyh/picktopia_website
   branch: main
-  base_url: https://oauth.decapcms.org
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Enable editorial workflow for content review
 publish_mode: editorial_workflow
