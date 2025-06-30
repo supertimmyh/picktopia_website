@@ -400,6 +400,81 @@ For technical questions about the website development:
 - Review CMS content structure in `/src/content/pages/`
 - See Shadcn/ui documentation for UI components
 
+## 🔧 Development Improvement Suggestions
+
+Based on the current project structure analysis, here are recommended improvements for better scalability and maintainability:
+
+### **Priority 1: Core Architecture**
+
+#### **1. Implement React Router**
+- **Current Issue**: Manual state-based navigation in `App.jsx:10` using `useState('home')`
+- **Solution**: Replace with React Router for proper URL routing and browser history
+- **Benefits**: Better SEO, bookmarkable URLs, browser back/forward support
+```bash
+npm install react-router-dom
+```
+
+#### **2. Add TypeScript Support**
+- **Current Issue**: JavaScript-only codebase lacks type safety
+- **Solution**: Migrate to TypeScript, especially important with Shadcn/UI components
+- **Benefits**: Better IDE support, compile-time error catching, improved maintainability
+
+### **Priority 2: Performance & User Experience**
+
+#### **3. Implement Code Splitting**
+- **Current Issue**: All pages bundle together, increasing initial load time
+- **Solution**: Use `React.lazy()` and `Suspense` for page components
+- **Benefits**: Faster initial page load, better performance
+```javascript
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+```
+
+#### **4. Add Error Boundaries**
+- **Current Issue**: No error handling for component failures
+- **Solution**: Implement React Error Boundaries
+- **Benefits**: Better user experience when components fail
+
+### **Priority 3: Development Experience**
+
+#### **5. Set Up Testing Framework**
+- **Current Issue**: No visible test setup
+- **Solution**: Add Jest + React Testing Library
+- **Benefits**: Prevent regressions, improve code quality
+```bash
+npm install --save-dev @testing-library/react @testing-library/jest-dom jest
+```
+
+#### **6. Consider State Management**
+- **Current Issue**: No centralized state management for growing app complexity
+- **Solution**: Implement Context API or lightweight library like Zustand
+- **Benefits**: Better state organization, easier debugging
+
+### **Priority 4: Code Quality**
+
+#### **7. Add Linting & Formatting**
+- **Solution**: Set up ESLint, Prettier, and Husky pre-commit hooks
+- **Benefits**: Consistent code style, catch common errors
+
+#### **8. Environment Configuration**
+- **Solution**: Add proper environment variable handling for different deployment targets
+- **Benefits**: Better deployment flexibility, secure configuration management
+
+### **Implementation Timeline**
+1. **Week 1**: React Router migration
+2. **Week 2**: TypeScript setup and basic types
+3. **Week 3**: Code splitting and error boundaries
+4. **Week 4**: Testing framework setup
+5. **Week 5**: State management evaluation and implementation
+
+### **Current Strengths to Maintain**
+- ✅ Good component organization
+- ✅ Proper Shadcn/UI integration
+- ✅ CMS architecture with Decap CMS
+- ✅ Responsive design system
+- ✅ Modern build tools (Vite)
+
+These improvements will enhance the project's scalability, maintainability, and developer experience while preserving the current well-structured foundation.
+
 ---
 
 **Built with ❤️ for the Picktopia Pickleball Club community**
