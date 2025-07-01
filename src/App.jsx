@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutUsCMS from './pages/AboutUsCMS';
 import PlayCMS from './pages/PlayCMS';
+import GroupBookingsCMS from './pages/GroupBookingsCMS';
 import CMSPage from './pages/CMSPage';
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
             case 'play':
                 return <PlayCMS />; // Using custom Play page with booking functionality
             case 'group-bookings':
-                return <CMSPage pageSlug="group-bookings" />;
+                return <GroupBookingsCMS />;
             case 'locations':
                 return <CMSPage pageSlug="locations" />;
             case 'sponsorships':
