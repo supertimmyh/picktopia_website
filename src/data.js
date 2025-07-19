@@ -5,7 +5,22 @@ export const CMS_DATA = {
         "New Pro-Shop Gear Arrived This Week!",
         "Holiday Hours: Closed on July 4th.",
     ],
-    navLinks: ["Home", "About Us", "Play", "Group Bookings", "Locations", "Sponsorships"],
+    navLinks: [
+        "Home", 
+        "About Us", 
+        {
+            title: "Play",
+            subLinks: [
+                "Booking",
+                "Program Schedule", 
+                "Training Programs",
+                "Free Pickleball Intro"
+            ]
+        },
+        "Group Bookings", 
+        "Locations", 
+        "Sponsorships"
+    ],
     hero: {
         title: "Welcome to the Heart of Pickleball",
         subtitle: "The premier destination for players of all levels in our community.",

@@ -1,17 +1,56 @@
-import matter from 'gray-matter';
+// Simple frontmatter parser that works in browsers
+const parseFrontmatter = (fileContent) => {
+  const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  const match = fileContent.match(frontmatterRegex);
+  
+  if (!match) {
+    return { frontmatter: {}, content: fileContent };
+  }
+  
+  const yamlContent = match[1];
+  const markdownContent = match[2];
+  
+  // Simple YAML parser for our specific needs
+  const frontmatter = {};
+  const lines = yamlContent.split('\n');
+  
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith('#')) {
+      const colonIndex = trimmed.indexOf(':');
+      if (colonIndex > 0) {
+        const key = trimmed.substring(0, colonIndex).trim();
+        let value = trimmed.substring(colonIndex + 1).trim();
+        
+        // Remove quotes if present
+        if ((value.startsWith('"') && value.endsWith('"')) || 
+            (value.startsWith("'") && value.endsWith("'"))) {
+          value = value.slice(1, -1);
+        }
+        
+        frontmatter[key] = value;
+      }
+    }
+  }
+  
+  return { frontmatter, content: markdownContent };
+};
 
 // Utility function to load and parse markdown content
 export const loadContent = async (filePath) => {
   try {
-    // In a real implementation, you'd use fetch or import
-    // For now, we'll return mock data structure
     const response = await fetch(filePath);
+    
+    if (!response.ok) {
+      return null;
+    }
+    
     const fileContent = await response.text();
-    const { data, content } = matter(fileContent);
+    const { frontmatter, content } = parseFrontmatter(fileContent);
     
     return {
-      frontmatter: data,
-      content: content
+      frontmatter,
+      content
     };
   } catch (error) {
     console.error(`Error loading content from ${filePath}:`, error);
@@ -22,6 +61,11 @@ export const loadContent = async (filePath) => {
 // Load page content
 export const loadPageContent = async (pageName) => {
   return await loadContent(`/src/content/pages/${pageName}.md`);
+};
+
+// Load subpage content
+export const loadSubpageContent = async (parentPage, subpageName) => {
+  return await loadContent(`/src/content/pages/${parentPage}/${subpageName}.md`);
 };
 
 // Load settings
@@ -71,26 +115,6 @@ Whether you're here to rally, compete, or simply connect with others, you're alw
 **This is more than a club — it's your pickleball utopia.**`
     },
     
-    play: {
-      title: "Play",
-      subtitle: "Experience World-Class Pickleball",
-      heroImage: "/assets/place-holder.jpg",
-      body: `## Court Rentals
-
-Our premium indoor courts are available for hourly rentals, perfect for casual play or serious practice sessions.
-
-## Drop-In Sessions
-
-Join our scheduled drop-in sessions to meet new players and enjoy games at your skill level.
-
-## Leagues & Tournaments
-
-Compete in our organized leagues or participate in tournaments throughout the year.
-
-## Training Programs
-
-Improve your game with our professional coaching and training programs designed for all skill levels.`
-    },
 
     "group-bookings": {
       title: "Host Your Next Event at Picktopia!",
@@ -286,6 +310,7 @@ Ready to explore partnership opportunities? Contact our sponsorship team to disc
 export default {
   loadContent,
   loadPageContent,
+  loadSubpageContent,
   loadSettings,
   loadCollectionContent,
   getStaticContent

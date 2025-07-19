@@ -3,9 +3,12 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutUsCMS from './pages/AboutUsCMS';
-import PlayCMS from './pages/PlayCMS';
 import GroupBookingsCMS from './pages/GroupBookingsCMS';
 import CMSPage from './pages/CMSPage';
+import BookingPage from './pages/play/BookingPage';
+import ProgramSchedulePage from './pages/play/ProgramSchedulePage';
+import TrainingProgramsPage from './pages/play/TrainingProgramsPage';
+import FreePickleballIntroPage from './pages/play/FreePickleballIntroPage';
 
 export default function App() {
     const [page, setPage] = useState('home');
@@ -21,8 +24,14 @@ export default function App() {
                 return <HomePage />;
             case 'about-us':
                 return <AboutUsCMS />; // Using CMS-powered About Us
-            case 'play':
-                return <PlayCMS />; // Using custom Play page with booking functionality
+            case 'play-booking':
+                return <BookingPage />;
+            case 'play-program-schedule':
+                return <ProgramSchedulePage />;
+            case 'play-training-programs':
+                return <TrainingProgramsPage />;
+            case 'play-free-pickleball-intro':
+                return <FreePickleballIntroPage />;
             case 'group-bookings':
                 return <GroupBookingsCMS />;
             case 'locations':

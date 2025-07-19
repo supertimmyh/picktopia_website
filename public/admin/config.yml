@@ -20,7 +20,7 @@ collections:
     files:
       - label: "About Us"
         name: "about"
-        file: "src/content/pages/about.md"
+        file: "content/pages/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "string" }
@@ -40,7 +40,7 @@ collections:
           
       - label: "Play"
         name: "play"
-        file: "src/content/pages/play.md"
+        file: "content/pages/play/"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "string" }
@@ -49,7 +49,7 @@ collections:
           
       - label: "Group Bookings"
         name: "groupBookings"
-        file: "src/content/pages/group-bookings.md"
+        file: "src/content/pages/group.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "string" }
