@@ -63,7 +63,7 @@ module.exports = {
         'heading': ['Orbitron', 'monospace'], // Futuristic headers
         'body': ['Ubuntu', 'monospace'], // Tech body text
         'brand': ['Orbitron', 'monospace'], // Sci-fi brand elements
-        sans: ['Orbitron', 'monospace'], // Default fallback
+        sans: ['Ubuntu', 'monospace'], // Default fallback
       },
       keyframes: {
         "accordion-down": {

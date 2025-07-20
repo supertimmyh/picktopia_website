@@ -2,7 +2,7 @@
 title: "Court Booking"
 subtitle: "Booking your spot at Picktopia is easy. Follow these steps to reserve your court and get ready to play."
 heroImage: "/assets/place-holder.jpg"
-bookingUrl: "https://app.courtreserve.com/picktopia/courts"
+bookingUrl: "https://app.courtreserve.com/Online/Portal/CreateAccountAndRequestAccessToOrg/16040"
 bookingText: "Book Your Spot"
 ---
 
@@ -32,7 +32,7 @@ You can book courts up to 7 days in advance. Members may have extended booking p
 Courts can be cancelled up to 2 hours before your scheduled time for a full refund. Cancellations within 2 hours may result in a cancellation fee.
 
 ### Do I need to be a member to book courts?
-No, both members and non-members can book courts through Court Reserve. However, members receive priority booking and discounted rates.
+No, both members and non-members (Community Membership) can book courts through Court Reserve. However, members receive priority booking and discounted rates.
 
 ### What should I bring for my first visit?
 Bring comfortable athletic wear, court shoes with non-marking soles, and your paddle. We have equipment rental available if needed.

@@ -5,6 +5,8 @@ import HomePage from './pages/HomePage';
 import AboutUsCMS from './pages/AboutUsCMS';
 import GroupBookingsCMS from './pages/GroupBookingsCMS';
 import CMSPage from './pages/CMSPage';
+import EventPage from './pages/EventPage';
+import LocationPage from './pages/LocationPage';
 import BookingPage from './pages/play/BookingPage';
 import ProgramSchedulePage from './pages/play/ProgramSchedulePage';
 import TrainingProgramsPage from './pages/play/TrainingProgramsPage';
@@ -19,6 +21,17 @@ export default function App() {
     };
 
     const renderPage = () => {
+        // Handle dynamic routing for locations and events
+        if (page.startsWith('locations-')) {
+            const locationSlug = page.replace('locations-', '');
+            return <LocationPage locationSlug={locationSlug} />;
+        }
+        
+        if (page.startsWith('events-')) {
+            const eventSlug = page.replace('events-', '');
+            return <EventPage eventSlug={eventSlug} />;
+        }
+        
         switch (page) {
             case 'home':
                 return <HomePage />;
@@ -36,6 +49,8 @@ export default function App() {
                 return <GroupBookingsCMS />;
             case 'locations':
                 return <CMSPage pageSlug="locations" />;
+            case 'events':
+                return <CMSPage pageSlug="events" />;
             case 'sponsorships':
                 return <CMSPage pageSlug="sponsorships" />;
             default:

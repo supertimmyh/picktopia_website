@@ -1,0 +1,11 @@
+#!/bin/sh
+# Auto-generate manifests before commit
+
+echo "Generating content manifests..."
+node scripts/generate-manifests.js
+
+# Add the updated manifests to the commit
+git add src/content/events/manifest.json
+git add src/content/locations/manifest.json 2>/dev/null || true
+
+echo "Manifests updated and staged"

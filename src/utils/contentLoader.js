@@ -13,24 +13,41 @@ const parseFrontmatter = (fileContent) => {
   // Simple YAML parser for our specific needs
   const frontmatter = {};
   const lines = yamlContent.split('\n');
+  let currentKey = null;
+  let currentValue = '';
   
-  for (const line of lines) {
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
     const trimmed = line.trim();
+    
     if (trimmed && !trimmed.startsWith('#')) {
       const colonIndex = trimmed.indexOf(':');
-      if (colonIndex > 0) {
-        const key = trimmed.substring(0, colonIndex).trim();
-        let value = trimmed.substring(colonIndex + 1).trim();
-        
-        // Remove quotes if present
-        if ((value.startsWith('"') && value.endsWith('"')) || 
-            (value.startsWith("'") && value.endsWith("'"))) {
-          value = value.slice(1, -1);
+      
+      if (colonIndex > 0 && !line.startsWith(' ') && !line.startsWith('\t')) {
+        // Save previous key-value pair if exists
+        if (currentKey) {
+          frontmatter[currentKey] = currentValue.trim();
         }
         
-        frontmatter[key] = value;
+        // Start new key-value pair
+        currentKey = trimmed.substring(0, colonIndex).trim();
+        currentValue = trimmed.substring(colonIndex + 1).trim();
+        
+        // Remove quotes if present
+        if ((currentValue.startsWith('"') && currentValue.endsWith('"')) || 
+            (currentValue.startsWith("'") && currentValue.endsWith("'"))) {
+          currentValue = currentValue.slice(1, -1);
+        }
+      } else if (currentKey && (line.startsWith(' ') || line.startsWith('\t'))) {
+        // This is a continuation of the previous value (multi-line)
+        currentValue += ' ' + trimmed;
       }
     }
+  }
+  
+  // Save the last key-value pair
+  if (currentKey) {
+    frontmatter[currentKey] = currentValue.trim();
   }
   
   return { frontmatter, content: markdownContent };
@@ -82,6 +99,83 @@ export const loadCollectionContent = async (collectionName) => {
     return [];
   } catch (error) {
     console.error(`Error loading collection ${collectionName}:`, error);
+    return [];
+  }
+};
+
+// Load Locations for navigation
+export const loadLocationsForNav = async () => {
+  try {
+    // Load location slugs from manifest file
+    const manifestResponse = await fetch('/src/content/locations/manifest.json');
+    let locationSlugs = [];
+    
+    if (manifestResponse.ok) {
+      locationSlugs = await manifestResponse.json();
+    } else {
+      // Fallback to empty array if manifest doesn't exist
+      console.log('Locations manifest not found, showing main page only');
+      return [];
+    }
+    
+    const locations = [];
+    
+    for (const slug of locationSlugs) {
+      try {
+        const locationContent = await loadContent(`/src/content/locations/${slug}.md`);
+        if (locationContent && locationContent.frontmatter.title) {
+          locations.push({
+            slug: slug,
+            title: locationContent.frontmatter.title
+          });
+        }
+      } catch (error) {
+        // Location file doesn't exist, skip
+        console.log(`Location ${slug} not found, skipping`);
+      }
+    }
+    
+    return locations;
+  } catch (error) {
+    console.error('Error loading locations for navigation:', error);
+    return [];
+  }
+};
+
+// Load Events for navigation
+export const loadEventsForNav = async () => {
+  try {
+    // Load event slugs from manifest file
+    const manifestResponse = await fetch('/src/content/events/manifest.json');
+    let eventSlugs = [];
+    
+    if (manifestResponse.ok) {
+      eventSlugs = await manifestResponse.json();
+    } else {
+      // Fallback to known events if manifest doesn't exist
+      eventSlugs = ['late-summer-bbq'];
+    }
+    
+    const events = [];
+    
+    for (const slug of eventSlugs) {
+      try {
+        const eventContent = await loadContent(`/src/content/events/${slug}.md`);
+        if (eventContent && eventContent.frontmatter.title) {
+          events.push({
+            slug: slug,
+            title: eventContent.frontmatter.title
+          });
+        }
+      } catch (error) {
+        // Event file doesn't exist, skip
+        console.log(`Event ${slug} not found, skipping`);
+      }
+    }
+    
+    return events;
+  } catch (error) {
+    console.error('Error loading events for navigation:', error);
     return [];
   }
 };

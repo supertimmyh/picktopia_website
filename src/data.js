@@ -18,8 +18,9 @@ export const CMS_DATA = {
             ]
         },
         "Group Bookings", 
-        "Locations", 
-        "Sponsorships"
+        "Sponsorships",
+        { type: "dynamic", source: "locations", title: "Locations" },
+        { type: "dynamic", source: "events", title: "Events" }
     ],
     hero: {
         title: "Welcome to the Heart of Pickleball",
