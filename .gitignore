@@ -14,7 +14,7 @@
 
 # misc
 /samples
-/prompts
+/contexts
 .DS_Store
 .env*
 npm-debug.log*

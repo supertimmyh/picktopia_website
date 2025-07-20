@@ -22,3 +22,20 @@ Now it's time for the best part—reserving your court time! With Court Reserve,
 - See all available courts and times instantly
 
 Just choose your desired date, time, and court to lock in your spot!
+
+## FAQ
+
+### How far in advance can I book a court?
+You can book courts up to 7 days in advance. Members may have extended booking privileges depending on their membership level.
+
+### What is the cancellation policy?
+Courts can be cancelled up to 2 hours before your scheduled time for a full refund. Cancellations within 2 hours may result in a cancellation fee.
+
+### Do I need to be a member to book courts?
+No, both members and non-members can book courts through Court Reserve. However, members receive priority booking and discounted rates.
+
+### What should I bring for my first visit?
+Bring comfortable athletic wear, court shoes with non-marking soles, and your paddle. We have equipment rental available if needed.
+
+### Is there a minimum age requirement?
+Players of all ages are welcome! Minors under 16 must be accompanied by an adult or have a signed waiver from a parent/guardian.
