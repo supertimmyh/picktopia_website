@@ -48,10 +48,30 @@ App.jsx (navigation state)
 
 ## Key Files & Patterns
 
+### Page Layout Options
+The project supports two different hero section layouts for pages:
+
+1. **Traditional Full-Width Hero** (`HeroSection`):
+   - Background image covers full width with overlay
+   - Centered title and subtitle over image
+   - Used for most pages (Homepage, About, etc.)
+   - Props: `title`, `subtitle`, `backgroundImage`, `size`, `overlayColor`, `children`
+
+2. **Split Layout Hero** (`SplitHeroSection`):
+   - Image on left side, content on right side
+   - No overlay on image for clear visibility
+   - Used for pages that need prominent image display (Program Schedule)
+   - Props: `title`, `subtitle`, `backgroundImage`, `size`, `children`
+   - Responsive: stacks vertically on mobile
+
+**When to use each layout:**
+- **HeroSection**: Use for pages where text readability over image is priority
+- **SplitHeroSection**: Use for pages where image clarity and side-by-side layout is desired
+
 ### Page Structure
 - `src/pages/HomePage.jsx`: Static homepage with sections
 - `src/pages/play/BookingPage.jsx`: Court booking subpage
-- `src/pages/play/ProgramSchedulePage.jsx`: Program schedule subpage
+- `src/pages/play/ProgramSchedulePage.jsx`: Program schedule subpage (uses SplitHeroSection)
 - `src/pages/play/TrainingProgramsPage.jsx`: Training programs subpage
 - `src/pages/play/FreePickleballIntroPage.jsx`: Free intro class subpage
 - `src/pages/CMSPage.jsx`: Generic template for simple CMS pages

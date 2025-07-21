@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HeroSection from '../../components/HeroSection';
+import SplitHeroSection from '../../components/SplitHeroSection';
 import ProgramScheduleSection from '../../components/sections/ProgramScheduleSection';
 import { loadSubpageContent, getStaticContent } from '../../utils/contentLoader';
 
@@ -79,12 +79,11 @@ const ProgramSchedulePage = () => {
 
     return (
         <div className="min-h-screen">
-            <HeroSection
+            <SplitHeroSection
                 title={content.title}
                 subtitle={content.subtitle}
                 backgroundImage={content.heroImage}
                 size="large"
-                overlayColor="blue"
             />
 
             <div className="container mx-auto px-6 py-8">
