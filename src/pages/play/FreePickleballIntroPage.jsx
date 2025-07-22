@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HeroSection from '../../components/HeroSection';
+import ImageContentSection from '../../components/ImageContentSection';
 import FreeIntroSection from '../../components/sections/FreeIntroSection';
 import { loadSubpageContent, getStaticContent } from '../../utils/contentLoader';
 
@@ -79,12 +79,13 @@ const FreePickleballIntroPage = () => {
 
     return (
         <div className="min-h-screen">
-            <HeroSection
+            <ImageContentSection
                 title={content.title}
                 subtitle={content.subtitle}
-                backgroundImage={content.heroImage}
+                backgroundImage="/src/assets/place-holder.jpg"
                 size="large"
-                overlayColor="orange"
+                imagePosition="right"
+                padding="large"
             />
 
             <div className="container mx-auto px-6 py-8">
