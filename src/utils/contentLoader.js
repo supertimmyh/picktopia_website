@@ -1,4 +1,4 @@
-// Simple frontmatter parser that works in browsers
+// Enhanced frontmatter parser that works in browsers and supports arrays/objects
 const parseFrontmatter = (fileContent) => {
   const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
   const match = fileContent.match(frontmatterRegex);
@@ -10,44 +10,157 @@ const parseFrontmatter = (fileContent) => {
   const yamlContent = match[1];
   const markdownContent = match[2];
   
-  // Simple YAML parser for our specific needs
+  // Enhanced YAML parser for arrays and objects
   const frontmatter = {};
   const lines = yamlContent.split('\n');
-  let currentKey = null;
-  let currentValue = '';
   
-  for (let i = 0; i < lines.length; i++) {
+  const parseValue = (value) => {
+    const trimmed = value.trim();
+    
+    // Handle quoted strings
+    if ((trimmed.startsWith('"') && trimmed.endsWith('"')) || 
+        (trimmed.startsWith("'") && trimmed.endsWith("'"))) {
+      return trimmed.slice(1, -1);
+    }
+    
+    // Handle booleans
+    if (trimmed === 'true') return true;
+    if (trimmed === 'false') return false;
+    
+    // Handle numbers
+    if (!isNaN(trimmed) && trimmed !== '') {
+      return parseFloat(trimmed);
+    }
+    
+    return trimmed;
+  };
+  
+  const parseArray = (startIndex, indentLevel) => {
+    const array = [];
+    let i = startIndex;
+    
+    while (i < lines.length) {
+      const line = lines[i];
+      const currentIndent = line.length - line.trimStart().length;
+      
+      if (currentIndent < indentLevel) {
+        break;
+      }
+      
+      const trimmed = line.trim();
+      if (trimmed.startsWith('- ')) {
+        const value = trimmed.substring(2);
+        if (value.includes(':')) {
+          // This is an object in the array
+          const obj = {};
+          const objIndent = currentIndent + 2;
+          
+          // Parse the first key-value pair
+          const colonIndex = value.indexOf(':');
+          const key = value.substring(0, colonIndex).trim();
+          const val = value.substring(colonIndex + 1).trim();
+          
+          if (val) {
+            obj[key] = parseValue(val);
+          }
+          
+          // Parse remaining object properties
+          i++;
+          while (i < lines.length) {
+            const objLine = lines[i];
+            const objLineIndent = objLine.length - objLine.trimStart().length;
+            
+            if (objLineIndent < objIndent || (objLineIndent === currentIndent && objLine.trim().startsWith('- '))) {
+              i--;
+              break;
+            }
+            
+            const objTrimmed = objLine.trim();
+            if (objTrimmed && objTrimmed.includes(':')) {
+              const objColonIndex = objTrimmed.indexOf(':');
+              const objKey = objTrimmed.substring(0, objColonIndex).trim();
+              const objVal = objTrimmed.substring(objColonIndex + 1).trim();
+              
+              if (objVal.startsWith('[') && objVal.endsWith(']')) {
+                // Handle inline arrays like ["item1", "item2"]
+                const arrayContent = objVal.slice(1, -1);
+                obj[objKey] = arrayContent.split(',').map(item => 
+                  parseValue(item.trim())
+                );
+              } else if (!objVal) {
+                // This might be a nested array
+                const nextObjIndex = i + 1;
+                if (nextObjIndex < lines.length) {
+                  const nextObjLine = lines[nextObjIndex];
+                  const nextObjTrimmed = nextObjLine.trim();
+                  
+                  if (nextObjTrimmed.startsWith('- ')) {
+                    // This is a nested array
+                    const nestedIndentLevel = nextObjLine.length - nextObjLine.trimStart().length;
+                    const nestedResult = parseArray(nextObjIndex, nestedIndentLevel);
+                    obj[objKey] = nestedResult.array;
+                    i = nestedResult.nextIndex - 1;
+                  }
+                }
+              } else {
+                obj[objKey] = parseValue(objVal);
+              }
+            }
+            
+            i++;
+          }
+          
+          array.push(obj);
+        } else {
+          // This is a simple string value in the array
+          array.push(parseValue(value));
+        }
+      } else if (currentIndent === indentLevel && trimmed && !trimmed.startsWith('#')) {
+        // Handle array items that might not start with '- ' but are at the same indent level
+        // This shouldn't happen in proper YAML but let's be defensive
+        break;
+      }
+      
+      i++;
+    }
+    
+    return { array, nextIndex: i };
+  };
+  
+  let i = 0;
+  while (i < lines.length) {
     const line = lines[i];
     const trimmed = line.trim();
     
-    if (trimmed && !trimmed.startsWith('#')) {
+    if (trimmed && !trimmed.startsWith('#') && !line.startsWith(' ') && !line.startsWith('\t')) {
       const colonIndex = trimmed.indexOf(':');
       
-      if (colonIndex > 0 && !line.startsWith(' ') && !line.startsWith('\t')) {
-        // Save previous key-value pair if exists
-        if (currentKey) {
-          frontmatter[currentKey] = currentValue.trim();
-        }
+      if (colonIndex > 0) {
+        const key = trimmed.substring(0, colonIndex).trim();
+        const value = trimmed.substring(colonIndex + 1).trim();
         
-        // Start new key-value pair
-        currentKey = trimmed.substring(0, colonIndex).trim();
-        currentValue = trimmed.substring(colonIndex + 1).trim();
-        
-        // Remove quotes if present
-        if ((currentValue.startsWith('"') && currentValue.endsWith('"')) || 
-            (currentValue.startsWith("'") && currentValue.endsWith("'"))) {
-          currentValue = currentValue.slice(1, -1);
+        if (!value) {
+          // This might be an array or object
+          const nextLineIndex = i + 1;
+          if (nextLineIndex < lines.length) {
+            const nextLine = lines[nextLineIndex];
+            const nextTrimmed = nextLine.trim();
+            
+            if (nextTrimmed.startsWith('- ')) {
+              // This is an array
+              const indentLevel = nextLine.length - nextLine.trimStart().length;
+              const result = parseArray(nextLineIndex, indentLevel);
+              frontmatter[key] = result.array;
+              i = result.nextIndex - 1;
+            }
+          }
+        } else {
+          frontmatter[key] = parseValue(value);
         }
-      } else if (currentKey && (line.startsWith(' ') || line.startsWith('\t'))) {
-        // This is a continuation of the previous value (multi-line)
-        currentValue += ' ' + trimmed;
       }
     }
-  }
-  
-  // Save the last key-value pair
-  if (currentKey) {
-    frontmatter[currentKey] = currentValue.trim();
+    
+    i++;
   }
   
   return { frontmatter, content: markdownContent };

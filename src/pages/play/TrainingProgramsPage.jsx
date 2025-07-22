@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import HeroSection from '../../components/HeroSection';
-import TrainingProgramsSection from '../../components/sections/TrainingProgramsSection';
+import CoachBiographyCard from '../../components/CoachBiographyCard';
+import ProgramCard from '../../components/ProgramCard';
+import TestimonialCard from '../../components/TestimonialCard';
+import PricingTable from '../../components/PricingTable';
 import { loadSubpageContent, getStaticContent } from '../../utils/contentLoader';
 
 const TrainingProgramsPage = () => {
@@ -19,33 +22,54 @@ const TrainingProgramsPage = () => {
                         title: frontmatter.title,
                         subtitle: frontmatter.subtitle,
                         heroImage: frontmatter.heroImage,
-                        section: {
-                            title: frontmatter.title,
-                            subtitle: frontmatter.subtitle,
-                            bookingUrl: frontmatter.bookingUrl,
-                            bookingText: frontmatter.bookingText,
-                            backgroundColor: frontmatter.backgroundColor,
-                            textColor: frontmatter.textColor,
-                            titleColor: frontmatter.titleColor,
-                            content: markdownBody
-                        }
+                        bookingUrl: frontmatter.bookingUrl,
+                        bookingText: frontmatter.bookingText,
+                        coaches: frontmatter.coaches || [],
+                        programs: frontmatter.programs || [],
+                        testimonials: frontmatter.testimonials || [],
+                        content: markdownBody
                     });
                 } else {
-                    // Fallback to static content
-                    const cmsContent = getStaticContent();
-                    const playContent = cmsContent.play;
-                    
-                    if (playContent && playContent.sections) {
-                        const trainingSection = playContent.sections.find(s => s.title === 'Training Programs');
-                        if (trainingSection) {
-                            setContent({
-                                title: 'Training Programs',
-                                subtitle: trainingSection.subtitle,
-                                heroImage: playContent.heroImage,
-                                section: trainingSection
-                            });
-                        }
-                    }
+                    // Fallback to Lorem ipsum content
+                    setContent({
+                        title: 'Lorem Ipsum Training',
+                        subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                        heroImage: '/assets/place-holder.jpg',
+                        bookingUrl: '#',
+                        bookingText: 'Lorem Booking',
+                        coaches: [
+                            {
+                                name: 'Lorem Coach',
+                                image: '/assets/place-holder.jpg',
+                                certifications: 'Lorem Ipsum Certified',
+                                experience: 'X years',
+                                specialties: ['Lorem', 'Ipsum', 'Dolor'],
+                                bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                                availability: 'Lorem ipsum schedule'
+                            }
+                        ],
+                        programs: [
+                            {
+                                title: 'Lorem Program',
+                                duration: 'XX minutes',
+                                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                                features: ['Lorem feature', 'Ipsum feature', 'Dolor feature'],
+                                memberPrice: '$XX',
+                                nonMemberPrice: '$XX',
+                                skillLevel: 'Lorem level',
+                                equipment: 'Lorem equipment'
+                            }
+                        ],
+                        testimonials: [
+                            {
+                                name: 'Lorem Person',
+                                quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                                program: 'Lorem Program',
+                                rating: 5
+                            }
+                        ],
+                        content: '<h2>Lorem Ipsum</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
+                    });
                 }
                 setLoading(false);
             } catch (error) {
@@ -87,10 +111,73 @@ const TrainingProgramsPage = () => {
                 overlayColor="blue"
             />
 
-            <div className="container mx-auto px-6 py-8">
-                <div className="max-w-6xl mx-auto">
-                    <TrainingProgramsSection content={content.section} />
-                </div>
+            <div className="container mx-auto px-6 py-12 space-y-16">
+                {/* Introduction Content */}
+                {content.content && (
+                    <div className="max-w-4xl mx-auto">
+                        <div className="prose prose-lg max-w-none text-center">
+                            <div dangerouslySetInnerHTML={{ __html: content.content }} />
+                        </div>
+                    </div>
+                )}
+
+                {/* Training Programs Grid */}
+                {content.programs && content.programs.length > 0 && (
+                    <section>
+                        <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
+                            Our Training Programs
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                            {content.programs.map((program, index) => (
+                                <ProgramCard
+                                    key={index}
+                                    program={program}
+                                    bookingUrl={content.bookingUrl}
+                                    bookingText={content.bookingText}
+                                />
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Pricing Table */}
+                {content.programs && content.programs.length > 0 && (
+                    <section className="max-w-6xl mx-auto">
+                        <PricingTable
+                            programs={content.programs}
+                            bookingUrl={content.bookingUrl}
+                            bookingText={content.bookingText}
+                        />
+                    </section>
+                )}
+
+                {/* Meet Our Coaches */}
+                {content.coaches && content.coaches.length > 0 && (
+                    <section>
+                        <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
+                            Meet Our Certified Coaches
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                            {content.coaches.map((coach, index) => (
+                                <CoachBiographyCard key={index} coach={coach} />
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Student Testimonials */}
+                {content.testimonials && content.testimonials.length > 0 && (
+                    <section>
+                        <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
+                            What Our Students Say
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                            {content.testimonials.map((testimonial, index) => (
+                                <TestimonialCard key={index} testimonial={testimonial} />
+                            ))}
+                        </div>
+                    </section>
+                )}
             </div>
         </div>
     );

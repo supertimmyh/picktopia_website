@@ -1,1 +1,71 @@
-<iframe id="form-iframe" class="form-iframe-46866" src="https://widgets.courtreserve.com/Online/Public/EmbedCode/16040/46866" style="margin:0; width:100%; border:none; overflow:hidden;" scrolling="no" ></iframe> <script type="text/javascript"> var myEventMethod = window.addEventListener ? "addEventListener" : "attachEvent"; var myEventListener = window[myEventMethod]; var myEventMessage = myEventMethod == "attachEvent" ? "onmessage" : "message"; function onEventClick(eventId, occId) { } myEventListener(myEventMessage, function(e) { switch (e.data.action) { case "setHeight": { var embedCodeId = e.data.embedCodeId; if (embedCodeId != null && embedCodeId != '') { var elements = document.getElementsByClassName('form-iframe-' + embedCodeId); for (var i = 0; i < elements.length; i++) { elements[i].style.height = (e.data.height) + "px"; } } else { document.getElementById('form-iframe').height = (e.data.height) + "px"; } break; } case "eventClick": { var eventId = e.data.params.eventId; var reservationId = e.data.params.reservtionId; onEventClick(eventId, reservationId); break; } } }, false); </script>
+# Product Requirements Document (PRD)
+## Training Programs Page Redesign
+
+### **Objective**
+Redesign the Training Programs page to differentiate it from the standard site layout but still maintain the same style and theme, add essential coach biography information, and improve user engagement and conversion rates.
+
+### **Current State Issues**
+- Uses generic page template (same hero + content structure as other pages)
+- Missing coach biographies and credentials 
+- Duplicate content (heading/description appears twice)
+- Plain text format lacks visual hierarchy
+- No trust-building elements or social proof
+
+### **Requirements**
+
+#### **1. Layout & Design**
+- **Use traditional hero layout**: Maintain the standard HeroSection component with full-width background image and overlay
+- **Content differentiation**: Use cards, grids, or enhanced content layouts below the hero section
+- **Enhanced visual hierarchy**: Implement icons, color coding, and improved typography in content areas
+- **Mobile responsiveness**: Ensure new layout works across all devices
+
+#### **2. Coach Biographies Section**
+- **Professional profiles** for each instructor including:
+  - Professional headshot photos
+  - Name, certifications, and credentials
+  - Years of experience and specialties
+  - Brief bio highlighting expertise and teaching philosophy
+  - Availability or preferred training focus areas
+- **Trust indicators**: Certifications, ratings, or testimonials per coach
+- **Contact integration**: Direct booking or contact options for preferred instructors
+
+#### **3. Content Enhancements**
+- **Remove duplicate content**: Eliminate redundant heading/description
+- **Structured program information**: 
+  - What participants will learn (bullet points)
+  - Session format and duration details
+  - Equipment provided/required
+  - Skill level recommendations
+- **Social proof**: Add testimonials, success stories, or participation numbers
+- **Clear pricing display**: Maintain current accurate pricing with member vs. non-member rates
+
+#### **4. User Experience Improvements**
+- **Enhanced navigation**: Easy comparison between program types
+- **Booking integration**: Streamlined path to schedule training
+- **Progressive disclosure**: Expandable sections for detailed information
+- **Visual cues**: Icons, progress indicators, or skill level badges
+
+#### **5. Success Metrics**
+- Increased training program inquiries/bookings
+- Improved page engagement time
+- Higher conversion rate from page visits to program enrollment
+- Positive user feedback on coach selection process
+
+#### **6. Technical Considerations**
+- **Component Architecture**: Break down page into reusable components:
+  - `CoachBiographyCard` component for individual coach profiles
+  - `ProgramCard` component for training program displays
+  - `TestimonialCard` component for social proof
+  - `PricingTable` component for pricing display
+- **Content Management**: Store all content in markdown file (`src/content/pages/play/training-programs.md`)
+  - Coach biographies with frontmatter for structured data
+  - Program details and pricing in YAML frontmatter
+  - Testimonials and social proof content
+- **Dynamic Loading**: Use `loadSubpageContent('play', 'training-programs')` to load content
+- Maintain current CMS integration for content updates
+- Ensure fast loading times despite enhanced visuals
+- SEO optimization for coach names and program keywords
+- Accessibility compliance for all new elements
+
+### **Priority**
+High - This is a revenue-generating service page that currently lacks essential trust-building elements and user-friendly design.
