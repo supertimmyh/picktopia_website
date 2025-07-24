@@ -39,9 +39,9 @@ const ImageContentSection = ({
     const textAlignment = isImageLeft ? 'text-center lg:text-left' : 'text-center lg:text-right';
 
     return (
-        <div className={`relative ${sizeClasses[size]} ${paddingClasses[padding]} flex items-center ${className}`}>
-            <div className={`container mx-auto px-6 ${containerClassName}`}>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className={`relative ${sizeClasses[size]} ${paddingClasses[padding]} w-full ${className}`}>
+            <div className={`w-full max-w-none px-12 ${containerClassName}`}>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
                     {/* Image Side */}
                     <div className={`relative ${imageOrder} ${imageClassName}`}>
                         {backgroundImage ? (
@@ -59,7 +59,7 @@ const ImageContentSection = ({
                     </div>
 
                     {/* Content Side */}
-                    <div className={`${contentOrder} ${textAlignment} ${contentClassName}`}>
+                    <div className={`${contentOrder} text-center ${contentClassName}`}>
                         {title && (
                             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-picktopia-blue-dark tracking-wider uppercase">
                                 {title}

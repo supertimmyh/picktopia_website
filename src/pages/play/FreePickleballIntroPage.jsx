@@ -82,7 +82,7 @@ const FreePickleballIntroPage = () => {
             <ImageContentSection
                 title={content.title}
                 subtitle={content.subtitle}
-                backgroundImage="/src/assets/place-holder.jpg"
+                backgroundImage={content.heroImage}
                 size="large"
                 imagePosition="right"
                 padding="large"

@@ -18,7 +18,7 @@ export const CMS_DATA = {
             ]
         },
         "Group Bookings", 
-        "Sponsorships",
+        "Partnerships",
         { type: "dynamic", source: "locations", title: "Locations" },
         { type: "dynamic", source: "events", title: "Events" }
     ],
@@ -60,7 +60,7 @@ export const CMS_DATA = {
     },
     footer: {
         description: "The premier destination for players of all levels in our community.",
-        quickLinks: ["About Us", "Locations", "Group Bookings", "Sponsorships", "Policies"],
+        quickLinks: ["About Us", "Locations", "Group Bookings", "Partnerships", "Policies"],
         contact: {
             address: "123 Pickleball Lane, Suite 100, Anytown, USA 12345",
             email: "contact@picktopia.com",

@@ -3,7 +3,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutUsCMS from './pages/AboutUsCMS';
-import GroupBookingsCMS from './pages/GroupBookingsCMS';
+import GroupBookingsPage from './pages/GroupBookingsPage';
+import PartnershipsPage from './pages/PartnershipsPage';
 import CMSPage from './pages/CMSPage';
 import EventPage from './pages/EventPage';
 import LocationPage from './pages/LocationPage';
@@ -46,13 +47,14 @@ export default function App() {
             case 'play-free-pickleball-intro':
                 return <FreePickleballIntroPage />;
             case 'group-bookings':
-                return <GroupBookingsCMS />;
+                return <GroupBookingsPage />;
+            case 'partnerships':
+                return <PartnershipsPage />;
             case 'locations':
                 return <CMSPage pageSlug="locations" />;
             case 'events':
                 return <CMSPage pageSlug="events" />;
-            case 'sponsorships':
-                return <CMSPage pageSlug="sponsorships" />;
+            
             default:
                 return <HomePage />;
         }

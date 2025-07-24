@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../ui/button';
 
 const EventPackagesSection = ({ content }) => {
     const packages = content?.packages || [];
@@ -35,13 +36,31 @@ const EventPackagesSection = ({ content }) => {
                             </p>
                             
                             {/* Features List */}
-                            <div className="space-y-2">
+                            <div className="space-y-2 mb-6">
                                 {pkg.features.map((feature, idx) => (
                                     <div key={idx} className="flex items-center text-sm">
                                         <span className="w-2 h-2 bg-picktopia-orange rounded-full mr-3 flex-shrink-0"></span>
                                         <span className="font-body text-gray-700">{feature}</span>
                                     </div>
                                 ))}
+                            </div>
+                            
+                            {/* CTA Button */}
+                            <div className="text-center">
+                                <Button
+                                    variant="picktopia"
+                                    size="default"
+                                    className="w-full"
+                                    onClick={() => {
+                                        // Scroll to the booking form
+                                        const formElement = document.querySelector('form');
+                                        if (formElement) {
+                                            formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                    }}
+                                >
+                                    Plan This Event
+                                </Button>
                             </div>
                         </div>
                     </div>
