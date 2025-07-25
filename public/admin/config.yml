@@ -1,13 +1,10 @@
-# when using the default proxy server port
-local_backend: true
-
 backend:
   name: github
   repo: supertimmyh/picktopia_website
   branch: main
 
-# Enable editorial workflow for content review
-publish_mode: editorial_workflow
+# Enable editorial workflow for content review (disabled for local dev)
+# publish_mode: editorial_workflow
 
 # Media files configuration
 media_folder: "public/images/uploads" # Media files will be stored in the repo under public/images/uploads
@@ -123,6 +120,26 @@ collections:
       - { label: "Description", name: "description", widget: "markdown" }
       - { label: "Registration Link", name: "registrationLink", widget: "string", required: false }
       - { label: "Price", name: "price", widget: "string", required: false }
+
+  # Announcements Collection
+  - name: "announcements"
+    label: "Announcements"
+    folder: "src/content/announcements"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Message", name: "message", widget: "string" }
+      - label: "Link Type"
+        name: "linkType"
+        widget: "select"
+        options: ["none", "internal", "external", "event"]
+        default: "none"
+      - { label: "Link (page name or URL)", name: "link", widget: "string", required: false }
+      - { label: "Priority", name: "priority", widget: "number", default: 1, hint: "Higher numbers show first" }
+      - { label: "Active", name: "active", widget: "boolean", default: true }
+      - { label: "Start Date", name: "startDate", widget: "datetime", required: false }
+      - { label: "End Date", name: "endDate", widget: "datetime", required: false }
 
   # Settings Collection - Site-wide settings
   - name: "settings"

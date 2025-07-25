@@ -7,6 +7,7 @@ import GroupBookingsPage from './pages/GroupBookingsPage';
 import PartnershipsPage from './pages/PartnershipsPage';
 import CMSPage from './pages/CMSPage';
 import EventPage from './pages/EventPage';
+import EventsPage from './pages/EventsPage';
 import LocationPage from './pages/LocationPage';
 import BookingPage from './pages/play/BookingPage';
 import ProgramSchedulePage from './pages/play/ProgramSchedulePage';
@@ -35,7 +36,7 @@ export default function App() {
         
         switch (page) {
             case 'home':
-                return <HomePage />;
+                return <HomePage navigateTo={navigateTo} />;
             case 'about-us':
                 return <AboutUsCMS />; // Using CMS-powered About Us
             case 'play-booking':
@@ -53,7 +54,7 @@ export default function App() {
             case 'locations':
                 return <CMSPage pageSlug="locations" />;
             case 'events':
-                return <CMSPage pageSlug="events" />;
+                return <EventsPage navigateTo={navigateTo} />;
             
             default:
                 return <HomePage />;

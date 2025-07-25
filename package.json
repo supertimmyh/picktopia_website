@@ -6,7 +6,7 @@
   "homepage": "https://supertimmyh.github.io/picktopia_website",
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate-manifests && vite build",
+    "build": "npm run generate-manifests && node scripts/copy-content.js && vite build",
     "preview": "vite preview",
     "generate-manifests": "node scripts/generate-manifests.js",
     "predeploy": "npm run build",

@@ -2,12 +2,12 @@ import React from 'react';
 import HeroSection from '../components/HeroSection';
 import WhatIsPicktopia from '../components/WhatIsPicktopia';
 import FaqSection from '../components/FaqSection';
-import LatestBlogPosts from '../components/LatestBlogPosts';
+import LatestEvents from '../components/LatestEvents';
 import Newsletter from '../components/Newsletter';
 import { CMS_DATA } from '../data';
 import heroImage from '../assets/hero-image.jpeg';
 
-const HomePage = () => {
+const HomePage = ({ navigateTo }) => {
   const { title, subtitle, cta } = CMS_DATA.hero;
   
   return (
@@ -25,7 +25,7 @@ const HomePage = () => {
       </HeroSection>
       <WhatIsPicktopia />
       <FaqSection />
-      <LatestBlogPosts />
+      <LatestEvents navigateTo={navigateTo} />
       <Newsletter />
     </>
   );

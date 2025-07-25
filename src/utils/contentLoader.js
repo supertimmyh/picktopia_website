@@ -1,7 +1,8 @@
 // Enhanced frontmatter parser that works in browsers and supports arrays/objects
 const parseFrontmatter = (fileContent) => {
-  const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
   const match = fileContent.match(frontmatterRegex);
+  
   
   if (!match) {
     return { frontmatter: {}, content: fileContent };
@@ -190,17 +191,17 @@ export const loadContent = async (filePath) => {
 
 // Load page content
 export const loadPageContent = async (pageName) => {
-  return await loadContent(`/src/content/pages/${pageName}.md`);
+  return await loadContent(`/content/pages/${pageName}.md`);
 };
 
 // Load subpage content
 export const loadSubpageContent = async (parentPage, subpageName) => {
-  return await loadContent(`/src/content/pages/${parentPage}/${subpageName}.md`);
+  return await loadContent(`/content/pages/${parentPage}/${subpageName}.md`);
 };
 
 // Load settings
 export const loadSettings = async (settingName) => {
-  return await loadContent(`/src/content/settings/${settingName}.md`);
+  return await loadContent(`/content/settings/${settingName}.md`);
 };
 
 // Load all content from a folder
@@ -220,7 +221,7 @@ export const loadCollectionContent = async (collectionName) => {
 export const loadLocationsForNav = async () => {
   try {
     // Load location slugs from manifest file
-    const manifestResponse = await fetch('/src/content/locations/manifest.json');
+    const manifestResponse = await fetch('/content/locations/manifest.json');
     let locationSlugs = [];
     
     if (manifestResponse.ok) {
@@ -235,7 +236,7 @@ export const loadLocationsForNav = async () => {
     
     for (const slug of locationSlugs) {
       try {
-        const locationContent = await loadContent(`/src/content/locations/${slug}.md`);
+        const locationContent = await loadContent(`/content/locations/${slug}.md`);
         if (locationContent && locationContent.frontmatter.title) {
           locations.push({
             slug: slug,
@@ -259,7 +260,7 @@ export const loadLocationsForNav = async () => {
 export const loadEventsForNav = async () => {
   try {
     // Load event slugs from manifest file
-    const manifestResponse = await fetch('/src/content/events/manifest.json');
+    const manifestResponse = await fetch('/content/events/manifest.json');
     let eventSlugs = [];
     
     if (manifestResponse.ok) {
@@ -273,7 +274,7 @@ export const loadEventsForNav = async () => {
     
     for (const slug of eventSlugs) {
       try {
-        const eventContent = await loadContent(`/src/content/events/${slug}.md`);
+        const eventContent = await loadContent(`/content/events/${slug}.md`);
         if (eventContent && eventContent.frontmatter.title) {
           events.push({
             slug: slug,
@@ -289,6 +290,156 @@ export const loadEventsForNav = async () => {
     return events;
   } catch (error) {
     console.error('Error loading events for navigation:', error);
+    return [];
+  }
+};
+
+// Load All Events
+export const loadAllEvents = async () => {
+  try {
+    // Load event slugs from manifest file
+    const manifestResponse = await fetch('/content/events/manifest.json');
+    let eventSlugs = [];
+    
+    if (manifestResponse.ok) {
+      eventSlugs = await manifestResponse.json();
+    } else {
+      // Fallback to known events if manifest doesn't exist
+      eventSlugs = ['inauguration-tournament', 'late-summer-bbq'];
+    }
+    
+    const events = [];
+    
+    for (const slug of eventSlugs) {
+      try {
+        const eventContent = await loadContent(`/content/events/${slug}.md`);
+        if (eventContent && eventContent.frontmatter) {
+          events.push({
+            slug: slug,
+            title: eventContent.frontmatter.title,
+            date: eventContent.frontmatter.date,
+            location: eventContent.frontmatter.location,
+            image: eventContent.frontmatter.image || '/images/uploads/place-holder.jpg',
+            description: eventContent.frontmatter.description,
+            registrationLink: eventContent.frontmatter.registrationLink,
+            price: eventContent.frontmatter.price
+          });
+        }
+      } catch (error) {
+        // Event file doesn't exist, skip
+        console.log(`Event ${slug} not found, skipping`);
+      }
+    }
+    
+    return events;
+  } catch (error) {
+    console.error('Error loading all events:', error);
+    return [];
+  }
+};
+
+// Load Latest Events for homepage display
+export const loadLatestEvents = async (limit = 3) => {
+  try {
+    // Load event slugs from manifest file
+    const manifestResponse = await fetch('/content/events/manifest.json');
+    let eventSlugs = [];
+    
+    if (manifestResponse.ok) {
+      eventSlugs = await manifestResponse.json();
+    } else {
+      // Fallback to known events if manifest doesn't exist
+      eventSlugs = ['inauguration-tournament', 'late-summer-bbq'];
+    }
+    
+    const events = [];
+    
+    for (const slug of eventSlugs) {
+      try {
+        const eventContent = await loadContent(`/content/events/${slug}.md`);
+        if (eventContent && eventContent.frontmatter) {
+          events.push({
+            slug: slug,
+            title: eventContent.frontmatter.title,
+            date: eventContent.frontmatter.date,
+            location: eventContent.frontmatter.location,
+            image: eventContent.frontmatter.image || '/images/uploads/place-holder.jpg',
+            description: eventContent.frontmatter.description,
+            registrationLink: eventContent.frontmatter.registrationLink,
+            price: eventContent.frontmatter.price
+          });
+        }
+      } catch (error) {
+        // Event file doesn't exist, skip
+        console.log(`Event ${slug} not found, skipping`);
+      }
+    }
+    
+    // Sort events by date (newest first) and limit results
+    const sortedEvents = events
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, limit);
+    
+    return sortedEvents;
+  } catch (error) {
+    console.error('Error loading latest events:', error);
+    return [];
+  }
+};
+
+// Load Active Announcements
+export const loadActiveAnnouncements = async () => {
+  try {
+    // Load announcement slugs from manifest file
+    const manifestResponse = await fetch('/content/announcements/manifest.json');
+    let announcementSlugs = [];
+    
+    if (manifestResponse.ok) {
+      announcementSlugs = await manifestResponse.json();
+    } else {
+      // Return empty array if no announcements
+      return [];
+    }
+    
+    const announcements = [];
+    const now = new Date();
+    
+    for (const slug of announcementSlugs) {
+      try {
+        const announcementContent = await loadContent(`/content/announcements/${slug}.md`);
+        if (announcementContent && announcementContent.frontmatter) {
+          const announcement = announcementContent.frontmatter;
+          
+          // Check if announcement is active
+          if (!announcement.active) continue;
+          
+          // Check date range
+          const startDate = announcement.startDate ? new Date(announcement.startDate) : null;
+          const endDate = announcement.endDate ? new Date(announcement.endDate) : null;
+          
+          if (startDate && now < startDate) continue;
+          if (endDate && now > endDate) continue;
+          
+          announcements.push({
+            slug: slug,
+            title: announcement.title,
+            message: announcement.message,
+            linkType: announcement.linkType || 'none',
+            link: announcement.link,
+            priority: announcement.priority || 1,
+            active: announcement.active
+          });
+        }
+      } catch (error) {
+        // Announcement file doesn't exist, skip
+        console.log(`Announcement ${slug} not found, skipping`);
+      }
+    }
+    
+    // Sort by priority (highest first)
+    return announcements.sort((a, b) => (b.priority || 1) - (a.priority || 1));
+  } catch (error) {
+    console.error('Error loading announcements:', error);
     return [];
   }
 };

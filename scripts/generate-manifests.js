@@ -39,3 +39,21 @@ try {
 } catch (error) {
   console.error('Error generating locations manifest:', error);
 }
+
+// Generate announcements manifest
+const announcementsDir = path.join(__dirname, '../src/content/announcements');
+const announcementsManifestPath = path.join(announcementsDir, 'manifest.json');
+
+try {
+  if (fs.existsSync(announcementsDir)) {
+    const files = fs.readdirSync(announcementsDir);
+    const announcementSlugs = files
+      .filter(file => file.endsWith('.md'))
+      .map(file => file.replace('.md', ''));
+    
+    fs.writeFileSync(announcementsManifestPath, JSON.stringify(announcementSlugs, null, 2));
+    console.log(`Generated announcements manifest with ${announcementSlugs.length} announcements:`, announcementSlugs);
+  }
+} catch (error) {
+  console.error('Error generating announcements manifest:', error);
+}

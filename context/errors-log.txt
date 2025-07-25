@@ -1,2 +1,124 @@
-Failed to load resource: the server responded with a status of 500 (Internal Server Error)Understand this error
-client.ts:122 [hmr] Failed to reload /src/pages/GroupBookingsPage.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+Loaded announcement summer-league-signup: {frontmatter: {…}, content: '---\ntitle: "Summer League Signup"\nmessage: "Summer…:00:00.000Z\nendDate: 2025-08-31T23:59:59.000Z\n---'}
+contentLoader.js?t=1753412055601:413 Frontmatter for summer-league-signup: {}
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}linkType: "none"message: "Summer League Signups Now Open!"[[Prototype]]: Object
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+contentLoader.js?t=1753412055601:409 Loaded announcement summer-league-signup: {frontmatter: {…}, content: '---\ntitle: "Summer League Signup"\nmessage: "Summer…:00:00.000Z\nendDate: 2025-08-31T23:59:59.000Z\n---'}
+contentLoader.js?t=1753412055601:413 Frontmatter for summer-league-signup: {}
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:53 Announcement clicked: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:56 No announcement or linkType is none
+AnnouncementBar.jsx:96 Current announcement: {message: 'Holiday Hours: Closed on July 4th.', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Holiday Hours: Closed on July 4th.', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:53 Announcement clicked: {message: 'Holiday Hours: Closed on July 4th.', linkType: 'none'}
+AnnouncementBar.jsx:56 No announcement or linkType is none
+AnnouncementBar.jsx:53 Announcement clicked: {message: 'Holiday Hours: Closed on July 4th.', linkType: 'none'}
+AnnouncementBar.jsx:56 No announcement or linkType is none
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:53 Announcement clicked: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:56 No announcement or linkType is none
+AnnouncementBar.jsx:53 Announcement clicked: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:56 No announcement or linkType is none
+AnnouncementBar.jsx:96 Current announcement: {message: 'Holiday Hours: Closed on July 4th.', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Holiday Hours: Closed on July 4th.', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'Summer League Signups Now Open!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false
+AnnouncementBar.jsx:96 Current announcement: {message: 'New Pro-Shop Gear Arrived This Week!', linkType: 'none'}
+AnnouncementBar.jsx:97 LinkType: none Link: undefined
+AnnouncementBar.jsx:98 LinkType !== none: false
+AnnouncementBar.jsx:99 Has link: false
+AnnouncementBar.jsx:100 Is clickable: false

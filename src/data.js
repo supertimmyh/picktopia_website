@@ -1,9 +1,9 @@
 // This file simulates a data fetch from a headless CMS.
 export const CMS_DATA = {
     announcements: [
-        "Summer League Signups Now Open!",
-        "New Pro-Shop Gear Arrived This Week!",
-        "Holiday Hours: Closed on July 4th.",
+        "Sed ut perspiciatis",
+        "At vero eos et accusamus",
+        "Temporibus autem quibusdam",
     ],
     navLinks: [
         "Home", 
@@ -20,7 +20,7 @@ export const CMS_DATA = {
         "Group Bookings", 
         "Partnerships",
         { type: "dynamic", source: "locations", title: "Locations" },
-        { type: "dynamic", source: "events", title: "Events" }
+        "Events"
     ],
     hero: {
         title: "Welcome to the Heart of Pickleball",
@@ -62,9 +62,9 @@ export const CMS_DATA = {
         description: "The premier destination for players of all levels in our community.",
         quickLinks: ["About Us", "Locations", "Group Bookings", "Partnerships", "Policies"],
         contact: {
-            address: "123 Pickleball Lane, Suite 100, Anytown, USA 12345",
-            email: "contact@picktopia.com",
-            phone: "(555) 123-4567"
+            address: "3595 St Clair Ave E Unit B2, Scarborough, ON M1K 1L8",
+            email: "info@rallypicktopia.com",
+            phone: "(647) 478-9866"
         }
     }
 };

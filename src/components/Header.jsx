@@ -177,7 +177,7 @@ const Header = ({ onNavClick, currentPage }) => {
 
     return (
         <>
-            <AnnouncementBar />
+            <AnnouncementBar navigateTo={onNavClick} />
             <header className="sticky top-0 z-50 px-4 pt-2">
                 <div className={`${navbarBg} backdrop-blur-md shadow-lg rounded-2xl mx-auto max-w-7xl px-6 py-4 flex justify-between items-center ${textColor}`}>
                 <a href="#" onClick={(e) => { e.preventDefault(); onNavClick('home'); }} className="flex items-center space-x-1">
