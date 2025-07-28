@@ -232,9 +232,42 @@ UI Components
 ## 🔧 Content Management
 
 ### **CMS Integration**
-Content is managed through multiple systems:
+Content is managed through Decap CMS and multiple systems:
 
-#### **YAML Frontmatter + Markdown**
+#### **Decap CMS - Events & Announcements**
+Events and announcements are **strictly managed via Decap CMS**:
+
+1. **Access CMS**: Navigate to `http://localhost:5173/admin/index.html#/` (local) or `https://yoursite.com/admin/index.html#/` (production)
+2. **Authentication**: GitHub OAuth integration
+3. **Content Creation**: 
+   - **Events**: Create individual events with date, location, image, description
+   - **Announcements**: Create announcements with different link types (none, internal, external, event)
+
+#### **Announcement Link Types**
+```yaml
+# Announcement configuration in CMS
+linkType: "event"           # Links to individual event page
+link: "event-slug"          # Event slug for navigation
+
+linkType: "internal"        # Links to internal page
+link: "events"              # Page name (events, about-us, etc.)
+
+linkType: "external"        # Links to external URL
+link: "https://example.com" # Full URL
+
+linkType: "none"            # No link (display only)
+```
+
+#### **Automated Manifest Generation**
+When events or announcements are published via CMS, a **GitHub Action automatically**:
+1. Detects changes in `src/content/events/` or `src/content/announcements/`
+2. Runs `npm run generate-manifests` to update manifest files
+3. Commits the updated manifests back to the repository
+4. Updates navigation dynamically without manual intervention
+
+**Workflow File**: `.github/workflows/update-manifests.yml`
+
+#### **YAML Frontmatter + Markdown (Other Content)**
 ```yaml
 # src/content/pages/play.md
 ---
@@ -272,6 +305,39 @@ Each section component accepts content props:
 <TrainingProgramsSection content={trainingSection} />
 <FreeIntroSection content={introSection} />
 ```
+
+### **CMS Content Creation Workflow**
+
+#### **For Events:**
+1. **Access CMS** → Collections → Events → New Event
+2. **Fill Required Fields:**
+   - Event Name (title)
+   - Date & Time
+   - Location
+   - Image upload
+   - Description (markdown)
+   - Registration Link (optional)
+   - Price (optional)
+3. **Publish** → Triggers automatic manifest generation
+4. **Result**: Event appears in navigation and individual event page is accessible
+
+#### **For Announcements:**
+1. **Access CMS** → Collections → Announcements → New Announcement
+2. **Configure Announcement:**
+   - Title (internal reference)
+   - Message (displayed text)
+   - Link Type: Choose appropriate type
+   - Link: Event slug, page name, or URL
+   - Priority (higher numbers show first)
+   - Active status
+   - Start/End dates (optional)
+3. **Publish** → Triggers automatic manifest generation
+4. **Result**: Announcement appears in top bar with correct linking behavior
+
+#### **Navigation Integration:**
+- **Dynamic Loading**: Navigation system automatically loads events and announcements from manifests
+- **No Manual Updates**: Content creators never need to manually update navigation
+- **Real-time Updates**: New content appears after CMS publish + GitHub Action completion (~2-3 minutes)
 
 ## 🎛️ Configuration
 

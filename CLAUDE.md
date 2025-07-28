@@ -24,13 +24,23 @@ The app uses a custom state-based navigation system in `src/App.jsx:14-18` with 
 ### Content Management Architecture
 The project implements a hybrid CMS approach:
 
-1. **CMS Content**: YAML frontmatter + Markdown files organized hierarchically in `src/content/pages/`
-2. **Content Structure**: 
+1. **Decap CMS Collections**: Events and announcements are **strictly managed via Decap CMS** (not directly in files)
+2. **CMS Content**: Other content uses YAML frontmatter + Markdown files organized hierarchically in `src/content/pages/`
+3. **Content Structure**: 
    - Main pages: `src/content/pages/[pagename].md`
    - Subpages: `src/content/pages/[parent]/[subpage].md` (e.g., `play/booking.md`)
-3. **Content Loading**: `src/utils/contentLoader.js` handles dynamic loading with `loadPageContent()` and `loadSubpageContent()`
-4. **Fallback System**: Static content in `getStaticContent()` for when markdown files are unavailable
-5. **Page Components**: All pages load content from markdown files with static fallbacks
+   - Events: `src/content/events/` (CMS-managed only)
+   - Announcements: `src/content/announcements/` (CMS-managed only)
+4. **Content Loading**: `src/utils/contentLoader.js` handles dynamic loading with `loadPageContent()` and `loadSubpageContent()`
+5. **Fallback System**: Static content in `getStaticContent()` for when markdown files are unavailable
+6. **Page Components**: All pages load content from markdown files with static fallbacks
+
+### CMS Automation System
+**GitHub Action Workflow** (`.github/workflows/update-manifests.yml`):
+- **Trigger**: Commits to `src/content/events/` or `src/content/announcements/`
+- **Action**: Automatically runs `npm run generate-manifests` 
+- **Result**: Updates navigation manifests and commits them back
+- **Benefit**: Content creators never manually update navigation - fully automated
 
 ### Component Hierarchy
 ```
@@ -309,13 +319,19 @@ echo "[]" > src/content/your-collection/manifest.json
 ```
 
 ### 8. Automatic Manifest Generation
-The build process automatically generates manifests by scanning collection directories. When you create new items through Decap CMS, run:
+The build process automatically generates manifests by scanning collection directories. **For events and announcements, manifests are automatically updated via GitHub Actions** - no manual action required.
 
+**Automatic Updates via GitHub Actions:**
+- Events and announcements published via CMS trigger automatic manifest generation
+- Workflow file: `.github/workflows/update-manifests.yml`
+- Takes 2-3 minutes to complete after CMS publish
+
+**Manual Generation (if needed):**
 ```bash
 npm run generate-manifests
 ```
 
-Or the manifest will be updated automatically during:
+**Other Automatic Generation:**
 - `npm run build` (build-time generation)
 - `git commit` (pre-commit hook)
 
@@ -331,3 +347,86 @@ This pattern provides:
 - ✅ CMS content management
 - ✅ Automatic manifest updates
 - ✅ Consistent page templates
+
+## CMS Content Creation Workflow
+
+### Accessing Decap CMS
+- **Local**: `http://localhost:5173/admin/index.html#/`
+- **Production**: `https://yoursite.com/admin/index.html#/`
+- **Authentication**: GitHub OAuth (requires repository access)
+
+### Events Management (CMS Only)
+**IMPORTANT**: Events are strictly managed via Decap CMS - never edit files directly in `src/content/events/`
+
+#### Creating Events:
+1. **Access CMS** → Collections → Events → New Event
+2. **Required Fields:**
+   - Event Name (becomes page title)
+   - Date & Time
+   - Location
+   - Image (uploaded to `/public/images/uploads/`)
+   - Description (markdown supported)
+3. **Optional Fields:**
+   - Registration Link (external booking URL)
+   - Price
+4. **Publish** → Triggers GitHub Action for manifest update
+5. **Result**: 
+   - Individual event page available at `/events-{slug}`
+   - Event appears in navigation dropdown
+   - Searchable and linkable from announcements
+
+### Announcements Management (CMS Only)
+**IMPORTANT**: Announcements are strictly managed via Decap CMS - never edit files directly in `src/content/announcements/`
+
+#### Creating Announcements:
+1. **Access CMS** → Collections → Announcements → New Announcement
+2. **Configure Fields:**
+   - **Title**: Internal reference (not displayed)
+   - **Message**: Text displayed in announcement bar
+   - **Link Type**: Choose behavior when clicked
+     - `none`: Display only, no link
+     - `internal`: Link to internal page (e.g., "events", "about-us")
+     - `external`: Link to external URL (full URL required)
+     - `event`: Link to specific event page (use event slug)
+   - **Link**: Depends on Link Type
+   - **Priority**: Higher numbers show first (1-10)
+   - **Active**: Toggle visibility
+   - **Start/End Date**: Optional scheduling
+3. **Publish** → Triggers GitHub Action for manifest update
+4. **Result**: Announcement appears in rotating banner with correct link behavior
+
+#### Announcement Link Examples:
+```yaml
+# Link to specific event
+linkType: "event"
+link: "inauguration-tournament"  # Event slug
+
+# Link to events listing page  
+linkType: "internal"
+link: "events"
+
+# Link to external registration
+linkType: "external" 
+link: "https://app.courtreserve.com/Online/Portal/Index/16040"
+
+# Display only
+linkType: "none"
+link: ""  # Leave empty
+```
+
+### Automated Workflow
+1. **Content Creation**: Use CMS interface to create/edit content
+2. **CMS Publish**: Commits changes to GitHub repository
+3. **GitHub Action Trigger**: Detects changes in events/announcements directories
+4. **Manifest Generation**: Runs `npm run generate-manifests` automatically
+5. **Auto-Commit**: Updates manifest files and commits back to repo
+6. **Navigation Update**: Site navigation reflects new content (2-3 minute delay)
+7. **Live Site**: Content appears on production site after deployment
+
+### Important Notes
+- **Never edit event/announcement files directly** - always use CMS
+- **GitHub Action handles manifests** - no manual generation needed
+- **Content appears after ~2-3 minutes** - time for GitHub Action to complete
+- **Individual event pages** - each event gets its own URL and page
+- **Announcement rotation** - multiple announcements rotate every 4 seconds
+- **Link validation** - ensure event slugs match exactly for announcement links

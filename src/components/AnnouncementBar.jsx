@@ -89,22 +89,34 @@ const AnnouncementBar = ({ navigateTo }) => {
             }`}
             onClick={handleAnnouncementClick}
         >
-            <div className="px-6 flex items-center justify-center space-x-2">
-                <span className="inline-block w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                <p className="uppercase tracking-wide">
-                    {currentAnnouncement.message}
-                    {isClickable && (
-                        <span className="ml-2 inline-block transition-transform duration-300 hover:translate-x-1">
-                            →
-                        </span>
-                    )}
-                </p>
-                <span className="inline-block w-2 h-2 bg-white rounded-full animate-pulse"></span>
+            <div className="px-6 flex items-center justify-between">
+                {/* Center content */}
+                <div className="flex-1 text-center">
+                    <p className="uppercase tracking-wide">
+                        {currentAnnouncement.message}
+                    </p>
+                </div>
+                
+                {/* Right side - Next arrow (only when multiple announcements) */}
+                {announcements.length > 1 && (
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation(); // Prevent announcement click
+                            setCurrentIndex((prev) => (prev + 1) % announcements.length);
+                        }}
+                        className="p-2 hover:bg-white/20 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 group ml-4"
+                        aria-label={`Next announcement (${currentIndex + 1} of ${announcements.length})`}
+                    >
+                        <svg className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                )}
             </div>
             
-            {/* Multiple announcements indicator */}
+            {/* Simple indicator dots */}
             {announcements.length > 1 && (
-                <div className="flex justify-center space-x-1 mt-1">
+                <div className="flex justify-center space-x-1 mt-2">
                     {announcements.map((_, index) => (
                         <div
                             key={index}
