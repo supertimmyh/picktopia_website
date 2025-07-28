@@ -7,6 +7,9 @@ on:
       - 'src/content/events/**'
       - 'src/content/announcements/**'
 
+permissions:
+  contents: write
+
 jobs:
   update-manifests:
     runs-on: ubuntu-latest
