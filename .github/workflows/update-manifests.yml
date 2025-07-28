@@ -1,0 +1,41 @@
+name: Update Content Manifests
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/content/events/**'
+      - 'src/content/announcements/**'
+
+jobs:
+  update-manifests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: npm install --legacy-peer-deps
+      
+    - name: Generate manifests
+      run: npm run generate-manifests
+      
+    - name: Commit and push if manifests changed
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add src/content/*/manifest.json
+        if git diff --staged --quiet; then
+          echo "No manifest changes to commit"
+        else
+          git commit -m "Auto-update content manifests [skip ci]"
+          git push
+        fi
