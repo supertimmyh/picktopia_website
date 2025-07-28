@@ -67,7 +67,7 @@ export default function App() {
             <main>
                 {renderPage()}
             </main>
-            <Footer />
+            <Footer onNavClick={navigateTo} />
         </div>
     );
 }

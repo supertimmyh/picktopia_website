@@ -2,8 +2,19 @@ import React from 'react';
 import { CMS_DATA } from '../data';
 import { FacebookIcon, InstagramIcon, YoutubeIcon, TiktokIcon } from './Icons';
 
-const Footer = () => {
+const Footer = ({ onNavClick }) => {
     const { description, quickLinks, contact } = CMS_DATA.footer;
+    
+    const getRouteForLink = (link) => {
+        const linkMap = {
+            'About Us': 'about-us',
+            'Locations': 'locations',
+            'Group Bookings': 'group-bookings',
+            'Partnerships': 'partnerships',
+            'Policies': null // Will remain as href="#" since page doesn't exist yet
+        };
+        return linkMap[link];
+    };
     return (
         <footer className="bg-picktopia-orange text-white">
             <div className="container mx-auto px-6 py-12">
@@ -15,9 +26,23 @@ const Footer = () => {
                     <div>
                         <h4 className="font-bold text-lg mb-4">Quick Links</h4>
                         <ul className="space-y-2">
-                            {quickLinks.map(link => (
-                                <li key={link}><a href="#" className="hover:underline">{link}</a></li>
-                            ))}
+                            {quickLinks.map(link => {
+                                const route = getRouteForLink(link);
+                                return (
+                                    <li key={link}>
+                                        {route ? (
+                                            <button 
+                                                onClick={() => onNavClick(route)}
+                                                className="hover:underline text-left"
+                                            >
+                                                {link}
+                                            </button>
+                                        ) : (
+                                            <a href="#" className="hover:underline">{link}</a>
+                                        )}
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
                     <div>
