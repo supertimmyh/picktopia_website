@@ -88,10 +88,8 @@ const FreePickleballIntroPage = () => {
                 padding="large"
             />
 
-            <div className="container mx-auto px-6 py-8">
-                <div className="max-w-6xl mx-auto">
-                    <FreeIntroSection content={content.section} />
-                </div>
+            <div className="w-full max-w-none px-12 py-8">
+                <FreeIntroSection content={content.section} />
             </div>
         </div>
     );

@@ -133,7 +133,8 @@ const IntroSignupForm = () => {
                 className="w-full bg-white text-picktopia-orange hover:bg-orange-50 font-heading tracking-wide uppercase mt-6 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 size="xl"
             >
-                Reserve My Spot - It's Free!
+                <span className="hidden sm:inline">Reserve My Spot - It's Free!</span>
+                <span className="sm:hidden">Reserve!</span>
             </Button>
         </form>
     );
