@@ -189,19 +189,19 @@ export const loadContent = async (filePath) => {
   }
 };
 
-// Load page content (static files stay in /src/content/)
+// Load page content
 export const loadPageContent = async (pageName) => {
-  return await loadContent(`/src/content/pages/${pageName}.md`);
+  return await loadContent(`/content/pages/${pageName}.md`);
 };
 
-// Load subpage content (static files stay in /src/content/)
+// Load subpage content
 export const loadSubpageContent = async (parentPage, subpageName) => {
-  return await loadContent(`/src/content/pages/${parentPage}/${subpageName}.md`);
+  return await loadContent(`/content/pages/${parentPage}/${subpageName}.md`);
 };
 
-// Load settings (static files stay in /src/content/)
+// Load settings
 export const loadSettings = async (settingName) => {
-  return await loadContent(`/src/content/settings/${settingName}.md`);
+  return await loadContent(`/content/settings/${settingName}.md`);
 };
 
 // Load all content from a folder
@@ -221,7 +221,7 @@ export const loadCollectionContent = async (collectionName) => {
 export const loadLocationsForNav = async () => {
   try {
     // Load location slugs from manifest file
-    const manifestResponse = await fetch('/src/content/locations/manifest.json');
+    const manifestResponse = await fetch('/content/locations/manifest.json');
     let locationSlugs = [];
     
     if (manifestResponse.ok) {
@@ -236,7 +236,7 @@ export const loadLocationsForNav = async () => {
     
     for (const slug of locationSlugs) {
       try {
-        const locationContent = await loadContent(`/src/content/locations/${slug}.md`);
+        const locationContent = await loadContent(`/content/locations/${slug}.md`);
         if (locationContent && locationContent.frontmatter.title) {
           locations.push({
             slug: slug,
@@ -260,7 +260,7 @@ export const loadLocationsForNav = async () => {
 export const loadEventsForNav = async () => {
   try {
     // Load event slugs from manifest file
-    const manifestResponse = await fetch('/src/content/events/manifest.json');
+    const manifestResponse = await fetch('/content/events/manifest.json');
     let eventSlugs = [];
     
     if (manifestResponse.ok) {
@@ -274,7 +274,7 @@ export const loadEventsForNav = async () => {
     
     for (const slug of eventSlugs) {
       try {
-        const eventContent = await loadContent(`/src/content/events/${slug}.md`);
+        const eventContent = await loadContent(`/content/events/${slug}.md`);
         if (eventContent && eventContent.frontmatter.title) {
           events.push({
             slug: slug,
@@ -298,7 +298,7 @@ export const loadEventsForNav = async () => {
 export const loadAllEvents = async () => {
   try {
     // Load event slugs from manifest file
-    const manifestResponse = await fetch('/src/content/events/manifest.json');
+    const manifestResponse = await fetch('/content/events/manifest.json');
     let eventSlugs = [];
     
     if (manifestResponse.ok) {
@@ -312,7 +312,7 @@ export const loadAllEvents = async () => {
     
     for (const slug of eventSlugs) {
       try {
-        const eventContent = await loadContent(`/src/content/events/${slug}.md`);
+        const eventContent = await loadContent(`/content/events/${slug}.md`);
         if (eventContent && eventContent.frontmatter) {
           events.push({
             slug: slug,
@@ -342,7 +342,7 @@ export const loadAllEvents = async () => {
 export const loadLatestEvents = async (limit = 3) => {
   try {
     // Load event slugs from manifest file
-    const manifestResponse = await fetch('/src/content/events/manifest.json');
+    const manifestResponse = await fetch('/content/events/manifest.json');
     let eventSlugs = [];
     
     if (manifestResponse.ok) {
@@ -356,7 +356,7 @@ export const loadLatestEvents = async (limit = 3) => {
     
     for (const slug of eventSlugs) {
       try {
-        const eventContent = await loadContent(`/src/content/events/${slug}.md`);
+        const eventContent = await loadContent(`/content/events/${slug}.md`);
         if (eventContent && eventContent.frontmatter) {
           events.push({
             slug: slug,
@@ -391,7 +391,7 @@ export const loadLatestEvents = async (limit = 3) => {
 export const loadActiveAnnouncements = async () => {
   try {
     // Load announcement slugs from manifest file
-    const manifestResponse = await fetch('/src/content/announcements/manifest.json');
+    const manifestResponse = await fetch('/content/announcements/manifest.json');
     let announcementSlugs = [];
     
     if (manifestResponse.ok) {
@@ -406,7 +406,7 @@ export const loadActiveAnnouncements = async () => {
     
     for (const slug of announcementSlugs) {
       try {
-        const announcementContent = await loadContent(`/src/content/announcements/${slug}.md`);
+        const announcementContent = await loadContent(`/content/announcements/${slug}.md`);
         if (announcementContent && announcementContent.frontmatter) {
           const announcement = announcementContent.frontmatter;
           
