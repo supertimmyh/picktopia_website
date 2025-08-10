@@ -1,8 +1,7 @@
 import React from 'react';
-import { CMS_DATA } from '../data';
 
-const WhatIsPicktopia = () => {
-    const { title, subtitle, features } = CMS_DATA.whatIsPicktopia;
+const WhatIsPicktopia = ({ data, fallbackData }) => {
+    const { title, subtitle, features } = data || fallbackData;
 
     return (
         <div className="bg-picktopia-blue-dark text-white py-16 md:py-24">

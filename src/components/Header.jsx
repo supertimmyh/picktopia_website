@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CMS_DATA } from '../data';
+import { CMS_DATA } from '../data/data';
 import { SearchIcon, UserIcon, CartIcon, MenuIcon, CloseIcon } from './Icons';
 import AnnouncementBar from './AnnouncementBar';
-import { loadLocationsForNav, loadEventsForNav } from '../utils/contentLoader';
+import { loadEventsForNav } from '../utils/contentLoader';
 import logoSvg from '../assets/logo_simplified.svg';
 
 const Header = ({ onNavClick, currentPage }) => {
@@ -14,9 +14,8 @@ const Header = ({ onNavClick, currentPage }) => {
     // Load dynamic navigation data
     useEffect(() => {
         const loadDynamicNav = async () => {
-            const locations = await loadLocationsForNav();
             const events = await loadEventsForNav();
-            setDynamicNavData({ locations, events });
+            setDynamicNavData({ events });
         };
         loadDynamicNav();
     }, []);

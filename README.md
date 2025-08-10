@@ -12,7 +12,7 @@ A modern, responsive website for Picktopia Pickleball Club built with React, Vit
 
 ### **Interactive Components**
 - **Professional UI**: Shadcn/ui components (buttons, inputs, cards, forms)
-- **Content Management**: Individual section components with CMS-driven content
+- **Hybrid Content Management**: Direct data imports for performance + CMS for dynamic content
 - **Booking Functionality**: Section-specific booking buttons with custom URLs
 - **Form Components**: Intro signup form with validation and success states
 - **Data Display**: Professional table component for program schedules
@@ -40,9 +40,10 @@ A modern, responsive website for Picktopia Pickleball Club built with React, Vit
 - **Typography**: Custom font system (Orbitron, Ubuntu)
 
 ### **Content Management**
-- **CMS**: Decap CMS integration
-- **Content Format**: YAML frontmatter + Markdown
-- **Content Parsing**: Custom YAML parser for structured content
+- **Hybrid Approach**: Direct JS imports for customized pages + Decap CMS for dynamic content
+- **Customized Pages**: Direct data imports from `src/data/` for immediate loading
+- **CMS Pages**: YAML frontmatter + Markdown for content creator management
+- **Custom Parser**: Browser-compatible YAML frontmatter parser
 - **Fallback**: Static content loader for development/fallback
 
 ## 📁 Project Structure
@@ -57,6 +58,16 @@ picktopia-website/
 │   ├── assets/
 │   │   ├── hero-image.jpeg     # Hero section background
 │   │   └── logo_simplified.svg # Navigation logo
+│   ├── data/                   # Direct data imports for customized pages
+│   │   ├── play/              # Play subpage data files
+│   │   │   ├── bookingData.js
+│   │   │   ├── programScheduleData.js
+│   │   │   ├── trainingProgramsData.js
+│   │   │   └── freePickleballIntroData.js
+│   │   ├── aboutUsData.js     # About Us page data
+│   │   ├── groupBookingData.js # Group bookings data
+│   │   ├── homePageData.js    # Homepage data
+│   │   └── partnershipData.js # Partnerships data
 │   ├── components/
 │   │   ├── sections/          # Page-specific section components
 │   │   │   ├── BookingSection.jsx      # Court booking section
@@ -88,10 +99,17 @@ picktopia-website/
 │   ├── lib/
 │   │   └── utils.js           # Utility functions (cn, etc.)
 │   ├── pages/
-│   │   ├── AboutUsCMS.jsx     # CMS-powered About Us page
-│   │   ├── CMSPage.jsx        # Generic CMS page component
-│   │   ├── HomePage.jsx       # Main homepage
-│   │   └── PlayCMS.jsx        # CMS-powered Play page with sections
+│   │   ├── play/              # Play subpages with direct data imports
+│   │   │   ├── BookingPage.jsx
+│   │   │   ├── FreePickleballIntroPage.jsx
+│   │   │   ├── ProgramSchedulePage.jsx
+│   │   │   └── TrainingProgramsPage.jsx
+│   │   ├── AboutUsPage.jsx    # Uses aboutUsData.js
+│   │   ├── CMSPage.jsx        # Generic template for CMS-managed pages
+│   │   ├── GenericCMS.jsx     # Simple CMS content template
+│   │   ├── GroupBookingsPage.jsx # Uses groupBookingData.js
+│   │   ├── HomePage.jsx       # Uses homePageData.js
+│   │   └── PartnershipsPage.jsx # Uses partnershipData.js
 │   ├── utils/
 │   │   └── contentLoader.js   # Content loading utilities
 │   ├── App.jsx                # Main app component
@@ -156,7 +174,15 @@ UI Components
 ```
 
 ### **Data Flow**
-1. **CMS Loading**: PlayCMS loads content from markdown files
+
+**Customized Pages (Direct Import):**
+1. **Direct Import**: `import { pageData } from '../data/pageData'`
+2. **Immediate Availability**: No async loading, content available instantly
+3. **Component Rendering**: Direct prop passing to section components
+4. **Performance**: No HTTP requests, no loading states
+
+**CMS Pages (Async Loading):**
+1. **CMS Loading**: Load content from markdown files via contentLoader
 2. **Parsing**: YAML frontmatter parsed into structured objects
 3. **Prop Passing**: Content passed as props to section components
 4. **Component Rendering**: Sections render with CMS data
@@ -211,36 +237,44 @@ UI Components
 
 ## 📱 Pages & Navigation
 
-### **Main Pages**
-- **Home** (`HomePage.jsx`): Landing page with hero, features, FAQ, blog, newsletter
-- **About Us** (`AboutUsCMS.jsx`): CMS-powered club information page
-- **Play** (`PlayCMS.jsx`): Court booking and programs with individual sections:
-  - BookingSection: 3-step Court Reserve process
-  - ProgramScheduleSection: Weekly schedule table
-  - TrainingProgramsSection: Private lessons, clinics, drills
-  - FreeIntroSection: Signup form for free intro classes
+### **Customized Pages (Direct Data Import)**
+- **Home** (`HomePage.jsx`): Uses `homePageData.js` - Landing page with hero, features, FAQ, newsletter
+- **About Us** (`AboutUsPage.jsx`): Uses `aboutUsData.js` - Club information with intro, features, closing
+- **Group Bookings** (`GroupBookingsPage.jsx`): Uses `groupBookingData.js` - Event packages and booking
+- **Partnerships** (`PartnershipsPage.jsx`): Uses `partnershipData.js` - Partnership packages and contact
+- **Play Subpages**: Direct data imports for immediate loading
+  - **Booking** (`BookingPage.jsx`): Uses `bookingData.js` - 3-step Court Reserve process  
+  - **Program Schedule** (`ProgramSchedulePage.jsx`): Uses `programScheduleData.js` - Weekly schedule table
+  - **Training Programs** (`TrainingProgramsPage.jsx`): Uses `trainingProgramsData.js` - Coaches, programs, testimonials
+  - **Free Intro** (`FreePickleballIntroPage.jsx`): Uses `freePickleballIntroData.js` - Signup details
 
 ### **CMS Pages**
-- **Generic CMS** (`CMSPage.jsx`): Template for simple CMS content
-- **Specialized Pages**: Custom pages with enhanced functionality
+- **Locations** (`LocationsCMSPage.jsx`): Uses CMS content - All locations displayed as cards with full details
+- **Events** (`EventCMSPage.jsx`): Individual event pages from CMS content
+- **Events Listing** (`EventsPage.jsx`): All events listing page
+- **Generic CMS** (`GenericCMS.jsx`): Template for simple CMS content
+- **CMS Page Template** (`CMSPage.jsx`): Generic template for CMS-managed pages
 
 ### **Navigation Structure**
 - Responsive header with mobile menu
 - Announcement bar integration
 - Page-specific routing system
+- **Locations**: Single navigation link (no subpages) - all locations shown as cards on main page
+- **Events**: Dynamic navigation with individual event pages
 
 ## 🔧 Content Management
 
 ### **CMS Integration**
 Content is managed through Decap CMS and multiple systems:
 
-#### **Decap CMS - Events & Announcements**
-Events and announcements are **strictly managed via Decap CMS**:
+#### **Decap CMS - Events, Locations & Announcements**
+Events, locations, and announcements are **managed via Decap CMS**:
 
 1. **Access CMS**: Navigate to `http://localhost:5173/admin/index.html#/` (local) or `https://yoursite.com/admin/index.html#/` (production)
 2. **Authentication**: GitHub OAuth integration
 3. **Content Creation**: 
    - **Events**: Create individual events with date, location, image, description
+   - **Locations**: Manage facility details, hours, amenities, booking URLs  
    - **Announcements**: Create announcements with different link types (none, internal, external, event)
 
 #### **Announcement Link Types**
@@ -320,6 +354,20 @@ Each section component accepts content props:
    - Price (optional)
 3. **Publish** → Triggers automatic manifest generation
 4. **Result**: Event appears in navigation and individual event page is accessible
+
+#### **For Locations:**
+1. **Access CMS** → Collections → Locations → Edit or Create Location
+2. **Fill Location Details:**
+   - Location Name
+   - Address, phone, email
+   - Court count
+   - Facility image
+   - Booking URL
+   - Hours of operation (for each day)
+   - Amenities list
+   - Description (markdown)
+3. **Publish** → Triggers automatic manifest generation
+4. **Result**: Location appears as a card on the main locations page
 
 #### **For Announcements:**
 1. **Access CMS** → Collections → Announcements → New Announcement

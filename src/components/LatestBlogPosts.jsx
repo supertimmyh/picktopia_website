@@ -1,5 +1,5 @@
 import React from 'react';
-import { CMS_DATA } from '../data';
+import { CMS_DATA } from '../data/data';
 
 const LatestBlogPosts = () => {
     const { title, posts } = CMS_DATA.blog;

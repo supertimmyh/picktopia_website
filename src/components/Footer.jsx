@@ -1,9 +1,9 @@
 import React from 'react';
-import { CMS_DATA } from '../data';
+import { FOOTER_DATA } from '../data/footerData';
 import { FacebookIcon, InstagramIcon, YoutubeIcon, TiktokIcon } from './Icons';
 
 const Footer = ({ onNavClick }) => {
-    const { description, quickLinks, contact } = CMS_DATA.footer;
+    const { description, quickLinks, contact } = FOOTER_DATA;
     
     const getRouteForLink = (link) => {
         const linkMap = {

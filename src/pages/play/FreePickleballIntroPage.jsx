@@ -1,81 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ImageContentSection from '../../components/ImageContentSection';
 import FreeIntroSection from '../../components/sections/FreeIntroSection';
-import { loadSubpageContent, getStaticContent } from '../../utils/contentLoader';
+import { freePickleballIntroData } from '../../data/play/freePickleballIntroData';
 
 const FreePickleballIntroPage = () => {
-    const [content, setContent] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const loadContent = async () => {
-            try {
-                // Try to load from markdown file first
-                const markdownContent = await loadSubpageContent('play', 'free-pickleball-intro');
-                
-                if (markdownContent) {
-                    const { frontmatter, content: markdownBody } = markdownContent;
-                    setContent({
-                        title: frontmatter.title,
-                        subtitle: frontmatter.subtitle,
-                        heroImage: frontmatter.heroImage,
-                        section: {
-                            title: frontmatter.title,
-                            subtitle: frontmatter.subtitle,
-                            bookingUrl: frontmatter.bookingUrl,
-                            bookingText: frontmatter.bookingText,
-                            backgroundColor: frontmatter.backgroundColor,
-                            textColor: frontmatter.textColor,
-                            titleColor: frontmatter.titleColor,
-                            content: markdownBody
-                        }
-                    });
-                } else {
-                    // Fallback to static content
-                    const cmsContent = getStaticContent();
-                    const playContent = cmsContent.play;
-                    
-                    if (playContent && playContent.sections) {
-                        const introSection = playContent.sections.find(s => s.title === 'Free Pickleball Intro');
-                        if (introSection) {
-                            setContent({
-                                title: 'Free Pickleball Intro',
-                                subtitle: introSection.subtitle,
-                                heroImage: playContent.heroImage,
-                                section: introSection
-                            });
-                        }
-                    }
-                }
-                setLoading(false);
-            } catch (error) {
-                console.error('Error loading free intro content:', error);
-                setLoading(false);
-            }
-        };
-
-        loadContent();
-    }, []);
-
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="font-heading text-2xl font-bold text-picktopia-blue-dark">
-                    Loading...
-                </div>
-            </div>
-        );
-    }
-
-    if (!content) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="font-heading text-2xl font-bold text-red-600">
-                    Page not found
-                </div>
-            </div>
-        );
-    }
+    const content = {
+        title: freePickleballIntroData.title,
+        subtitle: freePickleballIntroData.subtitle,
+        heroImage: freePickleballIntroData.heroImage,
+        section: freePickleballIntroData
+    };
 
     return (
         <div className="min-h-screen">

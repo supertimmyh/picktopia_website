@@ -1,105 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import HeroSection from '../../components/HeroSection';
 import CoachBiographyCard from '../../components/CoachBiographyCard';
 import ProgramCard from '../../components/ProgramCard';
 import TestimonialCard from '../../components/TestimonialCard';
 import PricingTable from '../../components/PricingTable';
-import { loadSubpageContent, getStaticContent } from '../../utils/contentLoader';
+import { trainingProgramsData } from '../../data/play/trainingProgramsData';
 
 const TrainingProgramsPage = () => {
-    const [content, setContent] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const loadContent = async () => {
-            try {
-                // Try to load from markdown file first
-                const markdownContent = await loadSubpageContent('play', 'training-programs');
-                
-                if (markdownContent) {
-                    const { frontmatter, content: markdownBody } = markdownContent;
-                    setContent({
-                        title: frontmatter.title,
-                        subtitle: frontmatter.subtitle,
-                        heroImage: frontmatter.heroImage,
-                        bookingUrl: frontmatter.bookingUrl,
-                        bookingText: frontmatter.bookingText,
-                        coaches: frontmatter.coaches || [],
-                        programs: frontmatter.programs || [],
-                        testimonials: frontmatter.testimonials || [],
-                        content: markdownBody
-                    });
-                } else {
-                    // Fallback to Lorem ipsum content
-                    setContent({
-                        title: 'Lorem Ipsum Training',
-                        subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                        heroImage: '/assets/place-holder.jpg',
-                        bookingUrl: '#',
-                        bookingText: 'Lorem Booking',
-                        coaches: [
-                            {
-                                name: 'Lorem Coach',
-                                image: '/assets/place-holder.jpg',
-                                certifications: 'Lorem Ipsum Certified',
-                                experience: 'X years',
-                                specialties: ['Lorem', 'Ipsum', 'Dolor'],
-                                bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                                availability: 'Lorem ipsum schedule'
-                            }
-                        ],
-                        programs: [
-                            {
-                                title: 'Lorem Program',
-                                duration: 'XX minutes',
-                                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                                features: ['Lorem feature', 'Ipsum feature', 'Dolor feature'],
-                                memberPrice: '$XX',
-                                nonMemberPrice: '$XX',
-                                skillLevel: 'Lorem level',
-                                equipment: 'Lorem equipment'
-                            }
-                        ],
-                        testimonials: [
-                            {
-                                name: 'Lorem Person',
-                                quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                                program: 'Lorem Program',
-                                rating: 5
-                            }
-                        ],
-                        content: '<h2>Lorem Ipsum</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>'
-                    });
-                }
-                setLoading(false);
-            } catch (error) {
-                console.error('Error loading training programs content:', error);
-                setLoading(false);
-            }
-        };
-
-        loadContent();
-    }, []);
-
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="font-heading text-2xl font-bold text-picktopia-blue-dark">
-                    Loading...
-                </div>
-            </div>
-        );
-    }
-
-    if (!content) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="font-heading text-2xl font-bold text-red-600">
-                    Page not found
-                </div>
-            </div>
-        );
-    }
+    const content = trainingProgramsData;
 
     return (
         <div className="min-h-screen">

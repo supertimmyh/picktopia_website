@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { loadActiveAnnouncements } from '../utils/contentLoader';
-import { CMS_DATA } from '../data';
+import { CMS_DATA } from '../data/data';
 
 const AnnouncementBar = ({ navigateTo }) => {
     const [announcements, setAnnouncements] = useState([]);

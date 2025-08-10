@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'src/content/events/**'
+      - 'src/content/locations/**'
       - 'src/content/announcements/**'
 
 permissions:

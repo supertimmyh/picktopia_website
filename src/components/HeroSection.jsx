@@ -3,7 +3,8 @@ import React from 'react';
 const HeroSection = ({ 
     title, 
     subtitle, 
-    backgroundImage, 
+    backgroundImage,
+    backgroundVideo,
     children,
     size = 'large', // 'small', 'medium', 'large'
     overlayColor = 'none' // 'orange', 'blue', 'dark', 'none'
@@ -25,8 +26,21 @@ const HeroSection = ({
 
     return (
         <div className={`relative text-white flex items-center justify-center ${sizeClasses[size]}`}>
+            {/* Background Video - Only covers hero section */}
+            {backgroundVideo && (
+                <video 
+                    className="absolute inset-0 w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                >
+                    <source src={backgroundVideo} type="video/mp4" />
+                </video>
+            )}
+            
             {/* Background Image - Only covers hero section */}
-            {backgroundImage && (
+            {!backgroundVideo && backgroundImage && (
                 <div 
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url(${backgroundImage})` }}

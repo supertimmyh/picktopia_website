@@ -1,81 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import HeroSection from '../components/HeroSection';
 import WhyPartnerSection from '../components/sections/WhyPartnerSection';
 import PartnershipPackagesSection from '../components/sections/PartnershipPackagesSection';
 import PartnershipInquiryForm from '../components/PartnershipInquiryForm';
-import { loadPageContent } from '../utils/contentLoader';
+import { partnershipData } from '../data/partnershipData';
 
 const PartnershipsPage = () => {
-    const [content, setContent] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-
-    useEffect(() => {
-        const loadContent = async () => {
-            try {
-                const markdownContent = await loadPageContent('partnerships');
-                
-                if (markdownContent && markdownContent.frontmatter) {
-                    console.log('Successfully loaded partnerships frontmatter:', markdownContent.frontmatter);
-                    setContent(markdownContent.frontmatter);
-                } else {
-                    console.log('Failed to load partnerships markdown, using fallback');
-                    // Fallback content
-                    setContent({
-                        title: "Partner With Our Community",
-                        subtitle: "Join us in building something amazing together. Partner with Picktopia to reach an engaged community passionate about active living and wellness.",
-                        heroImage: "/assets/place-holder.jpg",
-                        packages: [],
-                        nextSteps: {
-                            title: "Ready to See the Opportunity?",
-                            subtitle: "We'd love to show you our facility and discuss how a partnership could benefit your business and our community.",
-                            steps: [],
-                            contact: {
-                                title: "Partnership Coordinator",
-                                email: "info@picktopia.com",
-                                phone: "(647) 478-9866",
-                                hours: "Monday - Friday, 9 AM - 10 PM"
-                            }
-                        }
-                    });
-                }
-            } catch (error) {
-                console.error('Error loading partnerships content:', error);
-                // Fallback content
-                setContent({
-                    title: "Partner With Our Community", 
-                    subtitle: "Join us in building something amazing together.",
-                    heroImage: "/assets/place-holder.jpg",
-                    packages: [],
-                    nextSteps: {
-                        title: "Ready to See the Opportunity?",
-                        subtitle: "We'd love to show you our facility and discuss how a partnership could benefit your business and our community.",
-                        steps: [],
-                        contact: {
-                            title: "Partnership Coordinator",
-                            email: "info@picktopia.com",
-                            phone: "(647) 478-9866",
-                            hours: "Monday - Friday, 9 AM - 10 PM"
-                        }
-                    }
-                });
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadContent();
-    }, []);
-
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="font-heading text-2xl font-bold text-picktopia-blue-dark">
-                    Loading...
-                </div>
-            </div>
-        );
-    }
+    const content = partnershipData;
 
     return (
         <div className="min-h-screen">

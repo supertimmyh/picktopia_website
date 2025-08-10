@@ -1,8 +1,7 @@
 import React from 'react';
-import { CMS_DATA } from '../data';
 
-const Newsletter = () => {
-    const { title, subtitle } = CMS_DATA.newsletter;
+const Newsletter = ({ data, fallbackData }) => {
+    const { title, subtitle } = data || fallbackData;
     return (
         <div className="bg-picktopia-orange text-white py-16">
             <div className="container mx-auto px-6 text-center">

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { CMS_DATA } from '../data';
 import AccordionItem from './AccordionItem';
 
-const FaqSection = () => {
-    const { title, questions } = CMS_DATA.faq;
+const FaqSection = ({ data, fallbackData }) => {
+    const { title, questions } = data || fallbackData;
     const [openIndex, setOpenIndex] = useState(null);
 
     const handleToggle = (index) => {
