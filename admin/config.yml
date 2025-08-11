@@ -2,7 +2,7 @@ backend:
   name: github
   repo: supertimmyh/picktopia_website
   branch: main
-  auth_endpoint: https://decap-oauth.netlify.app/auth
+  client_id: Ov23lirr25W9ovcbfmoH
 
 # Enable editorial workflow for content review (disabled for local dev)
 # publish_mode: editorial_workflow
