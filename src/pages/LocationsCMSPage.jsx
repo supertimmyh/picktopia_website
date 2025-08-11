@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
 import LocationCard from '../components/LocationCard';
 import { loadContent } from '../utils/contentLoader';
+import { getAssetPath } from '../utils/assetPath';
 
 const LocationsCMSPage = ({ navigateTo }) => {
     const [locations, setLocations] = useState([]);
@@ -11,7 +12,7 @@ const LocationsCMSPage = ({ navigateTo }) => {
         const loadLocations = async () => {
             try {
                 // Load manifest to get location slugs
-                const manifestResponse = await fetch('/src/content/locations/manifest.json');
+                const manifestResponse = await fetch(getAssetPath('/content/locations/manifest.json'));
                 let locationSlugs = [];
                 
                 if (manifestResponse.ok) {
@@ -23,7 +24,7 @@ const LocationsCMSPage = ({ navigateTo }) => {
                 // Load each location
                 const locationPromises = locationSlugs.map(async (slug) => {
                     try {
-                        const content = await loadContent(`/src/content/locations/${slug}.md`);
+                        const content = await loadContent(`/content/locations/${slug}.md`);
                         if (content) {
                             return {
                                 id: slug,
