@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
 import { loadContent } from '../utils/contentLoader';
+import { getAssetPath } from '../utils/assetPath';
 
 const EventCMSPage = ({ eventSlug }) => {
     const [event, setEvent] = useState(null);
@@ -9,7 +10,7 @@ const EventCMSPage = ({ eventSlug }) => {
     useEffect(() => {
         const loadEventContent = async () => {
             try {
-                const eventContent = await loadContent(`/src/content/events/${eventSlug}.md`);
+                const eventContent = await loadContent(`/content/events/${eventSlug}.md`);
                 if (eventContent) {
                     setEvent(eventContent);
                 }
@@ -66,7 +67,7 @@ const EventCMSPage = ({ eventSlug }) => {
             <HeroSection
                 title={frontmatter.title}
                 subtitle="Event Details"
-                backgroundImage={frontmatter.image || "/assets/place-holder.jpg"}
+                backgroundImage={frontmatter.image || getAssetPath("/images/place-holder.jpg")}
                 size="large"
                 overlayColor="blue"
             />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
 import EventTile from '../components/EventTile';
 import { loadAllEvents } from '../utils/contentLoader';
+import { getAssetPath } from '../utils/assetPath';
 
 const EventsPage = ({ navigateTo }) => {
     const [events, setEvents] = useState([]);
@@ -65,7 +66,7 @@ const EventsPage = ({ navigateTo }) => {
                 <HeroSection
                     title="Events"
                     subtitle="Discover upcoming pickleball events and tournaments"
-                    backgroundImage="/images/uploads/place-holder.jpg"
+                    backgroundImage={getAssetPath("/images/uploads/place-holder.jpg")}
                     size="large"
                     overlayColor="blue"
                 />
@@ -96,7 +97,7 @@ const EventsPage = ({ navigateTo }) => {
             <HeroSection
                 title="Events"
                 subtitle="Discover upcoming pickleball events and tournaments in our community"
-                backgroundImage="/images/uploads/place-holder.jpg"
+                backgroundImage={getAssetPath("/images/uploads/place-holder.jpg")}
                 size="large"
                 overlayColor="blue"
             />
