@@ -155,6 +155,34 @@ const parseFrontmatter = (fileContent) => {
               const result = parseArray(nextLineIndex, indentLevel);
               frontmatter[key] = result.array;
               i = result.nextIndex - 1;
+            } else if (nextLine.startsWith('  ') && nextTrimmed.includes(':')) {
+              // This is a nested object
+              const nestedObject = {};
+              let j = nextLineIndex;
+              const expectedIndent = nextLine.length - nextLine.trimStart().length;
+              
+              while (j < lines.length) {
+                const nestedLine = lines[j];
+                const nestedTrimmed = nestedLine.trim();
+                const currentIndent = nestedLine.length - nestedLine.trimStart().length;
+                
+                // Stop if we reach a line that's not indented at the expected level
+                if (currentIndent < expectedIndent || (currentIndent === 0 && nestedTrimmed)) {
+                  break;
+                }
+                
+                if (currentIndent === expectedIndent && nestedTrimmed.includes(':')) {
+                  const nestedColonIndex = nestedTrimmed.indexOf(':');
+                  const nestedKey = nestedTrimmed.substring(0, nestedColonIndex).trim();
+                  const nestedValue = nestedTrimmed.substring(nestedColonIndex + 1).trim();
+                  nestedObject[nestedKey] = parseValue(nestedValue);
+                }
+                
+                j++;
+              }
+              
+              frontmatter[key] = nestedObject;
+              i = j - 1;
             }
           }
         } else {
@@ -170,6 +198,29 @@ const parseFrontmatter = (fileContent) => {
 };
 
 // Utility function to load and parse markdown content
+// Process asset paths in content
+const processAssetPaths = (obj) => {
+  if (typeof obj === 'string') {
+    // If it's a string that looks like an asset path, process it
+    if (obj.startsWith('/images/') || obj.startsWith('/assets/') || obj.startsWith('/content/')) {
+      return getAssetPath(obj);
+    }
+    // Also process markdown content with image paths
+    return obj.replace(/!\[([^\]]*)\]\(\/images\/([^)]+)\)/g, (match, alt, path) => {
+      return `![${alt}](${getAssetPath(`/images/${path}`)})`;
+    });
+  } else if (Array.isArray(obj)) {
+    return obj.map(processAssetPaths);
+  } else if (obj && typeof obj === 'object') {
+    const processed = {};
+    for (const key in obj) {
+      processed[key] = processAssetPaths(obj[key]);
+    }
+    return processed;
+  }
+  return obj;
+};
+
 export const loadContent = async (filePath) => {
   try {
     const response = await fetch(getAssetPath(filePath));
@@ -181,9 +232,13 @@ export const loadContent = async (filePath) => {
     const fileContent = await response.text();
     const { frontmatter, content } = parseFrontmatter(fileContent);
     
+    // Process asset paths in both frontmatter and content
+    const processedFrontmatter = processAssetPaths(frontmatter);
+    const processedContent = processAssetPaths(content);
+    
     return {
-      frontmatter,
-      content
+      frontmatter: processedFrontmatter,
+      content: processedContent
     };
   } catch (error) {
     console.error(`Error loading content from ${filePath}:`, error);
@@ -321,7 +376,7 @@ export const loadAllEvents = async () => {
             title: eventContent.frontmatter.title,
             date: eventContent.frontmatter.date,
             location: eventContent.frontmatter.location,
-            image: eventContent.frontmatter.image || '/images/uploads/place-holder.jpg',
+            image: eventContent.frontmatter.image || getAssetPath('/images/uploads/place-holder.jpg'),
             description: eventContent.frontmatter.description,
             registrationLink: eventContent.frontmatter.registrationLink,
             price: eventContent.frontmatter.price
@@ -365,7 +420,7 @@ export const loadLatestEvents = async (limit = 3) => {
             title: eventContent.frontmatter.title,
             date: eventContent.frontmatter.date,
             location: eventContent.frontmatter.location,
-            image: eventContent.frontmatter.image || '/images/uploads/place-holder.jpg',
+            image: eventContent.frontmatter.image || getAssetPath('/images/uploads/place-holder.jpg'),
             description: eventContent.frontmatter.description,
             registrationLink: eventContent.frontmatter.registrationLink,
             price: eventContent.frontmatter.price

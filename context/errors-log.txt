@@ -1,61 +1,35 @@
-GET https://supertimmyh.github.io/images/hero/hero-video.MP4 404 (Not Found)Understand this error
-index-26701dc5.js:41  GET https://supertimmyh.github.io/content/events/manifest.json 404 (Not Found)
-nf @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-Yo @ index-26701dc5.js:40
-jn @ index-26701dc5.js:40
-(anonymous) @ index-26701dc5.js:40
-N @ index-26701dc5.js:25
-me @ index-26701dc5.js:25Understand this error
-index-26701dc5.js:41  GET https://supertimmyh.github.io/content/announcements/manifest.json 404 (Not Found)
-lf @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-Yo @ index-26701dc5.js:40
-jn @ index-26701dc5.js:40
-(anonymous) @ index-26701dc5.js:40
-N @ index-26701dc5.js:25
-me @ index-26701dc5.js:25Understand this error
-index-26701dc5.js:41  GET https://supertimmyh.github.io/content/events/late-summer-bbq.md 404 (Not Found)
-Fn @ index-26701dc5.js:41
-nf @ index-26701dc5.js:41
-await in nf
-(anonymous) @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-Yo @ index-26701dc5.js:40
-jn @ index-26701dc5.js:40
-(anonymous) @ index-26701dc5.js:40
-N @ index-26701dc5.js:25
-me @ index-26701dc5.js:25Understand this error
-index-26701dc5.js:41  GET https://supertimmyh.github.io/content/events/manifest.json 404 (Not Found)
-of @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-Yo @ index-26701dc5.js:40
-jn @ index-26701dc5.js:40
-(anonymous) @ index-26701dc5.js:40
-N @ index-26701dc5.js:25
-me @ index-26701dc5.js:25Understand this error
-index-26701dc5.js:41  GET https://supertimmyh.github.io/content/events/inauguration-tournament.md 404 (Not Found)
-Fn @ index-26701dc5.js:41
-of @ index-26701dc5.js:41
-await in of
-(anonymous) @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-Yo @ index-26701dc5.js:40
-jn @ index-26701dc5.js:40
-(anonymous) @ index-26701dc5.js:40
-N @ index-26701dc5.js:25
-me @ index-26701dc5.js:25Understand this error
-index-26701dc5.js:41  GET https://supertimmyh.github.io/content/events/late-summer-bbq.md 404 (Not Found)
-Fn @ index-26701dc5.js:41
-of @ index-26701dc5.js:41
-await in of
-(anonymous) @ index-26701dc5.js:41
-(anonymous) @ index-26701dc5.js:41
-Yo @ index-26701dc5.js:40
-jn @ index-26701dc5.js:40
-(anonymous) @ index-26701dc5.js:40
-N @ index-26701dc5.js:25
-me @ index-26701dc5.js:25Understand this error
+chunk-WALXKXZM.js?v=e6b5e6fb:14052 The above error occurred in the <LocationCard> component:
+
+    at LocationCard (http://localhost:5173/src/components/LocationCard.jsx:19:25)
+    at div
+    at div
+    at div
+    at div
+    at LocationsCMSPage (http://localhost:5173/src/pages/LocationsCMSPage.jsx?t=1754927212192:23:29)
+    at main
+    at div
+    at App (http://localhost:5173/src/App.jsx?t=1754927212192:35:27)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError	@	chunk-WALXKXZM.js?v=e6b5e6fb:14052
+update.callback	@	chunk-WALXKXZM.js?v=e6b5e6fb:14072
+callCallback	@	chunk-WALXKXZM.js?v=e6b5e6fb:11268
+commitUpdateQueue	@	chunk-WALXKXZM.js?v=e6b5e6fb:11285
+commitLayoutEffectOnFiber	@	chunk-WALXKXZM.js?v=e6b5e6fb:17115
+commitLayoutMountEffects_complete	@	chunk-WALXKXZM.js?v=e6b5e6fb:18008
+commitLayoutEffects_begin	@	chunk-WALXKXZM.js?v=e6b5e6fb:17997
+commitLayoutEffects	@	chunk-WALXKXZM.js?v=e6b5e6fb:17948
+commitRootImpl	@	chunk-WALXKXZM.js?v=e6b5e6fb:19381
+commitRoot	@	chunk-WALXKXZM.js?v=e6b5e6fb:19305
+performSyncWorkOnRoot	@	chunk-WALXKXZM.js?v=e6b5e6fb:18923
+flushSyncCallbacks	@	chunk-WALXKXZM.js?v=e6b5e6fb:9135
+(anonymous)	@	chunk-WALXKXZM.js?v=e6b5e6fb:18655
+chunk-WALXKXZM.js?v=e6b5e6fb:9145 Uncaught TypeError: Cannot convert undefined or null to object
+    at Object.entries (<anonymous>)
+    at formatHours (LocationCard.jsx:7:23)
+    at LocationCard (LocationCard.jsx:89:30)
+formatHours	@	LocationCard.jsx:7
+LocationCard	@	LocationCard.jsx:89
+﻿
+
