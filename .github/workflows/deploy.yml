@@ -55,11 +55,17 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
+      - name: Create tarball manually (workaround for missing directories)
+        run: |
+          cd dist
+          tar -czf ../pages.tar.gz .
+          cd ..
+          ls -la pages.tar.gz
+          
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-          name: github-pages
           
       - name: Deploy to GitHub Pages
         id: deployment
