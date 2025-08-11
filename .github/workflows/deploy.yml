@@ -31,13 +31,35 @@ jobs:
       - name: Build project
         run: npm run build
         
+      - name: Check for large files that might cause upload issues
+        run: |
+          echo "=== Files larger than 25MB ==="
+          find dist -type f -size +25M -exec ls -lh {} \; || echo "No large files found"
+        
+      - name: Verify build output
+        run: |
+          echo "Contents of dist directory:"
+          ls -la dist/
+          echo "Contents of dist/images:"
+          ls -la dist/images/ || echo "No images directory"
+          echo "Contents of dist/content:"
+          ls -la dist/content/ || echo "No content directory"
+        
+      - name: List dist contents for debugging
+        run: |
+          echo "=== Contents of dist directory ==="
+          find dist -type f -exec ls -lh {} \;
+          echo "=== Directory structure ==="
+          tree dist || ls -la dist/
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './dist'
+          name: github-pages
           
       - name: Deploy to GitHub Pages
         id: deployment
