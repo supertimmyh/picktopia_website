@@ -5,9 +5,10 @@ import ProgramCard from '../../components/ProgramCard';
 import TestimonialCard from '../../components/TestimonialCard';
 import PricingTable from '../../components/PricingTable';
 import { trainingProgramsData } from '../../data/play/trainingProgramsData';
+import { withAssetPaths } from '../../utils/dataWithAssets';
 
 const TrainingProgramsPage = () => {
-    const content = trainingProgramsData;
+    const content = withAssetPaths(trainingProgramsData);
 
     return (
         <div className="min-h-screen">

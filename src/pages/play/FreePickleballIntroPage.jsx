@@ -2,13 +2,15 @@ import React from 'react';
 import ImageContentSection from '../../components/ImageContentSection';
 import FreeIntroSection from '../../components/sections/FreeIntroSection';
 import { freePickleballIntroData } from '../../data/play/freePickleballIntroData';
+import { withAssetPaths } from '../../utils/dataWithAssets';
 
 const FreePickleballIntroPage = () => {
+    const processedData = withAssetPaths(freePickleballIntroData);
     const content = {
-        title: freePickleballIntroData.title,
-        subtitle: freePickleballIntroData.subtitle,
-        heroImage: freePickleballIntroData.heroImage,
-        section: freePickleballIntroData
+        title: processedData.title,
+        subtitle: processedData.subtitle,
+        heroImage: processedData.heroImage,
+        section: processedData
     };
 
     return (

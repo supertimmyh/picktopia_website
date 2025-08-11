@@ -4,9 +4,10 @@ import WhyPartnerSection from '../components/sections/WhyPartnerSection';
 import PartnershipPackagesSection from '../components/sections/PartnershipPackagesSection';
 import PartnershipInquiryForm from '../components/PartnershipInquiryForm';
 import { partnershipData } from '../data/partnershipData';
+import { withAssetPaths } from '../utils/dataWithAssets';
 
 const PartnershipsPage = () => {
-    const content = partnershipData;
+    const content = withAssetPaths(partnershipData);
 
     return (
         <div className="min-h-screen">

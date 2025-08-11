@@ -4,16 +4,18 @@ import EventPackagesSection from '../components/sections/EventPackagesSection';
 import InclusionsSection from '../components/sections/InclusionsSection';
 import GroupBookingForm from '../components/GroupBookingForm';
 import { groupBookingData } from '../data/groupBookingData';
+import { withAssetPaths } from '../utils/dataWithAssets';
 
 const GroupBookingsPage = () => {
+    const processedData = withAssetPaths(groupBookingData);
     const content = {
         hero: {
-            title: groupBookingData.title,
-            subtitle: groupBookingData.subtitle,
-            heroImage: groupBookingData.heroImage
+            title: processedData.title,
+            subtitle: processedData.subtitle,
+            heroImage: processedData.heroImage
         },
-        eventPackages: groupBookingData.eventPackages,
-        inclusions: groupBookingData.inclusions
+        eventPackages: processedData.eventPackages,
+        inclusions: processedData.inclusions
     };
 
     return (

@@ -2,13 +2,15 @@ import React from 'react';
 import ImageContentSection from '../../components/ImageContentSection';
 import ProgramScheduleSection from '../../components/sections/ProgramScheduleSection';
 import { programScheduleData } from '../../data/play/programScheduleData';
+import { withAssetPaths } from '../../utils/dataWithAssets';
 
 const ProgramSchedulePage = () => {
+    const processedData = withAssetPaths(programScheduleData);
     const content = {
-        title: programScheduleData.title,
-        subtitle: programScheduleData.subtitle,
-        heroImage: programScheduleData.heroImage,
-        section: programScheduleData
+        title: processedData.title,
+        subtitle: processedData.subtitle,
+        heroImage: processedData.heroImage,
+        section: processedData
     };
 
     return (

@@ -2,13 +2,15 @@ import React from 'react';
 import HeroSection from '../../components/HeroSection';
 import BookingSection from '../../components/sections/BookingSection';
 import { bookingData } from '../../data/play/bookingData';
+import { withAssetPaths } from '../../utils/dataWithAssets';
 
 const BookingPage = () => {
+    const processedData = withAssetPaths(bookingData);
     const content = {
-        title: bookingData.title,
-        subtitle: bookingData.subtitle,
-        heroImage: bookingData.heroImage,
-        section: bookingData
+        title: processedData.title,
+        subtitle: processedData.subtitle,
+        heroImage: processedData.heroImage,
+        section: processedData
     };
 
     return (
