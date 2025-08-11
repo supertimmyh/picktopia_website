@@ -642,3 +642,4 @@ link: ""  # Leave empty
 - **Single locations page** - all locations displayed as cards on `/locations` page
 - **Announcement rotation** - multiple announcements rotate every 4 seconds
 - **Link validation** - ensure event slugs match exactly for announcement links
+- to memorize
