@@ -1,3 +1,5 @@
+import { getAssetPath } from './assetPath';
+
 // Enhanced frontmatter parser that works in browsers and supports arrays/objects
 const parseFrontmatter = (fileContent) => {
   const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
@@ -170,7 +172,7 @@ const parseFrontmatter = (fileContent) => {
 // Utility function to load and parse markdown content
 export const loadContent = async (filePath) => {
   try {
-    const response = await fetch(filePath);
+    const response = await fetch(getAssetPath(filePath));
     
     if (!response.ok) {
       return null;
@@ -221,7 +223,7 @@ export const loadCollectionContent = async (collectionName) => {
 export const loadLocationsForNav = async () => {
   try {
     // Load location slugs from manifest file
-    const manifestResponse = await fetch('/content/locations/manifest.json');
+    const manifestResponse = await fetch(getAssetPath('/content/locations/manifest.json'));
     let locationSlugs = [];
     
     if (manifestResponse.ok) {
@@ -260,7 +262,7 @@ export const loadLocationsForNav = async () => {
 export const loadEventsForNav = async () => {
   try {
     // Load event slugs from manifest file
-    const manifestResponse = await fetch('/content/events/manifest.json');
+    const manifestResponse = await fetch(getAssetPath('/content/events/manifest.json'));
     let eventSlugs = [];
     
     if (manifestResponse.ok) {
@@ -298,7 +300,7 @@ export const loadEventsForNav = async () => {
 export const loadAllEvents = async () => {
   try {
     // Load event slugs from manifest file
-    const manifestResponse = await fetch('/content/events/manifest.json');
+    const manifestResponse = await fetch(getAssetPath('/content/events/manifest.json'));
     let eventSlugs = [];
     
     if (manifestResponse.ok) {
@@ -342,7 +344,7 @@ export const loadAllEvents = async () => {
 export const loadLatestEvents = async (limit = 3) => {
   try {
     // Load event slugs from manifest file
-    const manifestResponse = await fetch('/content/events/manifest.json');
+    const manifestResponse = await fetch(getAssetPath('/content/events/manifest.json'));
     let eventSlugs = [];
     
     if (manifestResponse.ok) {
@@ -391,7 +393,7 @@ export const loadLatestEvents = async (limit = 3) => {
 export const loadActiveAnnouncements = async () => {
   try {
     // Load announcement slugs from manifest file
-    const manifestResponse = await fetch('/content/announcements/manifest.json');
+    const manifestResponse = await fetch(getAssetPath('/content/announcements/manifest.json'));
     let announcementSlugs = [];
     
     if (manifestResponse.ok) {

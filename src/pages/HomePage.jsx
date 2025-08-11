@@ -6,6 +6,7 @@ import LatestEvents from '../components/LatestEvents';
 import Newsletter from '../components/Newsletter';
 import { homePageData } from '../data/homePageData';
 import { CMS_DATA } from '../data/data';
+import { getAssetPath } from '../utils/assetPath';
 
 const HomePage = ({ navigateTo }) => {
   const { title, subtitle, booking, schedule } = homePageData.hero;
@@ -15,7 +16,7 @@ const HomePage = ({ navigateTo }) => {
       <HeroSection
         title={title}
         subtitle={subtitle}
-        backgroundVideo="/images/hero/hero-video.MP4"
+        backgroundVideo={getAssetPath("/images/hero/hero-video.MP4")}
         size="large"
         overlayColor="none"
       >

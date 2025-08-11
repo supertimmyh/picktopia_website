@@ -224,6 +224,78 @@ Booking URLs are configured per section in content files and handled by `Booking
 - **Base Path**: Configured in `vite.config.js` for production GitHub Pages deployment
 - **CMS**: Decap CMS configured in `public/admin/` for content management
 
+### Asset Path Management
+
+The project uses a centralized asset path system to handle deployment across different domains and base paths.
+
+#### Key Files:
+- **`src/utils/assetPath.js`**: Core utility for asset path resolution
+- **`src/utils/dataWithAssets.js`**: Processes data objects to apply correct asset paths
+- **`src/utils/contentLoader.js`**: Handles CMS content loading with proper base paths
+
+#### Usage Patterns:
+
+**For Individual Assets (in components):**
+```javascript
+import { getAssetPath } from '../utils/assetPath';
+
+// Use for any public folder asset
+<img src={getAssetPath("/images/hero/photo.jpg")} />
+<video src={getAssetPath("/images/hero/video.MP4")} />
+```
+
+**For Data-Driven Assets (in pages):**
+```javascript
+import { withAssetPaths } from '../utils/dataWithAssets';
+import { pageData } from '../data/pageData';
+
+const MyPage = () => {
+  const content = withAssetPaths(pageData); // Processes all asset paths
+  return <HeroSection backgroundImage={content.heroImage} />;
+};
+```
+
+**For CMS Content:**
+All CMS content loading automatically handles base paths via `contentLoader.js`. No additional code needed.
+
+#### Domain Configuration:
+
+**Current Setup (GitHub Pages subdirectory):**
+```javascript
+// src/utils/assetPath.js
+const getBasePath = () => {
+  return import.meta.env.PROD ? '/picktopia_website/' : '/';
+};
+```
+
+**For Custom Domain (update when switching domains):**
+```javascript
+// For custom domain deployment at root
+const getBasePath = () => {
+  return '/'; // Always use root path
+};
+
+// Or smart detection (recommended)
+const getBasePath = () => {
+  if (import.meta.env.PROD && window.location.hostname.includes('github.io')) {
+    return '/picktopia_website/';
+  }
+  return '/'; // Custom domain or development
+};
+```
+
+#### Asset Organization:
+```
+public/images/
+├── coaches/        # Coach photos
+├── facilities/     # Facility images  
+├── hero/           # Hero images/videos
+├── uploads/        # CMS uploads
+└── place-holder.jpg # Default placeholder
+```
+
+**Important**: All customized page assets must be in `public/images/` (not `src/assets/`) to ensure proper deployment and path resolution.
+
 ## Development Notes
 
 ### Known Limitations

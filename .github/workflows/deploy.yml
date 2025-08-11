@@ -52,6 +52,9 @@ jobs:
           echo "=== Directory structure ==="
           tree dist || ls -la dist/
           
+      - name: Add .nojekyll file to prevent Jekyll processing
+        run: touch dist/.nojekyll
+        
       - name: Deploy to GitHub Pages using peaceiris action (preserves directory structure)
         uses: peaceiris/actions-gh-pages@v3
         with:
