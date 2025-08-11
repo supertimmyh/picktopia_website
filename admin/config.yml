@@ -1,7 +1,19 @@
+# Backend configuration - works for both local and production
 backend:
   name: github
   repo: supertimmyh/picktopia_website
   branch: main
+  # Only use external auth in production
+  auth_endpoint: https://decap-cms-github-oauth-provider.netlify.app/auth
+
+# Enable local backend for development
+local_backend: true
+
+# Development settings
+development_overrides:
+  backend:
+    name: proxy
+    proxy_url: http://localhost:8081/api/v1
 
 # Enable editorial workflow for content review (disabled for local dev)
 # publish_mode: editorial_workflow
