@@ -2,7 +2,7 @@
 export const programScheduleData = {
     title: "Program Schedule",
     subtitle: "Join our vibrant community with a variety of programs designed for all skill levels. Find the perfect session for you in our weekly schedule.",
-    heroImage: "/assets/place-holder.jpg",
+    heroImage: "/images/place-holder.jpg",
     bookingUrl: "https://app.courtreserve.com/picktopia/programs",
     bookingText: "Join Programs",
     backgroundColor: "bg-white",

@@ -6,7 +6,6 @@ import LatestEvents from '../components/LatestEvents';
 import Newsletter from '../components/Newsletter';
 import { homePageData } from '../data/homePageData';
 import { CMS_DATA } from '../data/data';
-import heroVideo from '../assets/hero-video.MP4';
 
 const HomePage = ({ navigateTo }) => {
   const { title, subtitle, booking, schedule } = homePageData.hero;
@@ -16,7 +15,7 @@ const HomePage = ({ navigateTo }) => {
       <HeroSection
         title={title}
         subtitle={subtitle}
-        backgroundVideo={heroVideo}
+        backgroundVideo="/images/hero/hero-video.MP4"
         size="large"
         overlayColor="none"
       >

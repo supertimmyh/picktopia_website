@@ -2,7 +2,7 @@
 export const groupBookingData = {
     title: "Host Your Next Event at Picktopia!",
     subtitle: "Looking for a unique and active venue for your next party or corporate gathering? Look no further! Picktopia offers a fun and engaging environment perfect for any occasion.",
-    heroImage: "/assets/place-holder.jpg",
+    heroImage: "/images/place-holder.jpg",
     whyBookWithUs: {
         title: "Why Book Your Event With Us?",
         benefits: [
@@ -31,7 +31,7 @@ export const groupBookingData = {
             {
                 title: "Corporate Events",
                 description: "Energize your team with a corporate outing at Picktopia! Perfect for team-building, holiday parties, or client appreciation events. We provide a refreshing alternative to the typical corporate function, with options for organized play, lessons, and catering to make your event both productive and fun.",
-                image: "/assets/place-holder.jpg",
+                image: "/images/facilities/place-holder.jpg",
                 features: [
                     "Team-building activities",
                     "Holiday parties",
@@ -44,7 +44,7 @@ export const groupBookingData = {
             {
                 title: "Social Parties & Celebrations",
                 description: "Birthdays, anniversaries, bachelor/bachelorette parties, or just a fun weekend activity with friends! Our facility provides the perfect backdrop for any celebration. You can bring your own food and decorations to personalize your event.",
-                image: "/assets/place-holder.jpg",
+                image: "/images/facilities/place-holder.jpg",
                 features: [
                     "Birthday parties",
                     "Anniversary celebrations",
@@ -86,7 +86,7 @@ export const groupBookingData = {
                 icon: "👨‍🏫"
             }
         ],
-        facilitiesImage: "/assets/place-holder.jpg"
+        facilitiesImage: "/images/facilities/place-holder.jpg"
     },
     bookingProcess: {
         title: "How to Book Your Event",

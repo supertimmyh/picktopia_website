@@ -2,13 +2,13 @@
 export const trainingProgramsData = {
     title: "Training Programs",
     subtitle: "Ready to take your game to the next level? Our certified instructors are here to help you achieve your pickleball goals with personalized training and group sessions.",
-    heroImage: "/assets/place-holder.jpg",
+    heroImage: "/images/place-holder.jpg",
     bookingUrl: "https://app.courtreserve.com/picktopia/training",
     bookingText: "Book Training",
     coaches: [
         {
             name: "Sarah Johnson",
-            image: "/assets/place-holder.jpg",
+            image: "/images/coaches/place-holder.jpg",
             certifications: "PPR Certified, USAPA Ambassador",
             experience: "8 years",
             specialties: ["Beginner Development", "Technique Refinement", "Strategic Play"],
@@ -17,7 +17,7 @@ export const trainingProgramsData = {
         },
         {
             name: "Mike Rodriguez",
-            image: "/assets/place-holder.jpg",
+            image: "/images/coaches/place-holder.jpg",
             certifications: "IPTPA Professional, Former Tournament Player",
             experience: "12 years",
             specialties: ["Advanced Strategy", "Tournament Prep", "Mental Game"],
@@ -26,7 +26,7 @@ export const trainingProgramsData = {
         },
         {
             name: "Lisa Chen",
-            image: "/assets/place-holder.jpg",
+            image: "/images/coaches/place-holder.jpg",
             certifications: "PPR Certified, Youth Development Specialist",
             experience: "6 years",
             specialties: ["Youth Programs", "Group Clinics", "Adaptive Play"],
