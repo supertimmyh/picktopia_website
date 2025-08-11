@@ -11,7 +11,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     permissions:
-      contents: read
+      contents: write
       pages: write
       id-token: write
     
@@ -52,21 +52,10 @@ jobs:
           echo "=== Directory structure ==="
           tree dist || ls -la dist/
           
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        
-      - name: Create tarball manually (workaround for missing directories)
-        run: |
-          cd dist
-          tar -czf ../pages.tar.gz .
-          cd ..
-          ls -la pages.tar.gz
-          
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to GitHub Pages using peaceiris action (preserves directory structure)
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: './dist'
-          
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: false
+          enable_jekyll: false
