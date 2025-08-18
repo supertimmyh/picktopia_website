@@ -31,7 +31,7 @@ Just choose your desired date, time, and court to lock in your spot!
 You can book courts up to 7 days in advance. Members may have extended booking privileges depending on their membership level.
 
 ### What is the cancellation policy?
-Courts can be cancelled up to 2 hours before your scheduled time for a full refund. Cancellations within 2 hours may result in a cancellation fee.
+Courts can be cancelled up to 24 hours before your scheduled time for a full refund. Cancellations within 24 hours may result in a cancellation fee.
 
 ### Do I need to be a member to book courts?
 No, both members and non-members (Community Membership) can book courts through Court Reserve. However, members receive priority booking and discounted rates.

@@ -24,16 +24,7 @@ const BookingSection = ({ content }) => {
     };
 
     const handleDownloadApp = () => {
-        // Detect device and redirect accordingly
-        const userAgent = navigator.userAgent || window.opera;
-        
-        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            window.open('https://apps.apple.com/app/court-reserve/id1234567890', '_blank');
-        } else if (/android/i.test(userAgent)) {
-            window.open('https://play.google.com/store/apps/details?id=com.courtreserve', '_blank');
-        } else {
-            window.open('https://app.courtreserve.com/picktopia', '_blank');
-        }
+        window.open('https://courtreserve.com/mobile-app/', '_blank');
     };
 
     // Parse the content to extract structured information
