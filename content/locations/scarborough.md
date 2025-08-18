@@ -3,7 +3,7 @@ title: "Picktopia Scarborough"
 address: "3595 St Clair Ave E Unit B2, Scarborough, ON M1K 1L8"
 phone: "(647) 478-9866"
 email: "scarborough@rallypicktopia.com"
-courtCount: 8
+courtCount: 9
 image: "/images/scarborough-facility.jpg"
 bookingUrl: "https://app.courtreserve.com/Online/Portal/Index/16040"
 hours:
@@ -23,6 +23,6 @@ amenities:
   - "Air Conditioning"
 ---
 
-Our flagship Scarborough location features 8 professional-grade indoor courts with top-notch amenities. This is where it all started for Picktopia!
+Our Scarborough location features 9 professional-grade indoor courts with top-notch amenities. This is where it all started for Picktopia!
 
 Located in the heart of Scarborough, this facility offers the perfect combination of accessibility and quality. Whether you're a beginner or an experienced player, our courts provide the ideal environment for your pickleball journey.
