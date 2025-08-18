@@ -516,7 +516,7 @@ Our flagship location in the heart of Toronto features state-of-the-art indoor c
 
 **Address:** Coming Soon  
 **Hours:** 6:00 AM - 11:00 PM Daily  
-**Courts:** 8 Premium Indoor Courts
+**Courts:** Premium Indoor Courts with Professional Hard Surface
 
 ## Future Locations
 

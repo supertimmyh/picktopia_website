@@ -33,7 +33,7 @@ export const homePageData = {
         subtitle: "Picktopia is more than just a place to play; it's a community built around the love of pickleball. We offer top-tier facilities, expert coaching, and a welcoming atmosphere for everyone.",
         features: [
             { title: "Inclusive & Social Environment", content: "From beginner clinics to competitive leagues, we foster a community where everyone feels welcome." },
-            { title: "8 Pro-Level Courts", content: "Our state-of-the-art courts are designed for optimal play and are meticulously maintained." },
+            { title: "Professional-Grade Courts", content: "Our state-of-the-art courts feature regulation-size playing surfaces with professional hard court materials, designed for optimal play and meticulously maintained." },
             { title: "Top-Notch Gear & Amenities", content: "Visit our pro-shop for the latest paddles and gear. Relax in our lounge after a great game." },
         ]
     },

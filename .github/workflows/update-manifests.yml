@@ -4,9 +4,9 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'src/content/events/**'
-      - 'src/content/locations/**'
-      - 'src/content/announcements/**'
+      - 'public/content/events/**'
+      - 'public/content/locations/**'
+      - 'public/content/announcements/**'
 
 permissions:
   contents: write
@@ -36,7 +36,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add src/content/*/manifest.json
+        git add public/content/*/manifest.json
         if git diff --staged --quiet; then
           echo "No manifest changes to commit"
         else

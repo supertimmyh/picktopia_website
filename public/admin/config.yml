@@ -14,7 +14,7 @@ collections:
   # Generic Pages Collection - For any remaining CMS-managed pages
   - name: "pages"
     label: "Generic Pages"
-    folder: "src/content/pages"
+    folder: "public/content/pages"
     create: true
     slug: "{{slug}}"
     fields:
@@ -26,7 +26,7 @@ collections:
   # Locations Collection - Multiple location entries
   - name: "locations"
     label: "Locations"
-    folder: "src/content/locations"
+    folder: "public/content/locations"
     create: true
     slug: "{{slug}}"
     fields:
@@ -58,7 +58,7 @@ collections:
   # Events Collection
   - name: "events"
     label: "Events"
-    folder: "src/content/events"
+    folder: "public/content/events"
     create: true
     slug: "{{slug}}"
     fields:
@@ -73,7 +73,7 @@ collections:
   # Announcements Collection
   - name: "announcements"
     label: "Announcements"
-    folder: "src/content/announcements"
+    folder: "public/content/announcements"
     create: true
     slug: "{{slug}}"
     fields:
@@ -96,7 +96,7 @@ collections:
     files:
       - label: "General Settings"
         name: "general"
-        file: "src/content/settings/general.md"
+        file: "public/content/settings/general.md"
         fields:
           - { label: "Site Title", name: "siteTitle", widget: "string" }
           - { label: "Site Description", name: "siteDescription", widget: "text" }

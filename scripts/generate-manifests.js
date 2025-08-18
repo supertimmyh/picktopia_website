@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Generate events manifest
-const eventsDir = path.join(__dirname, '../src/content/events');
+const eventsDir = path.join(__dirname, '../public/content/events');
 const eventsManifestPath = path.join(eventsDir, 'manifest.json');
 
 try {
@@ -23,7 +23,7 @@ try {
 }
 
 // Generate locations manifest (for future use)
-const locationsDir = path.join(__dirname, '../src/content/locations');
+const locationsDir = path.join(__dirname, '../public/content/locations');
 const locationsManifestPath = path.join(locationsDir, 'manifest.json');
 
 try {
@@ -41,7 +41,7 @@ try {
 }
 
 // Generate announcements manifest
-const announcementsDir = path.join(__dirname, '../src/content/announcements');
+const announcementsDir = path.join(__dirname, '../public/content/announcements');
 const announcementsManifestPath = path.join(announcementsDir, 'manifest.json');
 
 try {

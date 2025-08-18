@@ -12,7 +12,7 @@ const CMSPage = ({ pageSlug }) => {
             try {
                 // Try to load from markdown file first
                 try {
-                    const response = await fetch(`/src/content/pages/${pageSlug}.md`);
+                    const response = await fetch(`/content/pages/${pageSlug}.md`);
                     if (response.ok) {
                         const markdownText = await response.text();
                         const frontMatterMatch = markdownText.match(/^---\n([\s\S]*?)\n---/);
