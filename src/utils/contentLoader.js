@@ -351,8 +351,8 @@ export const loadEventsForNav = async () => {
   }
 };
 
-// Load All Events
-export const loadAllEvents = async () => {
+// Load Events with optional limit and sorting
+export const loadEvents = async ({ limit = null, sortByDate = false } = {}) => {
   try {
     // Load event slugs from manifest file
     const manifestResponse = await fetch(getAssetPath('/content/events/manifest.json'));
@@ -388,61 +388,28 @@ export const loadAllEvents = async () => {
       }
     }
     
-    return events;
+    let processedEvents = events;
+    
+    // Sort by date if requested (newest first)
+    if (sortByDate) {
+      processedEvents = events.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+    
+    // Apply limit if specified
+    if (limit && limit > 0) {
+      processedEvents = processedEvents.slice(0, limit);
+    }
+    
+    return processedEvents;
   } catch (error) {
-    console.error('Error loading all events:', error);
+    console.error('Error loading events:', error);
     return [];
   }
 };
 
-// Load Latest Events for homepage display
-export const loadLatestEvents = async (limit = 3) => {
-  try {
-    // Load event slugs from manifest file
-    const manifestResponse = await fetch(getAssetPath('/content/events/manifest.json'));
-    let eventSlugs = [];
-    
-    if (manifestResponse.ok) {
-      eventSlugs = await manifestResponse.json();
-    } else {
-      // Fallback to known events if manifest doesn't exist
-      eventSlugs = ['inauguration-tournament', 'late-summer-bbq'];
-    }
-    
-    const events = [];
-    
-    for (const slug of eventSlugs) {
-      try {
-        const eventContent = await loadContent(`/content/events/${slug}.md`);
-        if (eventContent && eventContent.frontmatter) {
-          events.push({
-            slug: slug,
-            title: eventContent.frontmatter.title,
-            date: eventContent.frontmatter.date,
-            location: eventContent.frontmatter.location,
-            image: eventContent.frontmatter.image || getAssetPath('/images/uploads/place-holder.jpg'),
-            description: eventContent.frontmatter.description,
-            registrationLink: eventContent.frontmatter.registrationLink,
-            price: eventContent.frontmatter.price
-          });
-        }
-      } catch (error) {
-        // Event file doesn't exist, skip
-        console.log(`Event ${slug} not found, skipping`);
-      }
-    }
-    
-    // Sort events by date (newest first) and limit results
-    const sortedEvents = events
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, limit);
-    
-    return sortedEvents;
-  } catch (error) {
-    console.error('Error loading latest events:', error);
-    return [];
-  }
-};
+// Convenience functions for backward compatibility
+export const loadAllEvents = async () => loadEvents();
+export const loadLatestEvents = async (limit = 3) => loadEvents({ limit, sortByDate: true });
 
 // Load Active Announcements
 export const loadActiveAnnouncements = async () => {

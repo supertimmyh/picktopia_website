@@ -6,17 +6,18 @@ import LatestEvents from '../components/LatestEvents';
 import Newsletter from '../components/Newsletter';
 import { homePageData } from '../data/homePageData';
 import { CMS_DATA } from '../data/data';
-import { getAssetPath } from '../utils/assetPath';
+import { withAssetPaths } from '../utils/dataWithAssets';
 
 const HomePage = ({ navigateTo }) => {
-  const { title, subtitle, booking, schedule } = homePageData.hero;
+  const content = withAssetPaths(homePageData);
+  const { title, subtitle, backgroundVideo, booking, schedule } = content.hero;
   
   return (
     <>
       <HeroSection
         title={title}
         subtitle={subtitle}
-        backgroundVideo={getAssetPath("/images/hero/hero-video.MP4")}
+        backgroundVideo={backgroundVideo}
         size="large"
         overlayColor="none"
       >
@@ -29,10 +30,10 @@ const HomePage = ({ navigateTo }) => {
           </button>
         </div>
       </HeroSection>
-      <WhatIsPicktopia data={homePageData.whatIsPicktopia} fallbackData={CMS_DATA.whatIsPicktopia} />
-      <FaqSection data={homePageData.faq} fallbackData={CMS_DATA.faq} />
+      <WhatIsPicktopia data={content.whatIsPicktopia} fallbackData={CMS_DATA.whatIsPicktopia} />
+      <FaqSection data={content.faq} fallbackData={CMS_DATA.faq} />
       <LatestEvents navigateTo={navigateTo} />
-      <Newsletter data={homePageData.newsletter} fallbackData={CMS_DATA.newsletter} />
+      <Newsletter data={content.newsletter} fallbackData={CMS_DATA.newsletter} />
     </>
   );
 };

@@ -1,6 +1,24 @@
-// Utility to handle asset paths with base path for GitHub Pages deployment
+// Utility to handle asset paths with flexible deployment support
 const getBasePath = () => {
-  return import.meta.env.PROD ? '/picktopia_website' : '';
+  if (!import.meta.env.PROD) {
+    return ''; // Development mode - no base path needed
+  }
+  
+  // Smart domain detection for production
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    
+    // GitHub Pages subdirectory deployment
+    if (hostname.includes('github.io') && !hostname.includes('picktopia')) {
+      return '/picktopia_website';
+    }
+    
+    // Custom domain or GitHub Pages with custom domain - use root
+    return '';
+  }
+  
+  // Fallback for server-side rendering or when window is unavailable
+  return import.meta.env.BASE_URL || '';
 };
 
 export const getAssetPath = (path) => {
@@ -10,7 +28,8 @@ export const getAssetPath = (path) => {
   }
   
   // Prepend base path for production
-  return `${getBasePath()}${path}`;
+  const basePath = getBasePath();
+  return `${basePath}${path}`;
 };
 
 export default getAssetPath;

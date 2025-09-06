@@ -68,11 +68,11 @@ const AboutUsPage = () => {
                         {/* Get Notified Component */}
                         <GetNotified />
                         
-                        {/* Placeholder Image */}
+                        {/* Facility Image */}
                         <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
                             <img
-                                src={content.heroImage}
-                                alt="Picktopia Club Interior"
+                                src={content.facilityImage}
+                                alt="Picktopia Lounge Area"
                                 className="w-full h-full object-cover"
                             />
                         </div>

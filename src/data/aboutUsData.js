@@ -1,8 +1,9 @@
 // AboutUs page specific data - extracted from about.md
 export const aboutUsData = {
-    title: "About Us",
-    subtitle: "Picktopia – Your Utopia for Pickleball.",
-    heroImage: "/images/place-holder.jpg",
+    title: "About Picktopia",
+    subtitle: `<span class="text-picktopia-orange font-semibold">More than just courts</span> – we're building <span class="text-yellow-300 font-semibold">Toronto's most vibrant</span> pickleball community.`,
+    heroImage: "/images/about/hero-about-us.jpg",
+    facilityImage: "/images/about/lounge.jpg",
     intro: `At Picktopia Pickleball Club, we're more than just a place to play — we're a **vibrant, inclusive, and social community** built around the fastest-growing sport in North America.
 
 Founded in Toronto, Picktopia was created with one goal in mind: to make pickleball **accessible**, exciting, and welcoming for players of all levels. Whether you're picking up a paddle for the first time or you're a seasoned competitor, you'll find your place at Picktopia.`,

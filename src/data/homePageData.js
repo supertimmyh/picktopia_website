@@ -25,6 +25,7 @@ export const homePageData = {
     hero: {
         title: "Welcome to the Heart of Pickleball",
         subtitle: "The premier destination for players of all levels in our community.",
+        backgroundVideo: "/images/hero/hero-video.mp4",
         booking: "Book a Court",
         schedule: "See Programs",
     },
@@ -46,14 +47,6 @@ export const homePageData = {
             { q: "What is your guest policy?", a: "Members are welcome to bring guests. A guest fee applies. Please check in at the front desk upon arrival." },
             { q: "Are there leagues or tournaments?", a: "Yes, we run seasonal leagues and regular tournaments for various skill levels. Keep an eye on our announcements and events calendar." },
         ],
-    },
-    blog: {
-        title: "Latest Blog Posts",
-        posts: [
-            { title: "Mastering the Third Shot Drop", image: `https://placehold.co/600x400/1C275F/e1672a?text=Pickleball+Tip` },
-            { title: "Pickleball & Fitness: A Perfect Match", image: `https://placehold.co/600x400/1C275F/e1672a?text=Health+%26+Wellness` },
-            { title: "Community Spotlight: Member of the Month", image: `https://placehold.co/600x400/1C275F/e1672a?text=Community` },
-        ]
     },
     newsletter: {
         title: "SUBSCRIBE TO OUR EMAILS",

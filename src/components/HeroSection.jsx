@@ -58,14 +58,15 @@ const HeroSection = ({
             {/* Content */}
             <div className="relative z-10 container mx-auto px-6 text-center">
                 {title && (
-                    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-black mb-6 drop-shadow-lg tracking-wider uppercase">
+                    <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-black mb-6 drop-shadow-lg tracking-wider uppercase text-white">
                         {title}
                     </h1>
                 )}
                 {subtitle && (
-                    <p className="font-body text-lg md:text-xl lg:text-2xl font-medium max-w-3xl mx-auto drop-shadow-md mb-8 leading-relaxed">
-                        {subtitle}
-                    </p>
+                    <p 
+                        className="font-body text-lg md:text-xl lg:text-2xl font-medium max-w-3xl mx-auto drop-shadow-md mb-8 leading-relaxed text-white"
+                        dangerouslySetInnerHTML={{ __html: subtitle }}
+                    />
                 )}
                 {children && (
                     <div className="mt-6">

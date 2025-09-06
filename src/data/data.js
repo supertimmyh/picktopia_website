@@ -46,14 +46,6 @@ export const CMS_DATA = {
             { q: "Sed ut perspiciatis unde?", a: "Omnis iste natus error sit voluptatem accusantium doloremque laudantium." },
         ],
     },
-    blog: {
-        title: "Lorem Ipsum Blog Posts",
-        posts: [
-            { title: "Lorem Ipsum Dolor Sit", image: `https://placehold.co/600x400/1C275F/e1672a?text=Lorem+Ipsum` },
-            { title: "Consectetur Adipiscing Elit", image: `https://placehold.co/600x400/1C275F/e1672a?text=Dolor+Sit` },
-            { title: "Sed Do Eiusmod Tempor", image: `https://placehold.co/600x400/1C275F/e1672a?text=Incididunt` },
-        ]
-    },
     newsletter: {
         title: "LOREM IPSUM NEWSLETTER",
         subtitle: "Consectetur adipiscing elit, sed do eiusmod tempor incididunt."
