@@ -54,9 +54,9 @@ const CoachBiographyCard = ({ coach }) => {
         
         <div>
           <h4 className="font-semibold text-picktopia-blue-dark mb-2">About</h4>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <div className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
             {coach.bio}
-          </p>
+          </div>
         </div>
         
         <div>

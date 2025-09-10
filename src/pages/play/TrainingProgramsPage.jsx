@@ -60,13 +60,17 @@ const TrainingProgramsPage = () => {
                     </section>
                 )}
 
-                {/* Meet Our Coaches */}
+                {/* Meet Our Pros */}
                 {content.coaches && content.coaches.length > 0 && (
                     <section>
                         <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
-                            Meet Our Certified Coaches
+                            Meet Our Pros
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        <div className={`grid grid-cols-1 gap-6 max-w-6xl mx-auto ${
+                            content.coaches.length <= 2 
+                                ? 'md:grid-cols-2 justify-items-center' 
+                                : 'md:grid-cols-2 lg:grid-cols-3'
+                        }`}>
                             {content.coaches.map((coach, index) => (
                                 <CoachBiographyCard key={index} coach={coach} />
                             ))}

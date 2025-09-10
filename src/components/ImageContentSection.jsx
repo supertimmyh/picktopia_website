@@ -8,6 +8,7 @@ const ImageContentSection = ({
     size = 'medium',
     imagePosition = 'left',
     imageAspectRatio = '16/9',
+    backgroundPosition = 'top',
     className = '',
     containerClassName = '',
     imageClassName = '',
@@ -30,6 +31,19 @@ const ImageContentSection = ({
         large: 'py-8'
     };
 
+    // Background position variants
+    const backgroundPositionClasses = {
+        top: 'bg-top',
+        center: 'bg-center',
+        bottom: 'bg-bottom',
+        left: 'bg-left',
+        right: 'bg-right',
+        'top-left': 'bg-left-top',
+        'top-right': 'bg-right-top',
+        'bottom-left': 'bg-left-bottom',
+        'bottom-right': 'bg-right-bottom'
+    };
+
     // Determine grid order based on image position
     const isImageLeft = imagePosition === 'left';
     const imageOrder = isImageLeft ? 'order-2 lg:order-1' : 'order-2 lg:order-2';
@@ -47,7 +61,7 @@ const ImageContentSection = ({
                         {backgroundImage ? (
                             <div className="relative rounded-lg overflow-hidden shadow-2xl">
                                 <div 
-                                    className="bg-cover bg-center bg-no-repeat"
+                                    className={`bg-cover ${backgroundPositionClasses[backgroundPosition] || 'bg-top'} bg-no-repeat`}
                                     style={{ 
                                         aspectRatio: imageAspectRatio,
                                         backgroundImage: `url(${backgroundImage})` 

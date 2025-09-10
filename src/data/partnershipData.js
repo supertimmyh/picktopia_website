@@ -2,7 +2,7 @@
 export const partnershipData = {
     title: "Partner With Our Community",
     subtitle: "Join us in building something amazing together. Partner with Picktopia to reach an engaged community passionate about active living and wellness.",
-    heroImage: "/images/place-holder.jpg",
+    heroImage: "/images/partnership/partnership-hero.jpg",
     backgroundColor: "bg-white",
     monthlyVisitors: "1,200+",
     activeMembers: "500+",

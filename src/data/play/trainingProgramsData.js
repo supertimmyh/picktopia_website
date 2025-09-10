@@ -2,36 +2,29 @@
 export const trainingProgramsData = {
     title: "Training Programs",
     subtitle: "Ready to take your game to the next level? Our certified instructors are here to help you achieve your pickleball goals with personalized training and group sessions.",
-    heroImage: "/images/place-holder.jpg",
+    heroImage: "/images/training/training-hero.jpg",
     bookingUrl: "https://app.courtreserve.com/picktopia/training",
     bookingText: "Book Training",
     coaches: [
         {
-            name: "Sarah Johnson",
-            image: "/images/coaches/place-holder.jpg",
-            certifications: "PPR Certified, USAPA Ambassador",
-            experience: "8 years",
-            specialties: ["Beginner Development", "Technique Refinement", "Strategic Play"],
-            bio: "Sarah brings passion and expertise to every lesson. With a background in tennis and 8 years of pickleball experience, she specializes in helping beginners build confidence while refining advanced players' techniques.",
-            availability: "Monday-Friday mornings, Weekend afternoons"
+            name: "Jose Nieto",
+            title: "Head Coach",
+            image: "/images/training/jose-headshot.jpeg",
+            certifications: "CEO and co-founder of True North Pickleball/Padel",
+            experience: "10+ years",
+            specialties: ["Technical Expertise", "Player Development", "Competitive Coaching"],
+            bio: "• CEO and co-founder of True North Pickleball/Padel\n• Finalist in Nationals 2022 in Calgary (A category)\n• Passionate about creating fun, engaging training environments\n• Specializes in rapid skill improvement for all levels\n• Expert in organizing clinics and tournaments",
+            availability: "Available for private lessons and clinics"
         },
         {
-            name: "Mike Rodriguez",
-            image: "/images/coaches/place-holder.jpg",
-            certifications: "IPTPA Professional, Former Tournament Player",
-            experience: "12 years",
-            specialties: ["Advanced Strategy", "Tournament Prep", "Mental Game"],
-            bio: "Former competitive player turned instructor, Mike focuses on advanced strategy and mental toughness. His tournament experience gives students insights into high-level play and competitive preparation.",
-            availability: "Evenings and weekends"
-        },
-        {
-            name: "Lisa Chen",
-            image: "/images/coaches/place-holder.jpg",
-            certifications: "PPR Certified, Youth Development Specialist",
-            experience: "6 years",
-            specialties: ["Youth Programs", "Group Clinics", "Adaptive Play"],
-            bio: "Lisa specializes in youth development and adaptive pickleball programs. Her patient teaching style and ability to break down complex concepts makes her perfect for new players of all ages.",
-            availability: "Weekday afternoons, Saturday mornings"
+            name: "Philip Chin",
+            title: "Pickleball Pro",
+            image: "/images/training/phil-headshot.jpg",
+            certifications: "4.0+ Player, Tournament Official",
+            experience: "10+ years",
+            specialties: ["Beginner Development", "Foundation Building", "Game Strategy"],
+            bio: "• 4.0+ player with 10+ years of experience\n• Winner and medalist in numerous tournaments\n• Official referee at top GTA tournaments\n• Discovered pickleball on an ocean cruise and never looked back\n• Committed to building solid foundations for new players",
+            availability: "Available for all skill levels"
         }
     ],
     programs: [

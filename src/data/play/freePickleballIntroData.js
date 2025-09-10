@@ -2,7 +2,7 @@
 export const freePickleballIntroData = {
     title: "Free Pickleball Intro",
     subtitle: "New to the sport? We want you to love pickleball as much as we do! Join our free introductory class to learn the basics in a welcoming and fun atmosphere.",
-    heroImage: "/images/place-holder.jpg",
+    heroImage: "/images/free-intro/free-intro-hero.jpg",
     backgroundColor: "bg-picktopia-orange",
     textColor: "text-white",
     titleColor: "text-white",
