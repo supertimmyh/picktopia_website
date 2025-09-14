@@ -1,7 +1,7 @@
 ---
 title: Daytime
 price: 69/month
-duration: Annual
+duration: 12-month commitment
 popular: false
 features:
   - FREE open play sessions during Monday-Friday off-peak hours, with no extra
