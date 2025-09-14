@@ -4,7 +4,7 @@ price: 69/month
 duration: Annual
 popular: false
 features:
-  - FREE open-play sessions during Monday-Friday non-peak hours ⏰
+  - FREE open-play sessions during Monday-Friday off-peak hours ⏰
   - Reserve up to 10 days in advance 🗓️
   - 15% discount for hosting any event 🎉
   - Priority access & discounted pricing on lessons and clinics! 🥇
