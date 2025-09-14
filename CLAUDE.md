@@ -86,16 +86,9 @@ const content = await loadPageContent('page-slug');
 # After making local content changes, sync with CMS:
 git add .
 git commit -m "Update content"
-git push origin main```
+git push origin main
 # Now CMS can see and edit the changes
-
-## Why This Section
-
-This fits perfectly in the **Automation** section because:
-1. It's directly related to CMS workflow
-2. It explains the automation between local development and CMS
-3. It clarifies a common confusion point for developers
-4. It provides practical git commands for syncing
+```
 
 ### Manual Manifest Generation
 ```bash
