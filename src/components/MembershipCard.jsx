@@ -80,7 +80,7 @@ const MembershipCard = ({
     const colors = isPopular ? popularScheme : colorSchemes[colorScheme];
 
     return (
-        <div className="relative">
+        <div className={`relative ${isPopular ? 'transform scale-105' : ''}`}>
             {/* Popular badge */}
             {isPopular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
@@ -96,7 +96,7 @@ const MembershipCard = ({
                     rounded-2xl border-2 shadow-lg hover:shadow-2xl
                     transition-all duration-300 p-6 h-full flex flex-col
                     transform hover:-translate-y-2 hover:scale-105
-                    ${isPopular ? 'scale-105 shadow-2xl' : ''}
+                    ${isPopular ? 'shadow-2xl ring-4 ring-picktopia-orange' : ''}
                 `}
             >
                 {/* Header */}
@@ -110,15 +110,29 @@ const MembershipCard = ({
                 </div>
 
                 {/* Price */}
-                <div className="text-center mb-6">
+                <div className="text-center mb-4">
                     <div className={`${colors.price} text-4xl font-black`}>
                         ${membership.price}
                     </div>
                 </div>
 
+                {/* Description */}
+                {membership.description && (
+                    <div className="text-center mb-6">
+                        <div
+                            className={`${colors.text} text-xs leading-relaxed opacity-75 italic`}
+                            dangerouslySetInnerHTML={{
+                                __html: membership.description
+                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                    .replace(/\n/g, '<br>')
+                            }}
+                        />
+                    </div>
+                )}
+
                 {/* Features */}
                 {membership.features && membership.features.length > 0 && (
-                    <div className="space-y-3 mb-6 flex-grow">
+                    <div className="space-y-3 mb-6 flex-1">
                         {membership.features.map((feature, index) => (
                             <div key={index} className="flex items-start space-x-3">
                                 <div className={`
@@ -142,20 +156,6 @@ const MembershipCard = ({
                                 </span>
                             </div>
                         ))}
-                    </div>
-                )}
-
-                {/* Description */}
-                {membership.description && (
-                    <div className="mb-6">
-                        <div
-                            className={`${colors.text} text-sm leading-relaxed opacity-90`}
-                            dangerouslySetInnerHTML={{
-                                __html: membership.description
-                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                    .replace(/\n/g, '<br>')
-                            }}
-                        />
                     </div>
                 )}
 
