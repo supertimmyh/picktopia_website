@@ -10,8 +10,8 @@ features:
   - 10% off merchandise! 👕
   - Two (2) free guest passes per month for court rentals! 🤝
   - 15% discount for hosting any event! 🎉
-  - " 4 FREE court booking hours within a month with no more 2 concurrent
-    booking. Evening bookings (4 PM or later) require a minimum of 4 players."
+  - 4 FREE court booking hours within a month with no more 2 concurrent booking.
+    Evening bookings (4 PM or later) require a minimum of 4 players.
   - No Event Cancellation within 12 hours and Allow 2 no show-ups within 1 month
 description: An exclusive experience for dedicated pickleball players with a
   limited quantity available.
