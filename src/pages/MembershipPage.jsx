@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
 import ContentTile from '../components/ContentTile';
+import MembershipCard from '../components/MembershipCard';
 import { loadContent } from '../utils/contentLoader';
 import { getAssetPath } from '../utils/assetPath';
 
 const MembershipPage = () => {
     const [memberships, setMemberships] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // Color schemes to cycle through for multiple memberships
+    const colorSchemes = ['blue', 'green', 'orange', 'purple', 'dark'];
 
     useEffect(() => {
         const loadMemberships = async () => {
@@ -94,86 +98,19 @@ const MembershipPage = () => {
                         </ContentTile>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {memberships.map((membership, index) => (
-                                <div key={membership.slug} className="relative">
-                                    {/* Popular badge */}
-                                    {membership.popular && (
-                                        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                                            <span className="bg-picktopia-orange text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">
-                                                Most Popular
-                                            </span>
-                                        </div>
-                                    )}
+                            {memberships.map((membership, index) => {
+                                // Assign color scheme - popular gets special treatment, others cycle through schemes
+                                const colorScheme = membership.popular ? 'popular' : colorSchemes[index % colorSchemes.length];
 
-                                    <ContentTile
-                                        title={membership.title}
-                                        subtitle={membership.duration}
-                                        backgroundColor={membership.popular ? "bg-gradient-to-br from-picktopia-blue-light to-picktopia-blue-dark text-white" : "bg-white"}
-                                        textColor={membership.popular ? "text-white" : "text-gray-600"}
-                                        titleColor={membership.popular ? "text-white" : "text-picktopia-blue-dark"}
-                                        className={membership.popular ? "ring-4 ring-picktopia-orange shadow-2xl scale-105" : "hover:scale-105 transition-transform duration-300"}
-                                    >
-                                        {/* Price */}
-                                        <div className="text-center mb-6">
-                                            <div className={`text-4xl font-black ${membership.popular ? 'text-white' : 'text-picktopia-orange'}`}>
-                                                {membership.price}
-                                            </div>
-                                        </div>
-
-                                        {/* Features */}
-                                        {membership.features && membership.features.length > 0 && (
-                                            <div className="space-y-3 mb-6">
-                                                {membership.features.map((feature, featureIndex) => (
-                                                    <div key={featureIndex} className="flex items-start space-x-3">
-                                                        <div className={`flex-shrink-0 w-5 h-5 rounded-full ${membership.popular ? 'bg-white' : 'bg-picktopia-orange'} flex items-center justify-center mt-0.5`}>
-                                                            <svg
-                                                                className={`w-3 h-3 ${membership.popular ? 'text-picktopia-blue-dark' : 'text-white'}`}
-                                                                fill="currentColor"
-                                                                viewBox="0 0 20 20"
-                                                            >
-                                                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                                            </svg>
-                                                        </div>
-                                                        <span className="flex-1 text-sm leading-relaxed">{feature}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-
-                                        {/* Description */}
-                                        {membership.description && (
-                                            <div className="mb-6">
-                                                <div
-                                                    className="text-sm leading-relaxed opacity-90"
-                                                    dangerouslySetInnerHTML={{
-                                                        __html: membership.description
-                                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                                            .replace(/\n/g, '<br>')
-                                                    }}
-                                                />
-                                            </div>
-                                        )}
-
-                                        {/* Sign Up Button */}
-                                        {membership.signupLink && (
-                                            <div className="mt-auto">
-                                                <a
-                                                    href={membership.signupLink}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={`block w-full text-center py-3 px-6 rounded-full font-bold text-sm uppercase tracking-wide transition-colors duration-300 ${
-                                                        membership.popular
-                                                            ? 'bg-white text-picktopia-blue-dark hover:bg-gray-100'
-                                                            : 'bg-picktopia-orange text-white hover:bg-orange-600'
-                                                    }`}
-                                                >
-                                                    Sign Up Now
-                                                </a>
-                                            </div>
-                                        )}
-                                    </ContentTile>
-                                </div>
-                            ))}
+                                return (
+                                    <MembershipCard
+                                        key={membership.slug}
+                                        membership={membership}
+                                        colorScheme={colorScheme}
+                                        isPopular={membership.popular}
+                                    />
+                                );
+                            })}
                         </div>
                     )}
                 </div>
