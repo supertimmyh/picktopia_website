@@ -85,7 +85,7 @@ const MembershipPage = () => {
 
             {/* Membership Cards */}
             <div className="container mx-auto px-6 py-12">
-                <div className="max-w-6xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     {memberships.length === 0 ? (
                         <ContentTile
                             title="Coming Soon"
@@ -97,7 +97,7 @@ const MembershipPage = () => {
                             <p>We're working on exciting membership options for you. Please check back soon or contact us for more information.</p>
                         </ContentTile>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 items-stretch">
                             {memberships.map((membership, index) => {
                                 // Assign color scheme - popular gets special treatment, others cycle through schemes
                                 const colorScheme = membership.popular ? 'popular' : colorSchemes[index % colorSchemes.length];

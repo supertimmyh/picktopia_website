@@ -80,7 +80,7 @@ const MembershipCard = ({
     const colors = isPopular ? popularScheme : colorSchemes[colorScheme];
 
     return (
-        <div className={`relative ${isPopular ? 'transform scale-105' : ''}`}>
+        <div className="relative">
             {/* Popular badge */}
             {isPopular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
@@ -111,9 +111,22 @@ const MembershipCard = ({
 
                 {/* Price */}
                 <div className="text-center mb-4">
-                    <div className={`${colors.price} text-4xl font-black`}>
-                        ${membership.price}
-                    </div>
+                    {membership.originalPrice ? (
+                        // Show promotional pricing with crossed-out original price
+                        <div>
+                            <div className={`${colors.text} text-lg line-through opacity-60 mb-1`}>
+                                ${membership.originalPrice}
+                            </div>
+                            <div className={`${colors.price} text-4xl font-black`}>
+                                ${membership.price}
+                            </div>
+                        </div>
+                    ) : (
+                        // Show regular pricing (existing behavior)
+                        <div className={`${colors.price} text-4xl font-black`}>
+                            ${membership.price}
+                        </div>
+                    )}
                 </div>
 
                 {/* Description */}

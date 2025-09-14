@@ -72,6 +72,31 @@ const content = await loadPageContent('page-slug');
 4. Commits updated manifest files with "[skip ci]" tag
 5. Navigation and pages reflect new content automatically
 
+### CMS Content Source & Editing
+  - **Content Source**: Decap CMS reads content directly from GitHub repository
+  (`supertimmyh/picktopia_website` on `main` branch)
+  - **Not Local**: CMS does NOT read from local `public/content/` files
+  - **Editing Process**: CMS changes commit directly to GitHub repository
+  - **Important**: Local file changes must be pushed to GitHub before they appear in CMS editor
+  - **Field Updates**: When adding new CMS fields, existing content needs to be pushed to GitHub for
+   fields to appear in CMS interface
+
+### CMS Content Sync Requirements
+```bash
+# After making local content changes, sync with CMS:
+git add .
+git commit -m "Update content"
+git push origin main```
+# Now CMS can see and edit the changes
+
+## Why This Section
+
+This fits perfectly in the **Automation** section because:
+1. It's directly related to CMS workflow
+2. It explains the automation between local development and CMS
+3. It clarifies a common confusion point for developers
+4. It provides practical git commands for syncing
+
 ### Manual Manifest Generation
 ```bash
 npm run generate-manifests
