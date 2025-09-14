@@ -9,8 +9,8 @@ const MembershipPage = () => {
     const [memberships, setMemberships] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Color schemes to cycle through for multiple memberships
-    const colorSchemes = ['blue', 'green', 'orange', 'purple', 'dark'];
+    // Color schemes to cycle through for multiple memberships - complementary palette
+    const colorSchemes = ['lightBlue', 'purple', 'coral', 'teal', 'slate'];
 
     useEffect(() => {
         const loadMemberships = async () => {
@@ -97,7 +97,7 @@ const MembershipPage = () => {
                             <p>We're working on exciting membership options for you. Please check back soon or contact us for more information.</p>
                         </ContentTile>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                             {memberships.map((membership, index) => {
                                 // Assign color scheme - popular gets special treatment, others cycle through schemes
                                 const colorScheme = membership.popular ? 'popular' : colorSchemes[index % colorSchemes.length];

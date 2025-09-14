@@ -5,62 +5,62 @@ const MembershipCard = ({
     colorScheme = 'blue',
     isPopular = false
 }) => {
-    // Color scheme definitions - solid colors for maximum contrast
+    // Color scheme definitions - complementary palette that harmonizes with popular blue/orange theme
     const colorSchemes = {
-        blue: {
-            bg: 'bg-blue-100',
-            border: 'border-blue-200',
+        lightBlue: {
+            bg: 'bg-sky-100',
+            border: 'border-sky-200',
             text: 'text-gray-800',
-            title: 'text-blue-800',
-            price: 'text-blue-600',
-            feature: 'bg-blue-600',
+            title: 'text-sky-800',
+            price: 'text-sky-600',
+            feature: 'bg-sky-600',
             featureText: 'text-white',
-            button: 'bg-blue-600 hover:bg-blue-700 text-white',
+            button: 'bg-sky-600 hover:bg-sky-700 text-white',
             checkmark: 'text-white'
         },
-        green: {
-            bg: 'bg-emerald-100',
-            border: 'border-emerald-200',
+        purple: {
+            bg: 'bg-indigo-100',
+            border: 'border-indigo-200',
             text: 'text-gray-800',
-            title: 'text-emerald-800',
-            price: 'text-emerald-600',
-            feature: 'bg-emerald-600',
+            title: 'text-indigo-800',
+            price: 'text-indigo-600',
+            feature: 'bg-indigo-600',
             featureText: 'text-white',
-            button: 'bg-emerald-600 hover:bg-emerald-700 text-white',
+            button: 'bg-indigo-600 hover:bg-indigo-700 text-white',
             checkmark: 'text-white'
         },
-        orange: {
+        coral: {
             bg: 'bg-orange-100',
             border: 'border-orange-200',
             text: 'text-gray-800',
             title: 'text-orange-800',
             price: 'text-orange-600',
-            feature: 'bg-orange-600',
+            feature: 'bg-orange-500',
             featureText: 'text-white',
-            button: 'bg-orange-600 hover:bg-orange-700 text-white',
+            button: 'bg-orange-500 hover:bg-orange-600 text-white',
             checkmark: 'text-white'
         },
-        purple: {
-            bg: 'bg-purple-100',
-            border: 'border-purple-200',
+        teal: {
+            bg: 'bg-teal-100',
+            border: 'border-teal-200',
             text: 'text-gray-800',
-            title: 'text-purple-800',
-            price: 'text-purple-600',
-            feature: 'bg-purple-600',
+            title: 'text-teal-800',
+            price: 'text-teal-600',
+            feature: 'bg-teal-600',
             featureText: 'text-white',
-            button: 'bg-purple-600 hover:bg-purple-700 text-white',
+            button: 'bg-teal-600 hover:bg-teal-700 text-white',
             checkmark: 'text-white'
         },
-        dark: {
-            bg: 'bg-gray-800',
-            border: 'border-gray-700',
-            text: 'text-gray-200',
-            title: 'text-white',
-            price: 'text-picktopia-orange',
-            feature: 'bg-picktopia-orange',
-            featureText: 'text-gray-900',
-            button: 'bg-picktopia-orange hover:bg-orange-600 text-gray-900',
-            checkmark: 'text-gray-900'
+        slate: {
+            bg: 'bg-slate-100',
+            border: 'border-slate-300',
+            text: 'text-gray-800',
+            title: 'text-slate-800',
+            price: 'text-slate-600',
+            feature: 'bg-slate-600',
+            featureText: 'text-white',
+            button: 'bg-slate-600 hover:bg-slate-700 text-white',
+            checkmark: 'text-white'
         }
     };
 
@@ -160,8 +160,8 @@ const MembershipCard = ({
                 )}
 
                 {/* Sign Up Button */}
-                {membership.signupLink && (
-                    <div className="mt-auto">
+                <div className="mt-auto">
+                    {membership.signupLink ? (
                         <a
                             href={membership.signupLink}
                             target="_blank"
@@ -174,8 +174,10 @@ const MembershipCard = ({
                         >
                             Sign Up Now
                         </a>
-                    </div>
-                )}
+                    ) : (
+                        <div className="h-12"></div>
+                    )}
+                </div>
             </div>
         </div>
     );
