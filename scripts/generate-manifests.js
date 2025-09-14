@@ -50,10 +50,28 @@ try {
     const announcementSlugs = files
       .filter(file => file.endsWith('.md'))
       .map(file => file.replace('.md', ''));
-    
+
     fs.writeFileSync(announcementsManifestPath, JSON.stringify(announcementSlugs, null, 2));
     console.log(`Generated announcements manifest with ${announcementSlugs.length} announcements:`, announcementSlugs);
   }
 } catch (error) {
   console.error('Error generating announcements manifest:', error);
+}
+
+// Generate memberships manifest
+const membershipsDir = path.join(__dirname, '../public/content/memberships');
+const membershipsManifestPath = path.join(membershipsDir, 'manifest.json');
+
+try {
+  if (fs.existsSync(membershipsDir)) {
+    const files = fs.readdirSync(membershipsDir);
+    const membershipSlugs = files
+      .filter(file => file.endsWith('.md'))
+      .map(file => file.replace('.md', ''));
+
+    fs.writeFileSync(membershipsManifestPath, JSON.stringify(membershipSlugs, null, 2));
+    console.log(`Generated memberships manifest with ${membershipSlugs.length} memberships:`, membershipSlugs);
+  }
+} catch (error) {
+  console.error('Error generating memberships manifest:', error);
 }

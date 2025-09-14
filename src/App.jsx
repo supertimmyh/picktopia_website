@@ -9,6 +9,7 @@ import CMSPage from './pages/CMSPage';
 import EventCMSPage from './pages/EventCMSPage';
 import EventsPage from './pages/EventsPage';
 import LocationsCMSPage from './pages/LocationsCMSPage';
+import MembershipPage from './pages/MembershipPage';
 import BookingPage from './pages/play/BookingPage';
 import ProgramSchedulePage from './pages/play/ProgramSchedulePage';
 import TrainingProgramsPage from './pages/play/TrainingProgramsPage';
@@ -46,6 +47,8 @@ export default function App() {
                 return <GroupBookingsPage />;
             case 'partnerships':
                 return <PartnershipsPage />;
+            case 'membership':
+                return <MembershipPage />;
             case 'locations':
                 return <LocationsCMSPage navigateTo={navigateTo} />;
             case 'events':

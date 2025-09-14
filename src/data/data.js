@@ -6,19 +6,20 @@ export const CMS_DATA = {
         "Sed do eiusmod tempor incididunt",
     ],
     navLinks: [
-        "Home", 
-        "About Us", 
+        "Home",
+        "About Us",
         {
             title: "Play",
             subLinks: [
                 "Booking",
-                "Program Schedule", 
+                "Program Schedule",
                 "Training Programs",
                 "Free Pickleball Intro"
             ]
         },
-        "Group Bookings", 
+        "Group Bookings",
         "Partnerships",
+        "Membership",
         "Locations",
         "Events"
     ],
