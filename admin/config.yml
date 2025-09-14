@@ -90,6 +90,26 @@ collections:
       - { label: "Start Date", name: "startDate", widget: "datetime", required: false }
       - { label: "End Date", name: "endDate", widget: "datetime", required: false }
 
+  # Memberships Collection - Membership tiers and pricing
+  - name: "memberships"
+    label: "Memberships"
+    folder: "public/content/memberships"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Membership Title", name: "title", widget: "string" }
+      - { label: "Price", name: "price", widget: "string", hint: "e.g., $99/month or $999/year" }
+      - { label: "Duration", name: "duration", widget: "string", hint: "e.g., Monthly, Annual, Lifetime" }
+      - { label: "Popular", name: "popular", widget: "boolean", default: false, hint: "Mark as most popular option" }
+      - label: "Features"
+        name: "features"
+        widget: "list"
+        field: { label: "Feature", name: "feature", widget: "string" }
+        default: ["Access to all courts", "Equipment rental included", "Guest passes"]
+      - { label: "Description", name: "description", widget: "markdown", required: false }
+      - { label: "Sign Up Link", name: "signupLink", widget: "string", required: false }
+      - { label: "Display Order", name: "order", widget: "number", default: 1, hint: "Lower numbers appear first" }
+
   # Settings Collection - Site-wide settings
   - name: "settings"
     label: "Site Settings"
