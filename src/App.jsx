@@ -41,7 +41,10 @@ export default function App() {
           const promoContent = await loadContent(`/content/promotions/${slugs[0]}.md`);
 
           if (promoContent && promoContent.frontmatter.enabled) {
-            setPromotion(promoContent.frontmatter);
+            setPromotion({
+              ...promoContent.frontmatter,
+              body: promoContent.content
+            });
             setIsModalOpen(true);
             sessionStorage.setItem('promotionShown', 'true');
           }

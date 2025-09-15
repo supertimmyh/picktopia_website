@@ -233,7 +233,6 @@ A CMS-driven modal window designed to display special announcements, events, or 
   - `title` (string): Main headline for the modal
   - `image` (image): Prominent poster image
   - `body` (markdown): Descriptive text content
-  - `cta_text` (string): Optional call-to-action button text
   - `cta_link` (string): Optional destination URL for CTA button
 - **Automation**: Fully integrated into manifest generation and GitHub Actions workflow
 

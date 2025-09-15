@@ -2,7 +2,6 @@
 enabled: true
 title: "Grand Opening Tournament!"
 image: "/images/uploads/team-pickleball-paddle-royale-template.jpg"
-cta_text: "Sign Up Now"
 cta_link: "/play/events"
 ---
 
