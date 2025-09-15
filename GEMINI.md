@@ -1,4 +1,3 @@
-
 # Picktopia Website - Claude Code Instructions
 
 ## Development Commands
@@ -26,6 +25,7 @@ npm run deploy                  # Deploy to GitHub Pages
 - **Locations**: Location cards page (`public/content/locations/`)
 - **Announcements**: Rotating banner (`public/content/announcements/`)
 - **Memberships**: Membership tiers and pricing (`public/content/memberships/`)
+- **Promotions**: Modal window for special promotions and events (`public/content/promotions/`)
 - **Generic Pages**: CMS-managed pages (`public/content/pages/`)
 
 ## Key Files
@@ -65,6 +65,7 @@ const content = await loadPageContent('page-slug');
 - ✅ **Locations** - Fully automated
 - ✅ **Announcements** - Fully automated
 - ✅ **Memberships** - Fully automated
+- ✅ **Promotions** - Fully automated
 
 ### CMS Workflow
 1. Content creator publishes via Decap CMS at `/admin/`
@@ -72,6 +73,24 @@ const content = await loadPageContent('page-slug');
 3. Runs `npm run generate-manifests` automatically
 4. Commits updated manifest files with "[skip ci]" tag
 5. Navigation and pages reflect new content automatically
+
+### CMS Content Source & Editing
+  - **Content Source**: Decap CMS reads content directly from GitHub repository
+  (`supertimmyh/picktopia_website` on `main` branch)
+  - **Not Local**: CMS does NOT read from local `public/content/` files
+  - **Editing Process**: CMS changes commit directly to GitHub repository
+  - **Important**: Local file changes must be pushed to GitHub before they appear in CMS editor
+  - **Field Updates**: When adding new CMS fields, existing content needs to be pushed to GitHub for
+   fields to appear in CMS interface
+
+### CMS Content Sync Requirements
+```bash
+# After making local content changes, sync with CMS:
+git add .
+git commit -m "Update content"
+git push origin main
+# Now CMS can see and edit the changes
+```
 
 ### Manual Manifest Generation
 ```bash
@@ -189,18 +208,43 @@ try {
 - Locations: Use CMS for location management
 - Announcements: Use CMS for banner announcements
 - Memberships: Use CMS for membership tier management
+- Promotions: Use CMS for promotional modal content
 
 ### Static Content (Developer-managed)
 - Page data in `src/data/` for stable content
 - Component-based sections accepting content props
 - Direct imports for better performance
 
+## Promotional Modal System
+
+### Overview
+A CMS-driven modal window designed to display special announcements, events, or promotions. It is configured to be impactful but not intrusive.
+
+### Implementation Details
+- **Component**: `src/components/PromotionModal.jsx`
+- **Logic & Control**: Primary logic for fetching content and managing modal visibility is in `src/App.jsx`
+- **Behavior**: Appears only once per user browser session using sessionStorage to track if viewed
+- **Content Source**: Dedicated CMS collection named "promotions"
+
+### CMS Collection Structure (Promotions)
+- **Folder**: `public/content/promotions/`
+- **Fields**:
+  - `enabled` (boolean): Toggle to activate/deactivate promotion without deleting
+  - `title` (string): Main headline for the modal
+  - `image` (image): Prominent poster image
+  - `body` (markdown): Descriptive text content
+  - `cta_text` (string): Optional call-to-action button text
+  - `cta_link` (string): Optional destination URL for CTA button
+- **Automation**: Fully integrated into manifest generation and GitHub Actions workflow
+
 ## Deployment
 - GitHub Pages: `supertimmyh.github.io/picktopia_website`
 - Asset paths automatically adjust for subdirectory vs custom domain
 - Vite config handles base path: `/picktopia_website/` in production
 
-## Error Handling & Fallbacks
+## Future Improvements - Error Handling
+
+**Note: This section is for future reference and not related to any code changes unless indicate otherwise**
 
 ### Current Implementation
 - Lorem Ipsum fallback content in `src/data/data.js` provides visual indication when CMS fails
@@ -223,13 +267,6 @@ try {
   setLoading(false);
 }
 ```
-
-## Future Improvements - Error Handling
-
-**Note: This section is for future reference and not related to any code changes unless indicate otherwise**
-
-### Current State
-Lorem Ipsum fallback content in `src/data/data.js` provides clear visual indication when CMS content fails to load.
 
 ### Enhanced Error Handling Strategy
 Keep the Lorem Ipsum approach but make it environment-aware:

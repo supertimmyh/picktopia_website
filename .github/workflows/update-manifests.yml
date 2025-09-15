@@ -8,6 +8,7 @@ on:
       - 'public/content/locations/**'
       - 'public/content/announcements/**'
       - 'public/content/memberships/**'
+      - 'public/content/promotions/**'
 
 permissions:
   contents: write

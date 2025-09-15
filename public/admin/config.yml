@@ -111,6 +111,20 @@ collections:
       - { label: "Sign Up Link", name: "signupLink", widget: "string", required: false }
       - { label: "Display Order", name: "order", widget: "number", default: 1, hint: "Lower numbers appear first" }
 
+  # Promotional Modal Collection
+  - name: "promotions"
+    label: "Promotional Modal"
+    folder: "public/content/promotions"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Poster Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "CTA Button Text", name: "cta_text", widget: "string", required: false }
+      - { label: "CTA Button Link", name: "cta_link", widget: "string", required: false, hint: "e.g., /events or https://example.com" }
+
   # Settings Collection - Site-wide settings
   - name: "settings"
     label: "Site Settings"

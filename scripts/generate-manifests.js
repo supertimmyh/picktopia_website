@@ -75,3 +75,21 @@ try {
 } catch (error) {
   console.error('Error generating memberships manifest:', error);
 }
+
+// Generate promotions manifest
+const promotionsDir = path.join(__dirname, '../public/content/promotions');
+const promotionsManifestPath = path.join(promotionsDir, 'manifest.json');
+
+try {
+  if (fs.existsSync(promotionsDir)) {
+    const files = fs.readdirSync(promotionsDir);
+    const slugs = files
+      .filter(file => file.endsWith('.md'))
+      .map(file => file.replace('.md', ''));
+
+    fs.writeFileSync(promotionsManifestPath, JSON.stringify(slugs, null, 2));
+    console.log(`Generated promotions manifest with ${slugs.length} items:`, slugs);
+  }
+} catch (error) {
+  console.error('Error generating promotions manifest:', error);
+}

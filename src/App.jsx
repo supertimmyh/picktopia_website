@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -14,9 +14,46 @@ import BookingPage from './pages/play/BookingPage';
 import ProgramSchedulePage from './pages/play/ProgramSchedulePage';
 import TrainingProgramsPage from './pages/play/TrainingProgramsPage';
 import FreePickleballIntroPage from './pages/play/FreePickleballIntroPage';
+import PromotionModal from './components/PromotionModal';
+import { loadContent } from './utils/contentLoader';
+import { getAssetPath } from './utils/assetPath';
 
 export default function App() {
     const [page, setPage] = useState('home');
+    const [promotion, setPromotion] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+      const showPromotion = async () => {
+        // Show only once per session
+        if (sessionStorage.getItem('promotionShown')) {
+          return;
+        }
+
+        try {
+          const manifestResponse = await fetch(getAssetPath('/content/promotions/manifest.json'));
+          if (!manifestResponse.ok) return;
+
+          const slugs = await manifestResponse.json();
+          if (slugs.length === 0) return;
+
+          // Load the first promotion from the manifest
+          const promoContent = await loadContent(`/content/promotions/${slugs[0]}.md`);
+
+          if (promoContent && promoContent.frontmatter.enabled) {
+            setPromotion(promoContent.frontmatter);
+            setIsModalOpen(true);
+            sessionStorage.setItem('promotionShown', 'true');
+          }
+        } catch (error) {
+          console.error('Failed to load promotion:', error);
+        }
+      };
+
+      showPromotion();
+    }, []);
+
+    const handleCloseModal = () => setIsModalOpen(false);
 
     const navigateTo = (pageName) => {
         setPage(pageName);
@@ -61,6 +98,7 @@ export default function App() {
 
     return (
         <div className="font-sans bg-gray-100 min-h-screen">
+            {isModalOpen && <PromotionModal content={promotion} onClose={handleCloseModal} />}
             <Header onNavClick={navigateTo} currentPage={page} />
             <main>
                 {renderPage()}
