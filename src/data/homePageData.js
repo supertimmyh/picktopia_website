@@ -42,9 +42,9 @@ export const homePageData = {
         title: "What are you waiting for?",
         questions: [
             { q: "How do I become a member?", a: "You can sign up online through our 'Membership' page or visit us in person. We have several flexible plans to choose from." },
-            { q: "Can I book a court without a membership?", a: "Yes, non-members can book courts up to 3 days in advance. Members enjoy a 14-day booking window and discounted rates." },
+            { q: "Can I book a court without a membership?", a: "Yes, non-members can book courts up to 7 days in advance. Members enjoy a 14-day booking window and discounted rates." },
             { q: "Do you offer lessons for beginners?", a: "Absolutely! We have introductory clinics and private lessons available with our certified instructors. Check the 'Play' section for schedules." },
-            { q: "What is your guest policy?", a: "Members are welcome to bring guests. A guest fee applies. Please check in at the front desk upon arrival." },
+            { q: "What is your guest policy?", a: "Members are welcome to bring guests. A guest fee applies unless specified otherwise." },
             { q: "Are there leagues or tournaments?", a: "Yes, we run seasonal leagues and regular tournaments for various skill levels. Keep an eye on our announcements and events calendar." },
         ],
     },

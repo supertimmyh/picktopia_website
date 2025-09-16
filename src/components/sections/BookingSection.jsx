@@ -17,10 +17,9 @@ const BookingSection = ({ content }) => {
     };
 
     const handleWhatsApp = () => {
-        // Placeholder for WhatsApp number - to be added later
-        const phoneNumber = 'YOUR_WHATSAPP_NUMBER'; // Replace with actual number
         const message = encodeURIComponent('Hi! I need help with court booking at Picktopia.');
-        window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        const whatsappUrl = content?.whatsappUrl || 'https://wa.me/16474789866';
+        window.open(`${whatsappUrl}?text=${message}`, '_blank');
     };
 
     const handleDownloadApp = () => {
@@ -209,7 +208,8 @@ const BookingSection = ({ content }) => {
                 </div>
             </div>
 
-            {/* Court Reserve Widget Placeholder */}
+            {/* Court Reserve Widget - Reserved for Future Improvement */}
+            {/*
             <Card className="border-dashed border-2 border-picktopia-orange">
                 <CardContent className="p-8 text-center">
                     <div className="space-y-4">
@@ -229,6 +229,7 @@ const BookingSection = ({ content }) => {
                     </div>
                 </CardContent>
             </Card>
+            */}
 
             {/* Contact Section */}
             <div className="bg-picktopia-blue-dark text-white rounded-lg p-6">
@@ -245,8 +246,8 @@ const BookingSection = ({ content }) => {
                         WhatsApp
                     </Button>
                     
-                    <Button 
-                        onClick={() => window.location.href = 'tel:+1234567890'}
+                    <Button
+                        onClick={() => window.location.href = `tel:${content?.phoneNumber || '6474789866'}`}
                         variant="secondary"
                         className="group bg-white text-picktopia-blue-dark hover:bg-gray-100"
                     >

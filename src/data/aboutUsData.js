@@ -1,7 +1,7 @@
 // AboutUs page specific data - extracted from about.md
 export const aboutUsData = {
     title: "About Picktopia",
-    subtitle: `<span class="text-picktopia-orange font-semibold">More than just courts</span> – we're building <span class="text-yellow-300 font-semibold">Toronto's most vibrant</span> pickleball community.`,
+    subtitle: `More than just courts – we're building Toronto's most vibrant pickleball community.`,
     heroImage: "/images/about/hero-about-us.jpg",
     facilityImage: "/images/about/lounge.jpg",
     intro: `At Picktopia Pickleball Club, we're more than just a place to play — we're a **vibrant, inclusive, and social community** built around the fastest-growing sport in North America.

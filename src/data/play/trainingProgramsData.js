@@ -38,8 +38,8 @@ export const trainingProgramsData = {
                 "Strategy and shot selection coaching",
                 "Video analysis available"
             ],
-            memberPrice: "$70",
-            nonMemberPrice: "$85",
+            memberPrice: "$100",
+            nonMemberPrice: "$135",
             skillLevel: "All levels",
             equipment: "Paddles and balls provided"
         },
@@ -54,7 +54,7 @@ export const trainingProgramsData = {
                 "Social learning environment"
             ],
             memberPrice: "$30",
-            nonMemberPrice: "$30",
+            nonMemberPrice: "$45",
             skillLevel: "Beginner, Intermediate, Advanced",
             equipment: "Paddles and balls provided"
         },
@@ -68,8 +68,8 @@ export const trainingProgramsData = {
                 "Consistency improvement",
                 "Performance tracking"
             ],
-            memberPrice: "$25",
-            nonMemberPrice: "$25",
+            memberPrice: "$30",
+            nonMemberPrice: "$45",
             skillLevel: "Intermediate to Advanced",
             equipment: "Bring your own paddle"
         },
@@ -84,9 +84,43 @@ export const trainingProgramsData = {
                 "Progressive skill development"
             ],
             memberPrice: "$20",
-            nonMemberPrice: "$25",
+            nonMemberPrice: "$30",
             skillLevel: "Ages 8-17, all skill levels",
             equipment: "Youth paddles and low-compression balls provided"
+        }
+    ],
+    specialPrograms: [
+        {
+            title: "Adaptive Left-Hand Training",
+            duration: "8 weeks",
+            description: "Specialized clinic for players adapting to shoulder injuries or learning to play with their non-dominant hand.",
+            features: [
+                "Individual coaching approach",
+                "Adaptive technique development",
+                "Proven success methodology",
+                "Injury-sensitive training",
+                "Progress tracking and feedback"
+            ],
+            memberPrice: "Contact for pricing",
+            nonMemberPrice: "Contact for pricing",
+            skillLevel: "All levels",
+            equipment: "Paddles and specialized training aids provided"
+        },
+        {
+            title: "Inclusive Pickleball for Special Needs",
+            duration: "Flexible sessions",
+            description: "Tailored sessions for players with autism and other special needs, focusing on social engagement and skill development.",
+            features: [
+                "Sensory-friendly environment",
+                "Specialized coaching approach",
+                "Patience-centered training",
+                "Social skill development",
+                "Individual or small group format"
+            ],
+            memberPrice: "Contact for pricing",
+            nonMemberPrice: "Contact for pricing",
+            skillLevel: "All abilities welcome",
+            equipment: "Adaptive equipment available"
         }
     ],
     testimonials: [

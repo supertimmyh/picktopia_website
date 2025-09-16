@@ -5,6 +5,8 @@ export const bookingData = {
     heroImage: "/images/court-booking/court-booking-hero.jpg",
     bookingUrl: "https://app.courtreserve.com/Online/Portal/CreateAccountAndRequestAccessToOrg/16040",
     bookingText: "Book Your Spot",
+    whatsappUrl: "https://wa.me/16474789866",
+    phoneNumber: "6474789866",
     backgroundColor: "bg-white",
     textColor: "text-gray-800",
     titleColor: "text-picktopia-blue-dark",

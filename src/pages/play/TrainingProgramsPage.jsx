@@ -30,25 +30,6 @@ const TrainingProgramsPage = () => {
                     </div>
                 )}
 
-                {/* Training Programs Grid */}
-                {content.programs && content.programs.length > 0 && (
-                    <section>
-                        <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
-                            Our Training Programs
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-                            {content.programs.map((program, index) => (
-                                <ProgramCard
-                                    key={index}
-                                    program={program}
-                                    bookingUrl={content.bookingUrl}
-                                    bookingText={content.bookingText}
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
-
                 {/* Pricing Table */}
                 {content.programs && content.programs.length > 0 && (
                     <section className="max-w-6xl mx-auto">
@@ -57,6 +38,25 @@ const TrainingProgramsPage = () => {
                             bookingUrl={content.bookingUrl}
                             bookingText={content.bookingText}
                         />
+                    </section>
+                )}
+
+                {/* Special Program Offering */}
+                {content.specialPrograms && content.specialPrograms.length > 0 && (
+                    <section>
+                        <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
+                            Special Program Offering
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                            {content.specialPrograms.map((program, index) => (
+                                <ProgramCard
+                                    key={index}
+                                    program={program}
+                                    bookingUrl={content.bookingUrl}
+                                    bookingText="Contact Us"
+                                />
+                            ))}
+                        </div>
                     </section>
                 )}
 

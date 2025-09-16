@@ -12,7 +12,6 @@ const PricingTable = ({ programs, bookingUrl, bookingText = "Book Training" }) =
       <Card>
         <CardHeader className="text-center">
           <h3 className="text-2xl font-bold font-heading text-picktopia-blue-dark flex items-center justify-center gap-2">
-            <DollarSign className="w-6 h-6" />
             Training Program Pricing
           </h3>
           <p className="text-gray-600">Choose the perfect program for your skill level and goals</p>
