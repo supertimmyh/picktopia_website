@@ -7,20 +7,20 @@ courtCount: 9
 image: "/images/scarborough-facility.jpg"
 bookingUrl: "https://app.courtreserve.com/Online/Portal/Index/16040"
 hours:
-  monday: "6:00 AM - 11:00 PM"
-  tuesday: "6:00 AM - 11:00 PM"
-  wednesday: "6:00 AM - 11:00 PM"
-  thursday: "6:00 AM - 11:00 PM"
-  friday: "6:00 AM - 11:00 PM"
-  saturday: "7:00 AM - 11:00 PM"
-  sunday: "7:00 AM - 10:00 PM"
+  monday: "8:00 AM - 10:00 PM"
+  tuesday: "8:00 AM - 10:00 PM"
+  wednesday: "8:00 AM - 10:00 PM"
+  thursday: "8:00 AM - 10:00 PM"
+  friday: "8:00 AM - 10:00 PM"
+  saturday: "8:00 AM - 10:00 PM"
+  sunday: "8:00 AM - 10:00 PM"
 amenities:
   - "Pro Shop"
   - "Lounge Area"
   - "Equipment Rental"
   - "Parking Available"
   - "Change Rooms"
-  - "Air Conditioning"
+  - "Championship Style Courts"
 ---
 
 Our Scarborough location features 9 professional-grade indoor courts with top-notch amenities. This is where it all started for Picktopia!
