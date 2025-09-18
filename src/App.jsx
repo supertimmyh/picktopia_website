@@ -73,16 +73,29 @@ export default function App() {
         switch (page) {
             case 'home':
                 return <HomePage navigateTo={navigateTo} />;
-            case 'about-us':
-                return <AboutUsPage />; // Using customized About Us page
+            case 'join':
+                return <MembershipPage />;
+            case 'academy-training-programs':
+                return <TrainingProgramsPage />;
+            case 'academy-free-pickleball-intro':
+                return <FreePickleballIntroPage />;
             case 'play-booking':
                 return <BookingPage />;
             case 'play-program-schedule':
                 return <ProgramSchedulePage />;
-            case 'play-training-programs':
-                return <TrainingProgramsPage />;
-            case 'play-free-pickleball-intro':
-                return <FreePickleballIntroPage />;
+            case 'play-group-bookings':
+                return <GroupBookingsPage />;
+            case 'events':
+                return <EventsPage navigateTo={navigateTo} />;
+            case 'clubs':
+                return <LocationsCMSPage navigateTo={navigateTo} />;
+            case 'about-about-us':
+                return <AboutUsPage />; // Using customized About Us page
+            case 'about-partnerships':
+                return <PartnershipsPage />;
+            // Legacy routes for backwards compatibility
+            case 'about-us':
+                return <AboutUsPage />;
             case 'group-bookings':
                 return <GroupBookingsPage />;
             case 'partnerships':
@@ -91,8 +104,10 @@ export default function App() {
                 return <MembershipPage />;
             case 'locations':
                 return <LocationsCMSPage navigateTo={navigateTo} />;
-            case 'events':
-                return <EventsPage navigateTo={navigateTo} />;
+            case 'play-training-programs':
+                return <TrainingProgramsPage />;
+            case 'play-free-pickleball-intro':
+                return <FreePickleballIntroPage />;
             
             default:
                 return <HomePage />;

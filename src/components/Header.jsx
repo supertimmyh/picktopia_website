@@ -76,8 +76,8 @@ const Header = ({ onNavClick, currentPage }) => {
                 </button>
                 
                 {(openDropdown === index) && (
-                  <div 
-                    className={`${isMobile ? 'mt-2 space-y-2' : 'absolute top-full left-0 mt-0 w-48 bg-white rounded-md shadow-lg py-2 z-50'}`}
+                  <div
+                    className={`${isMobile ? 'mt-2 space-y-2 flex flex-col items-center' : 'absolute top-full left-0 mt-0 w-48 bg-white rounded-md shadow-lg py-2 z-50'}`}
                     onMouseEnter={() => !isMobile && setOpenDropdown(index)}
                     onMouseLeave={() => !isMobile && setOpenDropdown(null)}
                   >
@@ -127,8 +127,8 @@ const Header = ({ onNavClick, currentPage }) => {
                 </button>
                 
                 {(openDropdown === index) && (
-                  <div 
-                    className={`${isMobile ? 'mt-2 space-y-2' : 'absolute top-full left-0 mt-0 w-48 bg-white rounded-md shadow-lg py-2 z-50'}`}
+                  <div
+                    className={`${isMobile ? 'mt-2 space-y-2 flex flex-col items-center' : 'absolute top-full left-0 mt-0 w-48 bg-white rounded-md shadow-lg py-2 z-50'}`}
                     onMouseEnter={() => !isMobile && setOpenDropdown(index)}
                     onMouseLeave={() => !isMobile && setOpenDropdown(null)}
                   >
@@ -138,7 +138,8 @@ const Header = ({ onNavClick, currentPage }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          const pageName = `play-${subLink.replace(/\s+/g, '-').toLowerCase()}`;
+                          const prefix = link.title.toLowerCase();
+                          const pageName = `${prefix}-${subLink.replace(/\s+/g, '-').toLowerCase()}`;
                           onNavClick(pageName);
                           setOpenDropdown(null);
                           if (isMobile) setIsMobileMenuOpen(false);

@@ -7,21 +7,31 @@ export const CMS_DATA = {
     ],
     navLinks: [
         "Home",
-        "About Us",
+        "Join",
+        {
+            title: "Academy",
+            subLinks: [
+                "Training Programs",
+                "Free Pickleball Intro"
+            ]
+        },
         {
             title: "Play",
             subLinks: [
                 "Booking",
                 "Program Schedule",
-                "Training Programs",
-                "Free Pickleball Intro"
+                "Group Bookings"
             ]
         },
-        "Group Bookings",
-        "Partnerships",
-        "Membership",
-        "Locations",
-        "Events"
+        "Events",
+        "Clubs",
+        {
+            title: "About",
+            subLinks: [
+                "About Us",
+                "Partnerships"
+            ]
+        }
     ],
     hero: {
         title: "Lorem Ipsum Dolor Sit Amet",
