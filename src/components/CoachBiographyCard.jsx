@@ -31,15 +31,15 @@ const CoachBiographyCard = ({ coach }) => {
           <span>{coach.experience} experience</span>
         </div>
       </CardHeader>
-      
+
       <CardContent className="space-y-4">
         <div>
           <h4 className="font-semibold text-picktopia-blue-dark mb-2">Specialties</h4>
           <div className="flex flex-wrap gap-1">
             {Array.isArray(coach.specialties) ? coach.specialties.map((specialty, index) => (
-              <Badge 
-                key={index} 
-                variant="secondary" 
+              <Badge
+                key={index}
+                variant="secondary"
                 className="text-xs bg-picktopia-orange/10 text-picktopia-orange border-picktopia-orange/20"
               >
                 {specialty}
@@ -51,14 +51,14 @@ const CoachBiographyCard = ({ coach }) => {
             )}
           </div>
         </div>
-        
+
         <div>
           <h4 className="font-semibold text-picktopia-blue-dark mb-2">About</h4>
           <div className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
             {coach.bio}
           </div>
         </div>
-        
+
         <div>
           <h4 className="font-semibold text-picktopia-blue-dark mb-2 flex items-center gap-2">
             <Clock className="w-4 h-4" />

@@ -4,7 +4,7 @@ import CoachBiographyCard from '../../components/CoachBiographyCard';
 import ProgramCard from '../../components/ProgramCard';
 import TestimonialCard from '../../components/TestimonialCard';
 import PricingTable from '../../components/PricingTable';
-import { trainingProgramsData } from '../../data/play/trainingProgramsData';
+import { trainingProgramsData } from '../../data/academy/trainingProgramsData';
 import { withAssetPaths } from '../../utils/dataWithAssets';
 
 const TrainingProgramsPage = () => {

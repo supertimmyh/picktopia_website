@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageContentSection from '../../components/ImageContentSection';
 import FreeIntroSection from '../../components/sections/FreeIntroSection';
-import { freePickleballIntroData } from '../../data/play/freePickleballIntroData';
+import { freePickleballIntroData } from '../../data/academy/freePickleballIntroData';
 import { withAssetPaths } from '../../utils/dataWithAssets';
 
 const FreePickleballIntroPage = () => {

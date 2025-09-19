@@ -17,8 +17,9 @@ npm run deploy                  # Deploy to GitHub Pages
 
 ### Navigation
 - State-based navigation in `src/App.jsx` (no React Router)
-- Dropdown menus for Play section
+- Dropdown menus for Academy, Play, and About sections
 - Dynamic navigation from CMS content via manifest files
+- Current structure: Home, Join, Academy (Training Programs, Free Pickleball Intro), Play (Booking, Program Schedule, Group Bookings), Events, Clubs, About (About Us, Partnerships)
 
 ### CMS Collections
 - **Events**: Individual event pages (`public/content/events/`)

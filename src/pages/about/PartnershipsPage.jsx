@@ -1,10 +1,10 @@
 import React from 'react';
-import HeroSection from '../components/HeroSection';
-import WhyPartnerSection from '../components/sections/WhyPartnerSection';
-import PartnershipPackagesSection from '../components/sections/PartnershipPackagesSection';
-import PartnershipInquiryForm from '../components/PartnershipInquiryForm';
-import { partnershipData } from '../data/partnershipData';
-import { withAssetPaths } from '../utils/dataWithAssets';
+import HeroSection from '../../components/HeroSection';
+import WhyPartnerSection from '../../components/sections/WhyPartnerSection';
+import PartnershipPackagesSection from '../../components/sections/PartnershipPackagesSection';
+import PartnershipInquiryForm from '../../components/PartnershipInquiryForm';
+import { partnershipData } from '../../data/about/partnershipData';
+import { withAssetPaths } from '../../utils/dataWithAssets';
 
 const PartnershipsPage = () => {
     const content = withAssetPaths(partnershipData);

@@ -10,10 +10,10 @@ export const trainingProgramsData = {
             name: "Jose Nieto",
             title: "Head Coach",
             image: "/images/training/jose-headshot.jpeg",
-            certifications: "CEO and co-founder of True North Pickleball/Padel",
+            certifications: "Head Coach - Video Analysis Technology Specialist",
             experience: "10+ years",
-            specialties: ["Technical Expertise", "Player Development", "Competitive Coaching"],
-            bio: "• CEO and co-founder of True North Pickleball/Padel\n• Finalist in Nationals 2022 in Calgary (A category)\n• Passionate about creating fun, engaging training environments\n• Specializes in rapid skill improvement for all levels\n• Expert in organizing clinics and tournaments",
+            specialties: ["Video Analysis Technology", "Customized Training Approach", "Rapid Skill Improvement"],
+            bio: "• Picktopia's Head Coach with video analysis technology expertise\n• Uses professional dashboard for real-time assessment and feedback\n• Specializes in customized training approach for rapid improvement\n• Creates personalized drills and clinics for all skill levels\n• Committed to making learning fun and engaging from day one",
             availability: "Available for private lessons and clinics"
         },
         {

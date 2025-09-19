@@ -1,9 +1,9 @@
 import React from 'react';
-import GetNotified from '../components/GetNotified';
-import HeroSection from '../components/HeroSection';
-import { aboutUsData } from '../data/aboutUsData';
-import { CMS_DATA } from '../data/data';
-import { withAssetPaths } from '../utils/dataWithAssets';
+import GetNotified from '../../components/GetNotified';
+import HeroSection from '../../components/HeroSection';
+import { aboutUsData } from '../../data/about/aboutUsData';
+import { CMS_DATA } from '../../data/data';
+import { withAssetPaths } from '../../utils/dataWithAssets';
 
 const AboutUsPage = () => {
     const content = withAssetPaths(aboutUsData);
