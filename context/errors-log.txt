@@ -1,1 +1,204 @@
-Uncaught SyntaxError: The requested module '/src/utils/contentLoader.js' does not provide an export named 'loadContentFromFolder' (at MembershipPage.jsx:4:10)Understand this error
+chunk-WALXKXZM.js?v=dc2ae096:21580 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+chunk-WALXKXZM.js?v=dc2ae096:9952 Uncaught Error: Objects are not valid as a React child (found: object with keys {"Off-Peak Punch Card}). If you meant to render a collection of children, use an array instead.
+    at throwOnInvalidObjectType (chunk-WALXKXZM.js?v=dc2ae096:9952:17)
+    at reconcileChildFibers2 (chunk-WALXKXZM.js?v=dc2ae096:10582:15)
+    at reconcileChildren (chunk-WALXKXZM.js?v=dc2ae096:14310:37)
+    at updateHostComponent (chunk-WALXKXZM.js?v=dc2ae096:14827:11)
+    at beginWork (chunk-WALXKXZM.js?v=dc2ae096:15955:22)
+    at HTMLUnknownElement.callCallback2 (chunk-WALXKXZM.js?v=dc2ae096:3674:22)
+    at Object.invokeGuardedCallbackDev (chunk-WALXKXZM.js?v=dc2ae096:3699:24)
+    at invokeGuardedCallback (chunk-WALXKXZM.js?v=dc2ae096:3733:39)
+    at beginWork$1 (chunk-WALXKXZM.js?v=dc2ae096:19793:15)
+    at performUnitOfWork (chunk-WALXKXZM.js?v=dc2ae096:19226:20)
+throwOnInvalidObjectType @ chunk-WALXKXZM.js?v=dc2ae096:9952
+reconcileChildFibers2 @ chunk-WALXKXZM.js?v=dc2ae096:10582
+reconcileChildren @ chunk-WALXKXZM.js?v=dc2ae096:14310
+updateHostComponent @ chunk-WALXKXZM.js?v=dc2ae096:14827
+beginWork @ chunk-WALXKXZM.js?v=dc2ae096:15955
+callCallback2 @ chunk-WALXKXZM.js?v=dc2ae096:3674
+invokeGuardedCallbackDev @ chunk-WALXKXZM.js?v=dc2ae096:3699
+invokeGuardedCallback @ chunk-WALXKXZM.js?v=dc2ae096:3733
+beginWork$1 @ chunk-WALXKXZM.js?v=dc2ae096:19793
+performUnitOfWork @ chunk-WALXKXZM.js?v=dc2ae096:19226
+workLoopSync @ chunk-WALXKXZM.js?v=dc2ae096:19165
+renderRootSync @ chunk-WALXKXZM.js?v=dc2ae096:19144
+performConcurrentWorkOnRoot @ chunk-WALXKXZM.js?v=dc2ae096:18706
+workLoop @ chunk-WALXKXZM.js?v=dc2ae096:197
+flushWork @ chunk-WALXKXZM.js?v=dc2ae096:176
+performWorkUntilDeadline @ chunk-WALXKXZM.js?v=dc2ae096:384
+chunk-WALXKXZM.js?v=dc2ae096:9952 Uncaught Error: Objects are not valid as a React child (found: object with keys {"Peak Punch Card}). If you meant to render a collection of children, use an array instead.
+    at throwOnInvalidObjectType (chunk-WALXKXZM.js?v=dc2ae096:9952:17)
+    at reconcileChildFibers2 (chunk-WALXKXZM.js?v=dc2ae096:10582:15)
+    at reconcileChildren (chunk-WALXKXZM.js?v=dc2ae096:14310:37)
+    at updateHostComponent (chunk-WALXKXZM.js?v=dc2ae096:14827:11)
+    at beginWork (chunk-WALXKXZM.js?v=dc2ae096:15955:22)
+    at HTMLUnknownElement.callCallback2 (chunk-WALXKXZM.js?v=dc2ae096:3674:22)
+    at Object.invokeGuardedCallbackDev (chunk-WALXKXZM.js?v=dc2ae096:3699:24)
+    at invokeGuardedCallback (chunk-WALXKXZM.js?v=dc2ae096:3733:39)
+    at beginWork$1 (chunk-WALXKXZM.js?v=dc2ae096:19793:15)
+    at performUnitOfWork (chunk-WALXKXZM.js?v=dc2ae096:19226:20)
+throwOnInvalidObjectType @ chunk-WALXKXZM.js?v=dc2ae096:9952
+reconcileChildFibers2 @ chunk-WALXKXZM.js?v=dc2ae096:10582
+reconcileChildren @ chunk-WALXKXZM.js?v=dc2ae096:14310
+updateHostComponent @ chunk-WALXKXZM.js?v=dc2ae096:14827
+beginWork @ chunk-WALXKXZM.js?v=dc2ae096:15955
+callCallback2 @ chunk-WALXKXZM.js?v=dc2ae096:3674
+invokeGuardedCallbackDev @ chunk-WALXKXZM.js?v=dc2ae096:3699
+invokeGuardedCallback @ chunk-WALXKXZM.js?v=dc2ae096:3733
+beginWork$1 @ chunk-WALXKXZM.js?v=dc2ae096:19793
+performUnitOfWork @ chunk-WALXKXZM.js?v=dc2ae096:19226
+workLoopSync @ chunk-WALXKXZM.js?v=dc2ae096:19165
+renderRootSync @ chunk-WALXKXZM.js?v=dc2ae096:19144
+performConcurrentWorkOnRoot @ chunk-WALXKXZM.js?v=dc2ae096:18706
+workLoop @ chunk-WALXKXZM.js?v=dc2ae096:197
+flushWork @ chunk-WALXKXZM.js?v=dc2ae096:176
+performWorkUntilDeadline @ chunk-WALXKXZM.js?v=dc2ae096:384
+chunk-WALXKXZM.js?v=dc2ae096:9952 Uncaught Error: Objects are not valid as a React child (found: object with keys {"Off-Peak Punch Card}). If you meant to render a collection of children, use an array instead.
+    at throwOnInvalidObjectType (chunk-WALXKXZM.js?v=dc2ae096:9952:17)
+    at reconcileChildFibers2 (chunk-WALXKXZM.js?v=dc2ae096:10582:15)
+    at reconcileChildren (chunk-WALXKXZM.js?v=dc2ae096:14310:37)
+    at updateHostComponent (chunk-WALXKXZM.js?v=dc2ae096:14827:11)
+    at beginWork (chunk-WALXKXZM.js?v=dc2ae096:15955:22)
+    at HTMLUnknownElement.callCallback2 (chunk-WALXKXZM.js?v=dc2ae096:3674:22)
+    at Object.invokeGuardedCallbackDev (chunk-WALXKXZM.js?v=dc2ae096:3699:24)
+    at invokeGuardedCallback (chunk-WALXKXZM.js?v=dc2ae096:3733:39)
+    at beginWork$1 (chunk-WALXKXZM.js?v=dc2ae096:19793:15)
+    at performUnitOfWork (chunk-WALXKXZM.js?v=dc2ae096:19226:20)
+throwOnInvalidObjectType @ chunk-WALXKXZM.js?v=dc2ae096:9952
+reconcileChildFibers2 @ chunk-WALXKXZM.js?v=dc2ae096:10582
+reconcileChildren @ chunk-WALXKXZM.js?v=dc2ae096:14310
+updateHostComponent @ chunk-WALXKXZM.js?v=dc2ae096:14827
+beginWork @ chunk-WALXKXZM.js?v=dc2ae096:15955
+callCallback2 @ chunk-WALXKXZM.js?v=dc2ae096:3674
+invokeGuardedCallbackDev @ chunk-WALXKXZM.js?v=dc2ae096:3699
+invokeGuardedCallback @ chunk-WALXKXZM.js?v=dc2ae096:3733
+beginWork$1 @ chunk-WALXKXZM.js?v=dc2ae096:19793
+performUnitOfWork @ chunk-WALXKXZM.js?v=dc2ae096:19226
+workLoopSync @ chunk-WALXKXZM.js?v=dc2ae096:19165
+renderRootSync @ chunk-WALXKXZM.js?v=dc2ae096:19144
+recoverFromConcurrentError @ chunk-WALXKXZM.js?v=dc2ae096:18764
+performConcurrentWorkOnRoot @ chunk-WALXKXZM.js?v=dc2ae096:18712
+workLoop @ chunk-WALXKXZM.js?v=dc2ae096:197
+flushWork @ chunk-WALXKXZM.js?v=dc2ae096:176
+performWorkUntilDeadline @ chunk-WALXKXZM.js?v=dc2ae096:384
+chunk-WALXKXZM.js?v=dc2ae096:9952 Uncaught Error: Objects are not valid as a React child (found: object with keys {"Peak Punch Card}). If you meant to render a collection of children, use an array instead.
+    at throwOnInvalidObjectType (chunk-WALXKXZM.js?v=dc2ae096:9952:17)
+    at reconcileChildFibers2 (chunk-WALXKXZM.js?v=dc2ae096:10582:15)
+    at reconcileChildren (chunk-WALXKXZM.js?v=dc2ae096:14310:37)
+    at updateHostComponent (chunk-WALXKXZM.js?v=dc2ae096:14827:11)
+    at beginWork (chunk-WALXKXZM.js?v=dc2ae096:15955:22)
+    at HTMLUnknownElement.callCallback2 (chunk-WALXKXZM.js?v=dc2ae096:3674:22)
+    at Object.invokeGuardedCallbackDev (chunk-WALXKXZM.js?v=dc2ae096:3699:24)
+    at invokeGuardedCallback (chunk-WALXKXZM.js?v=dc2ae096:3733:39)
+    at beginWork$1 (chunk-WALXKXZM.js?v=dc2ae096:19793:15)
+    at performUnitOfWork (chunk-WALXKXZM.js?v=dc2ae096:19226:20)
+throwOnInvalidObjectType @ chunk-WALXKXZM.js?v=dc2ae096:9952
+reconcileChildFibers2 @ chunk-WALXKXZM.js?v=dc2ae096:10582
+reconcileChildren @ chunk-WALXKXZM.js?v=dc2ae096:14310
+updateHostComponent @ chunk-WALXKXZM.js?v=dc2ae096:14827
+beginWork @ chunk-WALXKXZM.js?v=dc2ae096:15955
+callCallback2 @ chunk-WALXKXZM.js?v=dc2ae096:3674
+invokeGuardedCallbackDev @ chunk-WALXKXZM.js?v=dc2ae096:3699
+invokeGuardedCallback @ chunk-WALXKXZM.js?v=dc2ae096:3733
+beginWork$1 @ chunk-WALXKXZM.js?v=dc2ae096:19793
+performUnitOfWork @ chunk-WALXKXZM.js?v=dc2ae096:19226
+workLoopSync @ chunk-WALXKXZM.js?v=dc2ae096:19165
+renderRootSync @ chunk-WALXKXZM.js?v=dc2ae096:19144
+recoverFromConcurrentError @ chunk-WALXKXZM.js?v=dc2ae096:18764
+performConcurrentWorkOnRoot @ chunk-WALXKXZM.js?v=dc2ae096:18712
+workLoop @ chunk-WALXKXZM.js?v=dc2ae096:197
+flushWork @ chunk-WALXKXZM.js?v=dc2ae096:176
+performWorkUntilDeadline @ chunk-WALXKXZM.js?v=dc2ae096:384
+chunk-WALXKXZM.js?v=dc2ae096:14052 The above error occurred in the <span> component:
+
+    at span
+    at div
+    at div
+    at div
+    at div
+    at MembershipCard (http://localhost:5173/src/components/MembershipCard.jsx:19:3)
+    at div
+    at div
+    at div
+    at div
+    at MembershipPage (http://localhost:5173/src/pages/MembershipPage.jsx:26:41)
+    at main
+    at div
+    at App (http://localhost:5173/src/App.jsx:39:27)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError @ chunk-WALXKXZM.js?v=dc2ae096:14052
+update.callback @ chunk-WALXKXZM.js?v=dc2ae096:14072
+callCallback @ chunk-WALXKXZM.js?v=dc2ae096:11268
+commitUpdateQueue @ chunk-WALXKXZM.js?v=dc2ae096:11285
+commitLayoutEffectOnFiber @ chunk-WALXKXZM.js?v=dc2ae096:17115
+commitLayoutMountEffects_complete @ chunk-WALXKXZM.js?v=dc2ae096:18008
+commitLayoutEffects_begin @ chunk-WALXKXZM.js?v=dc2ae096:17997
+commitLayoutEffects @ chunk-WALXKXZM.js?v=dc2ae096:17948
+commitRootImpl @ chunk-WALXKXZM.js?v=dc2ae096:19381
+commitRoot @ chunk-WALXKXZM.js?v=dc2ae096:19305
+finishConcurrentRender @ chunk-WALXKXZM.js?v=dc2ae096:18788
+performConcurrentWorkOnRoot @ chunk-WALXKXZM.js?v=dc2ae096:18746
+workLoop @ chunk-WALXKXZM.js?v=dc2ae096:197
+flushWork @ chunk-WALXKXZM.js?v=dc2ae096:176
+performWorkUntilDeadline @ chunk-WALXKXZM.js?v=dc2ae096:384
+chunk-WALXKXZM.js?v=dc2ae096:14052 The above error occurred in the <span> component:
+
+    at span
+    at div
+    at div
+    at div
+    at div
+    at MembershipCard (http://localhost:5173/src/components/MembershipCard.jsx:19:3)
+    at div
+    at div
+    at div
+    at div
+    at MembershipPage (http://localhost:5173/src/pages/MembershipPage.jsx:26:41)
+    at main
+    at div
+    at App (http://localhost:5173/src/App.jsx:39:27)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError @ chunk-WALXKXZM.js?v=dc2ae096:14052
+update.callback @ chunk-WALXKXZM.js?v=dc2ae096:14072
+callCallback @ chunk-WALXKXZM.js?v=dc2ae096:11268
+commitUpdateQueue @ chunk-WALXKXZM.js?v=dc2ae096:11285
+commitLayoutEffectOnFiber @ chunk-WALXKXZM.js?v=dc2ae096:17115
+commitLayoutMountEffects_complete @ chunk-WALXKXZM.js?v=dc2ae096:18008
+commitLayoutEffects_begin @ chunk-WALXKXZM.js?v=dc2ae096:17997
+commitLayoutEffects @ chunk-WALXKXZM.js?v=dc2ae096:17948
+commitRootImpl @ chunk-WALXKXZM.js?v=dc2ae096:19381
+commitRoot @ chunk-WALXKXZM.js?v=dc2ae096:19305
+finishConcurrentRender @ chunk-WALXKXZM.js?v=dc2ae096:18788
+performConcurrentWorkOnRoot @ chunk-WALXKXZM.js?v=dc2ae096:18746
+workLoop @ chunk-WALXKXZM.js?v=dc2ae096:197
+flushWork @ chunk-WALXKXZM.js?v=dc2ae096:176
+performWorkUntilDeadline @ chunk-WALXKXZM.js?v=dc2ae096:384
+chunk-WALXKXZM.js?v=dc2ae096:9952 Uncaught Error: Objects are not valid as a React child (found: object with keys {"Off-Peak Punch Card}). If you meant to render a collection of children, use an array instead.
+    at throwOnInvalidObjectType (chunk-WALXKXZM.js?v=dc2ae096:9952:17)
+    at reconcileChildFibers2 (chunk-WALXKXZM.js?v=dc2ae096:10582:15)
+    at reconcileChildren (chunk-WALXKXZM.js?v=dc2ae096:14310:37)
+    at updateHostComponent (chunk-WALXKXZM.js?v=dc2ae096:14827:11)
+    at beginWork (chunk-WALXKXZM.js?v=dc2ae096:15955:22)
+    at beginWork$1 (chunk-WALXKXZM.js?v=dc2ae096:19781:22)
+    at performUnitOfWork (chunk-WALXKXZM.js?v=dc2ae096:19226:20)
+    at workLoopSync (chunk-WALXKXZM.js?v=dc2ae096:19165:13)
+    at renderRootSync (chunk-WALXKXZM.js?v=dc2ae096:19144:15)
+    at recoverFromConcurrentError (chunk-WALXKXZM.js?v=dc2ae096:18764:28)
+throwOnInvalidObjectType @ chunk-WALXKXZM.js?v=dc2ae096:9952
+reconcileChildFibers2 @ chunk-WALXKXZM.js?v=dc2ae096:10582
+reconcileChildren @ chunk-WALXKXZM.js?v=dc2ae096:14310
+updateHostComponent @ chunk-WALXKXZM.js?v=dc2ae096:14827
+beginWork @ chunk-WALXKXZM.js?v=dc2ae096:15955
+beginWork$1 @ chunk-WALXKXZM.js?v=dc2ae096:19781
+performUnitOfWork @ chunk-WALXKXZM.js?v=dc2ae096:19226
+workLoopSync @ chunk-WALXKXZM.js?v=dc2ae096:19165
+renderRootSync @ chunk-WALXKXZM.js?v=dc2ae096:19144
+recoverFromConcurrentError @ chunk-WALXKXZM.js?v=dc2ae096:18764
+performConcurrentWorkOnRoot @ chunk-WALXKXZM.js?v=dc2ae096:18712
+workLoop @ chunk-WALXKXZM.js?v=dc2ae096:197
+flushWork @ chunk-WALXKXZM.js?v=dc2ae096:176
+performWorkUntilDeadline @ chunk-WALXKXZM.js?v=dc2ae096:384
