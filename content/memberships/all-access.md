@@ -1,7 +1,7 @@
 ---
 title: All-Access
-price: 109/month
-originalPrice: 139/month
+price: 109/month + Tax
+originalPrice: 139/month + Tax
 duration: 12-month commitment
 popular: true
 features:

@@ -1,0 +1,18 @@
+---
+title: Punch Pass Package
+price: 85 / 120 + Tax
+duration: 10 sessions per pass
+popular: false
+features:
+  - OFF-PEAK PUNCH CARD $85 + HST - Flexible access during designated daytime sessions ☀️
+  - PEAK PUNCH CARD $120 + HST - Access prime-time sessions (weekends or evenings) 🌟
+  - Perfect for flexible, casual play
+  - 10 sessions included per punch card 🎫
+  - One punch card per person 👤
+
+  - No monthly commitment required 📅
+  - Great for occasional players
+description: Two convenient punch card options designed for players who prefer flexible scheduling without monthly commitments.
+signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/16040
+order: 3
+---

@@ -1,6 +1,6 @@
 ---
 title: Daytime
-price: 69/month
+price: 69/month + Tax
 duration: 12-month commitment
 popular: false
 features:
