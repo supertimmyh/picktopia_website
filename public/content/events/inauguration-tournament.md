@@ -17,7 +17,7 @@ description: >-
 
   ✅ FORM YOUR SQUAD: 4-person teams (1 Female, 3 Male)
 
-  ✅ BATTLE IT OUT: 1 Men's, 1 Women's, & 2 Mixed Doubles games per matchup.
+  ✅ BATTLE IT OUT: 1 Men's & 2 Mixed Doubles games per matchup.
 
   ✅ CLIMB THE RANKS: The top 2 teams in each DUPR-capped division advance.
 
@@ -30,9 +30,9 @@ description: >-
   ### Ready to Register?
 
 
-  🐦 EARLY BIRD: $100 (Don't wait!)
+  🐦 EARLY BIRD/MEMBER: $25 (Don't wait!)
 
-  🎟️ REGULAR: $120
+  🎟️ REGULAR: $35
 registrationLink: https://app.courtreserve.com/Online/Events/List/16040/JHJ11YSC2M16040
 price: ""
 ---
