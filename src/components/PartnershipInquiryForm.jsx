@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { getFormspreeAjaxUrl } from '../config/formspree';
 
 const PartnershipInquiryForm = () => {
     const [formData, setFormData] = useState({
@@ -18,6 +19,9 @@ const PartnershipInquiryForm = () => {
         additionalInfo: '',
         consentToContact: false
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState(null);
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -36,10 +40,63 @@ const PartnershipInquiryForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Partnership inquiry submitted:', formData);
-        alert('Thank you for your interest in partnering with us! We will contact you within 24 hours to discuss opportunities.');
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const response = await fetch(getFormspreeAjaxUrl('partnership'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    company: formData.company,
+                    title: formData.title,
+                    email: formData.email,
+                    phone: formData.phone,
+                    partnershipLevel: formData.partnershipLevel,
+                    businessGoals: formData.businessGoals.join(', '),
+                    industry: formData.industry,
+                    timeline: formData.timeline,
+                    additionalInfo: formData.additionalInfo,
+                    consentToContact: formData.consentToContact,
+                    _subject: 'New Partnership Inquiry'
+                }),
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    setSubmitted(false);
+                    setFormData({
+                        firstName: '',
+                        lastName: '',
+                        company: '',
+                        title: '',
+                        email: '',
+                        phone: '',
+                        partnershipLevel: '',
+                        businessGoals: [],
+                        industry: '',
+                        timeline: '',
+                        additionalInfo: '',
+                        consentToContact: false
+                    });
+                }, 5000);
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            setSubmitError('Sorry, there was an error submitting your partnership inquiry. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const businessGoalOptions = [
@@ -51,6 +108,20 @@ const PartnershipInquiryForm = () => {
         'Other'
     ];
 
+    if (submitted) {
+        return (
+            <div className="bg-picktopia-blue-dark text-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 md:p-12">
+                <div className="text-center py-8">
+                    <div className="bg-white/20 rounded-lg p-6 backdrop-blur-sm max-w-2xl mx-auto">
+                        <h4 className="font-heading text-3xl font-bold mb-4 text-picktopia-orange">Thank You!</h4>
+                        <p className="text-lg mb-3">Your partnership inquiry has been submitted successfully.</p>
+                        <p className="text-base opacity-90">We're excited about the possibility of working together! Our partnerships team will contact you within 24 hours to discuss opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="bg-picktopia-blue-dark text-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 md:p-12">
             <h2 className="font-heading text-3xl md:text-4xl font-black mb-4 tracking-wider uppercase text-center">
@@ -61,6 +132,12 @@ const PartnershipInquiryForm = () => {
             </p>
             
             <form onSubmit={handleSubmit} className="max-w-4xl mx-auto space-y-6">
+                {submitError && (
+                    <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 text-white">
+                        {submitError}
+                    </div>
+                )}
+
                 {/* Contact Information */}
                 <div>
                     <h3 className="font-heading text-xl font-bold text-picktopia-orange mb-6">
@@ -296,9 +373,10 @@ const PartnershipInquiryForm = () => {
                         type="submit"
                         variant="picktopia"
                         size="xl"
-                        className="w-full md:w-auto px-12"
+                        disabled={isSubmitting || !formData.consentToContact}
+                        className="w-full md:w-auto px-12 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        Request Partnership Information
+                        {isSubmitting ? 'Submitting...' : 'Request Partnership Information'}
                     </Button>
                     <p className="font-body text-sm text-gray-300 mt-4">
                         * Required fields. We'll respond within 24 hours.

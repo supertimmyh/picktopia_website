@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getFormspreeAjaxUrl } from '../config/formspree';
 
 const GetNotified = () => {
     const [formData, setFormData] = useState({
@@ -6,6 +7,9 @@ const GetNotified = () => {
         email: '',
         location: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState(null);
 
     const handleChange = (e) => {
         setFormData({
@@ -14,14 +18,60 @@ const GetNotified = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log('Form submitted:', formData);
-        // Reset form
-        setFormData({ name: '', email: '', location: '' });
-        alert('Thank you for your interest! We\'ll notify you about updates and new locations.');
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const response = await fetch(getFormspreeAjaxUrl('getNotified'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    location: formData.location,
+                    _subject: 'New Get Notified Signup'
+                }),
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    setSubmitted(false);
+                    setFormData({
+                        name: '',
+                        email: '',
+                        location: ''
+                    });
+                }, 5000);
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            setSubmitError('Sorry, there was an error signing you up. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
+
+    if (submitted) {
+        return (
+            <div className="bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8">
+                <div className="text-center py-4">
+                    <div className="bg-white/20 rounded-lg p-6 backdrop-blur-sm">
+                        <h4 className="font-heading text-2xl font-bold mb-3">You're All Set! 🎉</h4>
+                        <p className="text-lg mb-2">Thank you for signing up for notifications!</p>
+                        <p className="text-base opacity-90">We'll keep you updated on our grand opening, special events, membership opportunities, and new locations across the GTA.</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8">
@@ -31,6 +81,12 @@ const GetNotified = () => {
             </p>
             
             <form onSubmit={handleSubmit} className="space-y-4">
+                {submitError && (
+                    <div className="bg-red-800/50 border border-red-400/50 rounded-lg p-4 text-white">
+                        {submitError}
+                    </div>
+                )}
+
                 <div className="grid md:grid-cols-2 gap-4">
                     <div>
                         <label htmlFor="name" className="block text-sm font-semibold text-red-100 mb-2 tracking-wide">
@@ -93,9 +149,10 @@ const GetNotified = () => {
 
                 <button
                     type="submit"
-                    className="w-full bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-red-50 transition-colors duration-300 transform hover:scale-105"
+                    disabled={isSubmitting}
+                    className="w-full bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-red-50 transition-colors duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                    Notify Me
+                    {isSubmitting ? 'Signing You Up...' : 'Notify Me'}
                 </button>
             </form>
         </div>

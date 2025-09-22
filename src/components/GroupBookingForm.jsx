@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { getFormspreeAjaxUrl } from '../config/formspree';
 
 const GroupBookingForm = () => {
     const [formData, setFormData] = useState({
@@ -13,6 +14,9 @@ const GroupBookingForm = () => {
         groupSize: '',
         specialRequests: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState(null);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -22,12 +26,68 @@ const GroupBookingForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO: Implement form submission logic
-        console.log('Form submitted:', formData);
-        alert('Thank you for your inquiry! We will get back to you within 24 hours.');
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const response = await fetch(getFormspreeAjaxUrl('groupBooking'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    eventType: formData.eventType,
+                    eventDate: formData.eventDate,
+                    groupSize: formData.groupSize,
+                    specialRequests: formData.specialRequests,
+                    _subject: 'New Group Booking Inquiry'
+                }),
+            });
+
+            if (response.ok) {
+                setSubmitted(true);
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    setSubmitted(false);
+                    setFormData({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        eventType: '',
+                        eventDate: '',
+                        groupSize: '',
+                        specialRequests: ''
+                    });
+                }, 5000);
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            setSubmitError('Sorry, there was an error submitting your inquiry. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
+
+    if (submitted) {
+        return (
+            <div className="bg-picktopia-blue-dark text-white rounded-2xl shadow-lg p-8 md:p-12">
+                <div className="text-center py-8">
+                    <div className="bg-white/20 rounded-lg p-6 backdrop-blur-sm">
+                        <h4 className="font-heading text-2xl font-bold mb-4">Thank You!</h4>
+                        <p className="text-lg mb-2">Your group booking inquiry has been submitted successfully.</p>
+                        <p className="text-base opacity-90">Our events team will get back to you within 24 hours with a custom package for your group.</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-picktopia-blue-dark text-white rounded-2xl shadow-lg p-8 md:p-12">
@@ -39,6 +99,12 @@ const GroupBookingForm = () => {
             </p>
             
             <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
+                {submitError && (
+                    <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 text-white">
+                        {submitError}
+                    </div>
+                )}
+
                 <div className="space-y-6">
                     <div>
                         <Label htmlFor="name" className="text-white mb-2 block">
@@ -162,9 +228,10 @@ const GroupBookingForm = () => {
                         type="submit"
                         variant="picktopia"
                         size="xl"
-                        className="w-full px-12"
+                        disabled={isSubmitting}
+                        className="w-full px-12 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        Get My Custom Quote
+                        {isSubmitting ? 'Submitting...' : 'Get My Custom Quote'}
                     </Button>
                     <p className="font-body text-sm text-gray-300 mt-4">
                         We'll respond within 24 hours with pricing and availability.

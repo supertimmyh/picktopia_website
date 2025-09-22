@@ -29,6 +29,39 @@ npm run deploy                  # Deploy to GitHub Pages
 - **Promotions**: Modal window for special promotions and events (`public/content/promotions/`)
 - **Generic Pages**: CMS-managed pages (`public/content/pages/`)
 
+### Form Handling System
+All forms are integrated with Formspree for professional email delivery and
+submission management.
+
+#### Formspree Configuration
+- **Config File**: `src/config/formspree.js`
+- **Implementation**: AJAX submissions using `fetch()` API
+- **User Experience**: No page redirects, smooth success/error states
+
+#### Active Forms
+| Form Component | Formspree ID | Location | Purpose |
+|----------------|--------------|----------|---------|
+| IntroSignupForm | `mrbyzklv` | Free Intro section | Free pickleball intro signups |
+| GroupBookingForm | `xdkwnzwo` | Group Bookings page | Event inquiry submissions |
+| PartnershipInquiryForm | `mldprnpj` | Partnerships page | Partnership request submissions |
+| GetNotified | `myzngjnw` | About Us page | Notification signups for updates |
+| Newsletter | `xblzryzb` | Home page | Email newsletter subscriptions |
+
+#### Form Implementation Pattern
+All forms follow consistent implementation:
+- Import `getFormspreeAjaxUrl` from config
+- State management: `isSubmitting`, `submitted`, `submitError`
+- AJAX submission with proper error handling
+- Success states with auto-reset (3-5 seconds)
+- Loading states with disabled form controls
+- Branded success/error messages matching component themes
+
+#### Adding New Forms
+1. Add Formspree ID to `FORMSPREE_IDS` in config file
+2. Follow existing form component patterns
+3. Use `getFormspreeAjaxUrl('formType')` for submissions
+4. Include proper state management and error handling
+
 ## Key Files
 
 ### Content Loading
@@ -242,9 +275,10 @@ A CMS-driven modal window designed to display special announcements, events, or 
 - Asset paths automatically adjust for subdirectory vs custom domain
 - Vite config handles base path: `/picktopia_website/` in production
 
-## Future Improvements - Error Handling
 
 **Note: This section is for future reference and not related to any code changes unless indicate otherwise**
+
+## Future Improvements - Error Handling
 
 ### Current Implementation
 - Lorem Ipsum fallback content in `src/data/data.js` provides visual indication when CMS fails
@@ -294,3 +328,50 @@ const CONTENT_STATE = {
 1. Environment-aware fallback content (keep Lorem Ipsum for dev, real content for production)
 2. Enhanced console logging with component context and timestamps
 3. Optional: Development-only visual error indicators for immediate feedback
+
+
+## Future Improvements - Firebase Form Integration
+
+#### Current Formspree vs Future Firebase
+- **Current**: Formspree AJAX submissions with email notifications
+- **Future**: Firebase Firestore database + Cloud Functions for advanced
+workflows
+
+#### Firebase Implementation Benefits
+- **Data Persistence**: Store all form submissions in Firestore database
+- **Real-time Admin Dashboard**: View, filter, and manage submissions
+- **Advanced Notifications**: Custom email templates and automated workflows
+- **Analytics Integration**: Track conversion rates and form performance
+- **Offline Support**: Queue submissions when users are offline
+- **Scalability**: Handle unlimited submissions without third-party limits
+
+#### Migration Strategy
+```javascript
+// Future Firebase service structure
+const FIREBASE_COLLECTIONS = {
+intro: 'intro-signups',
+groupBooking: 'group-bookings',
+partnership: 'partnership-inquiries',
+getNotified: 'notification-signups',
+newsletter: 'newsletter-subscriptions'
+};
+
+// Parallel implementation approach
+const submitToFirebase = async (formType, data) => {
+// Store in Firestore + trigger Cloud Function for emails
+};
+
+Implementation Priority
+
+1. Phase 1: Set up Firebase project and Firestore collections
+2. Phase 2: Create admin dashboard for viewing submissions
+3. Phase 3: Migrate forms one-by-one (keeping Formspree as backup)
+4. Phase 4: Add advanced features (analytics, automated workflows)
+5. Phase 5: Remove Formspree dependency
+
+Configuration Considerations
+
+- Maintain existing form UX during migration
+- Keep src/config/formspree.js pattern for src/config/firebase.js
+- Environment variables for Firebase config keys
+- Fallback to Formspree if Firebase fails during transition

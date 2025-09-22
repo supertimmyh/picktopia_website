@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { cn } from '../lib/utils';
+import { getFormspreeAjaxUrl } from '../config/formspree';
 
 const IntroSignupForm = () => {
     const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ const IntroSignupForm = () => {
         experience: 'never-played'
     });
     const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState(null);
 
     const handleChange = (e) => {
         setFormData({
@@ -20,22 +23,47 @@ const IntroSignupForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO: Integrate with actual booking system
-        console.log('Form submitted:', formData);
-        setSubmitted(true);
-        
-        // Reset form after 3 seconds
-        setTimeout(() => {
-            setSubmitted(false);
-            setFormData({
-                name: '',
-                email: '',
-                phone: '',
-                experience: 'never-played'
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const response = await fetch(getFormspreeAjaxUrl('intro'), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    experience: formData.experience,
+                    _subject: 'New Free Pickleball Intro Signup'
+                }),
             });
-        }, 3000);
+
+            if (response.ok) {
+                setSubmitted(true);
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    setSubmitted(false);
+                    setFormData({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        experience: 'never-played'
+                    });
+                }, 3000);
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            setSubmitError('Sorry, there was an error submitting your form. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (submitted) {
@@ -51,6 +79,12 @@ const IntroSignupForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            {submitError && (
+                <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 text-white">
+                    {submitError}
+                </div>
+            )}
+
             <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                     <Label htmlFor="name" className="text-white font-semibold">
@@ -130,11 +164,21 @@ const IntroSignupForm = () => {
 
             <Button
                 type="submit"
-                className="w-full bg-white text-picktopia-orange hover:bg-orange-50 font-heading tracking-wide uppercase mt-6 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                disabled={isSubmitting}
+                className="w-full bg-white text-picktopia-orange hover:bg-orange-50 font-heading tracking-wide uppercase mt-6 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 size="xl"
             >
-                <span className="hidden sm:inline">Reserve My Spot - It's Free!</span>
-                <span className="sm:hidden">Reserve!</span>
+                {isSubmitting ? (
+                    <>
+                        <span className="hidden sm:inline">Submitting...</span>
+                        <span className="sm:hidden">Submitting...</span>
+                    </>
+                ) : (
+                    <>
+                        <span className="hidden sm:inline">Reserve My Spot - It's Free!</span>
+                        <span className="sm:hidden">Reserve!</span>
+                    </>
+                )}
             </Button>
         </form>
     );
