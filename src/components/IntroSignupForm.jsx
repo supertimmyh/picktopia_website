@@ -10,7 +10,10 @@ const IntroSignupForm = () => {
         name: '',
         email: '',
         phone: '',
-        experience: 'never-played'
+        experience: 'never-played',
+        preferredDays: [],
+        preferredTimes: [],
+        additionalNotes: ''
     });
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,10 +26,35 @@ const IntroSignupForm = () => {
         });
     };
 
+    const handleCheckboxChange = (e, fieldName) => {
+        const value = e.target.value;
+        const isChecked = e.target.checked;
+
+        setFormData(prev => ({
+            ...prev,
+            [fieldName]: isChecked
+                ? [...prev[fieldName], value]
+                : prev[fieldName].filter(item => item !== value)
+        }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmitError(null);
+
+        // Validate that at least one preference is selected
+        if (formData.preferredDays.length === 0) {
+            setSubmitError('Please select at least one preferred day option.');
+            setIsSubmitting(false);
+            return;
+        }
+
+        if (formData.preferredTimes.length === 0) {
+            setSubmitError('Please select at least one preferred time option.');
+            setIsSubmitting(false);
+            return;
+        }
 
         try {
             const response = await fetch(getFormspreeAjaxUrl('intro'), {
@@ -39,7 +67,10 @@ const IntroSignupForm = () => {
                     email: formData.email,
                     phone: formData.phone,
                     experience: formData.experience,
-                    _subject: 'New Free Pickleball Intro Signup'
+                    preferredDays: formData.preferredDays.join(', '),
+                    preferredTimes: formData.preferredTimes.join(', '),
+                    additionalNotes: formData.additionalNotes,
+                    _subject: 'New Free Pickleball Intro Interest Signup'
                 }),
             });
 
@@ -52,7 +83,10 @@ const IntroSignupForm = () => {
                         name: '',
                         email: '',
                         phone: '',
-                        experience: 'never-played'
+                        experience: 'never-played',
+                        preferredDays: [],
+                        preferredTimes: [],
+                        additionalNotes: ''
                     });
                 }, 3000);
             } else {
@@ -71,7 +105,7 @@ const IntroSignupForm = () => {
             <div className="text-center py-8">
                 <div className="bg-white/20 rounded-lg p-6 backdrop-blur-sm">
                     <h4 className="font-heading text-xl font-bold mb-2">Thank You!</h4>
-                    <p className="text-lg">We'll contact you soon to confirm your spot in our next intro session.</p>
+                    <p className="text-lg">We'll contact you within 1-2 weeks to schedule your intro session with other interested participants.</p>
                 </div>
             </div>
         );
@@ -162,6 +196,72 @@ const IntroSignupForm = () => {
                 </select>
             </div>
 
+            <div className="space-y-4 border-t border-white/20 pt-6">
+                <h4 className="text-white font-heading font-semibold text-lg">Scheduling Preferences</h4>
+
+                <div className="space-y-3">
+                    <Label className="text-white font-semibold">
+                        Preferred Days *
+                    </Label>
+                    <div className="flex flex-wrap gap-3">
+                        {['Weekdays', 'Weekends', 'Either'].map((day) => (
+                            <label key={day} className="flex items-center space-x-2 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    value={day}
+                                    checked={formData.preferredDays.includes(day)}
+                                    onChange={(e) => handleCheckboxChange(e, 'preferredDays')}
+                                    className="rounded border-white/30 bg-white/10 text-picktopia-orange focus:ring-white/50 focus:ring-offset-0"
+                                />
+                                <span className="text-white">{day}</span>
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="space-y-3">
+                    <Label className="text-white font-semibold">
+                        Preferred Times *
+                    </Label>
+                    <div className="flex flex-wrap gap-3">
+                        {[
+                            { value: 'morning', label: 'Morning (8AM-12PM)' },
+                            { value: 'afternoon', label: 'Afternoon (12PM-6PM)' },
+                            { value: 'evening', label: 'Evening (6PM-9PM)' }
+                        ].map((time) => (
+                            <label key={time.value} className="flex items-center space-x-2 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    value={time.value}
+                                    checked={formData.preferredTimes.includes(time.value)}
+                                    onChange={(e) => handleCheckboxChange(e, 'preferredTimes')}
+                                    className="rounded border-white/30 bg-white/10 text-picktopia-orange focus:ring-white/50 focus:ring-offset-0"
+                                />
+                                <span className="text-white">{time.label}</span>
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="space-y-2">
+                    <Label htmlFor="additionalNotes" className="text-white font-semibold">
+                        Additional Notes (Optional)
+                    </Label>
+                    <textarea
+                        id="additionalNotes"
+                        name="additionalNotes"
+                        value={formData.additionalNotes}
+                        onChange={handleChange}
+                        rows={3}
+                        className={cn(
+                            "flex w-full rounded-md border border-white/30 bg-white/10 backdrop-blur-sm px-3 py-2 text-sm text-white placeholder-white/70",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-0"
+                        )}
+                        placeholder="Any specific timing constraints or preferences..."
+                    />
+                </div>
+            </div>
+
             <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -175,8 +275,8 @@ const IntroSignupForm = () => {
                     </>
                 ) : (
                     <>
-                        <span className="hidden sm:inline">Reserve My Spot - It's Free!</span>
-                        <span className="sm:hidden">Reserve!</span>
+                        <span className="hidden sm:inline">Express Interest - It's Free!</span>
+                        <span className="sm:hidden">Sign Up!</span>
                     </>
                 )}
             </Button>

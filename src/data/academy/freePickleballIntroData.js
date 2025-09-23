@@ -22,10 +22,16 @@ This program is designed for individuals who have never played pickleball before
 
 It's completely free, with no obligation to join.
 
-### How to Sign Up
-Intro classes are held every **Saturday at 1:00 PM**.
+### How It Works
+We schedule intro sessions based on interest to ensure the best experience for everyone!
 
-Sign up online through our "Intro to Pickleball" page or call the front desk to reserve your spot. Spaces are limited, so book in advance!
+**Step 1:** Sign up below to express your interest and let us know your preferred days and times.
+
+**Step 2:** When we have enough participants (typically 4-6 people), we'll contact you to schedule a session that works for the group.
+
+**Step 3:** Enjoy your free 60-minute intro session at a time that's convenient for you!
+
+Sessions are typically scheduled within 1-2 weeks of your signup. We'll work with the group to find the best time for everyone.
 
 **We can't wait to see you on the courts!**`
 };
