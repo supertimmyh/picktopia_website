@@ -20,7 +20,7 @@ const TestimonialCard = ({ testimonial }) => {
   };
 
   return (
-    <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-l-4 border-l-picktopia-orange">
+    <Card className="h-full hover:shadow-lg transition-shadow duration-300 border-l-4 border-l-picktopia-orange w-80 flex-shrink-0 snap-start">
       <CardContent className="p-6">
         <div className="flex items-start gap-3">
           <Quote className="w-8 h-8 text-picktopia-orange/30 flex-shrink-0 mt-1" />

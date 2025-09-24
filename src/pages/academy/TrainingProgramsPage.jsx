@@ -52,7 +52,7 @@ const TrainingProgramsPage = () => {
                                 <ProgramCard
                                     key={index}
                                     program={program}
-                                    bookingUrl={content.bookingUrl}
+                                    bookingUrl="mailto:info@rallypicktopia.com"
                                     bookingText="Contact Us"
                                 />
                             ))}
@@ -84,7 +84,7 @@ const TrainingProgramsPage = () => {
                         <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
                             What Our Students Say
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        <div className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory max-w-6xl mx-auto">
                             {content.testimonials.map((testimonial, index) => (
                                 <TestimonialCard key={index} testimonial={testimonial} />
                             ))}

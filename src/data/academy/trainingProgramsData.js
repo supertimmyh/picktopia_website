@@ -3,7 +3,7 @@ export const trainingProgramsData = {
     title: "Training Programs",
     subtitle: "Ready to take your game to the next level? Our certified instructors are here to help you achieve your pickleball goals with personalized training and group sessions.",
     heroImage: "/images/training/training-hero.jpg",
-    bookingUrl: "https://app.courtreserve.com/picktopia/training",
+    bookingUrl: "https://app.courtreserve.com/Online/Portal/Index/16040",
     bookingText: "Book Training",
     coaches: [
         {
@@ -125,21 +125,27 @@ export const trainingProgramsData = {
     ],
     testimonials: [
         {
-            name: "Jennifer Adams",
-            quote: "Sarah's private lessons transformed my game! I went from barely hitting the ball to playing in tournaments in just 6 months.",
+            name: "Liz",
+            quote: "Jose is absolutely the best! His expertise and ability to develop skills to improve your game is phenomenal.",
             program: "Private Lessons",
             rating: 5
         },
         {
-            name: "Robert Kim",
-            quote: "The group clinics are amazing. Great way to meet other players and improve together. Mike's coaching is top-notch!",
+            name: "Melinda",
+            quote: "Jose is an excellent head coach with many years of experience. He provides customized and positive feedback targeting specific areas for improvement.",
             program: "Group Clinics",
             rating: 5
         },
         {
-            name: "Maria Gonzalez",
-            quote: "Lisa's patience with my daughter has been incredible. She now loves pickleball and plays with confidence.",
-            program: "Youth Programs",
+            name: "Branka",
+            quote: "Jose is an exceptional coach who brings passion and expertise to every lesson. His clear instructions, patience, and personalized approach make learning enjoyable and effective.",
+            program: "Private Lessons",
+            rating: 5
+        },
+        {
+            name: "LeeAnne",
+            quote: "Jose's coaching has made a significant impact on my game. His exceptional detail and precision, along with personalized analysis, helped me grow as a player.",
+            program: "Private Lessons",
             rating: 5
         }
     ],
