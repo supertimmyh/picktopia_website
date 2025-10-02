@@ -5,7 +5,6 @@ originalPrice: 139/month + Tax
 duration: 12-month commitment
 popular: true
 features:
-  - Limited Time Offer, Sign Up Now Get Free Play until September 30⏳
   - FREE open play sessions, with no extra charges! One session per day. 🤸‍♀️
   - Priority access & discounted pricing on lessons and clinics! 🥇
   - 10% off merchandise! 👕
