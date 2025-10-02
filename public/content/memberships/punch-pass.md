@@ -12,7 +12,7 @@ features:
 
   - No monthly commitment required 📅
   - Great for occasional players
-description: Two convenient punch card options designed for players who prefer flexible scheduling without monthly commitments.
-signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/16040
+description: Two convenient punch card options designed for players who prefer flexible scheduling without monthly commitments. Login or create a free member account to purchase the package.
+signupLink: https://app.courtreserve.com/Online/Account/LogIn/16040
 order: 3
 ---

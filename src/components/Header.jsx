@@ -191,7 +191,7 @@ const Header = ({ onNavClick, currentPage }) => {
                 <NavMenu />
 
                 <div className={`flex items-center space-x-4 ${textColor}`}>
-                    <button className="hover:text-picktopia-orange"><UserIcon /></button>
+                    <a href="https://app.courtreserve.com/Online/Account/LogIn/16040" target="_blank" rel="noopener noreferrer" className="hover:text-picktopia-orange"><UserIcon /></a>
                     <button className="md:hidden hover:text-picktopia-orange" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         {isMobileMenuOpen ? <CloseIcon/> : <MenuIcon />}
                     </button>
