@@ -12,8 +12,7 @@ features:
   - 10% off merchandise! 👕
   - 15% discount for hosting any event! 🎉
   - No Event Cancellation within 24 hours and Allow 1 no show-ups within 1 month
-description: An exclusive experience for dedicated pickleball players with a
-  limited quantity available.
+description: Allows you to play any session free without yearly commitment.
 signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/16040?membershipId=211169
 order: 3
 ---
