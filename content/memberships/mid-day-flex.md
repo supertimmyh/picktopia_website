@@ -12,6 +12,6 @@ features:
   - No Event Cancellation within 24 hours and Allow 1 no show-ups within 1 month
 description: Mid-Day Flex Membership offers FREE session during all mid-day
   hours (Monday-Friday) on a month-to-month basis with no annual commitment.
-signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/16040?membershipId=211169
-order: 3
+signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/16040?membershipId=211162
+order: 4
 ---
