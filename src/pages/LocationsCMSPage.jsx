@@ -98,11 +98,11 @@ const LocationsCMSPage = ({ navigateTo }) => {
                     </div>
 
                     {/* Location Cards */}
-                    <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
                         {locations.map((location) => (
-                            <LocationCard 
-                                key={location.id} 
-                                location={location} 
+                            <LocationCard
+                                key={location.id}
+                                location={location}
                             />
                         ))}
                     </div>

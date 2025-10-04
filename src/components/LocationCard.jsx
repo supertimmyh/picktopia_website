@@ -17,7 +17,7 @@ const LocationCard = ({ location }) => {
     };
 
     return (
-        <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden w-full max-w-lg">
             {/* Facility Image */}
             <div className="relative h-64 overflow-hidden">
                 <img
