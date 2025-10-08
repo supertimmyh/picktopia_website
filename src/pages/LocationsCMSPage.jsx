@@ -37,6 +37,7 @@ const LocationsCMSPage = ({ navigateTo }) => {
                                 bookingUrl: content.frontmatter.bookingUrl,
                                 hours: content.frontmatter.hours,
                                 amenities: content.frontmatter.amenities,
+                                layoutImage: content.frontmatter.layoutImage,
                                 description: content.content.trim()
                             };
                         }
