@@ -54,6 +54,7 @@ collections:
         field: { label: "Amenity", name: "amenity", widget: "string" }
         default: ["Pro Shop", "Lounge Area", "Equipment Rental", "Parking Available"]
       - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Facility Layout Image", name: "layoutImage", widget: "image", required: false, hint: "Upload an image showing the facility layout or court diagram" }
 
   # Events Collection
   - name: "events"

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const LocationCard = ({ location }) => {
     const [hoursExpanded, setHoursExpanded] = useState(false);
+    const [layoutExpanded, setLayoutExpanded] = useState(false);
 
     const formatHours = (hours) => {
         return Object.entries(hours).map(([day, time]) => (
@@ -83,13 +84,43 @@ const LocationCard = ({ location }) => {
                             ▼
                         </span>
                     </button>
-                    
+
                     {hoursExpanded && (
                         <div className="mt-4 space-y-1 text-sm border-t border-gray-100 pt-4">
                             {formatHours(location.hours)}
                         </div>
                     )}
                 </div>
+
+                {/* Facility Layout */}
+                {location.layoutImage && (
+                    <div className="border border-gray-200 rounded-lg p-4">
+                        <button
+                            onClick={() => setLayoutExpanded(!layoutExpanded)}
+                            className="w-full flex items-center justify-between text-left"
+                        >
+                            <span className="font-heading text-lg font-bold text-picktopia-blue-dark">
+                                Facility Layout
+                            </span>
+                            <span className={`text-picktopia-orange transition-transform duration-200 ${layoutExpanded ? 'rotate-180' : ''}`}>
+                                ▼
+                            </span>
+                        </button>
+
+                        {layoutExpanded && (
+                            <div className="mt-4 border-t border-gray-100 pt-4">
+                                <img
+                                    src={location.layoutImage}
+                                    alt={`${location.name} facility layout`}
+                                    className="w-full h-auto rounded-lg"
+                                    onError={(e) => {
+                                        e.target.src = 'https://placehold.co/600x400/1C275F/e1672a?text=Layout+Image';
+                                    }}
+                                />
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 {/* Description */}
                 {location.description && (
@@ -128,7 +159,7 @@ const LocationCard = ({ location }) => {
                         onClick={handleBookingClick}
                         className="w-full bg-picktopia-orange text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors duration-300 transform hover:scale-105"
                     >
-                        Book a Court
+                        Learn More & Book
                     </button>
                 </div>
             </div>

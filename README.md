@@ -270,7 +270,7 @@ Content is managed through Decap CMS and multiple systems:
 #### **Decap CMS - Events, Locations & Announcements**
 Events, locations, and announcements are **managed via Decap CMS**:
 
-1. **Access CMS**: Navigate to `http://localhost:5173/admin/index.html#/` (local) or `https://yoursite.com/admin/index.html#/` (production)
+1. **Access CMS**: Navigate to `http://localhost:5173/admin/index.html` during development (authenticates with GitHub to edit repository content)
 2. **Authentication**: GitHub OAuth integration
 3. **Content Creation**: 
    - **Events**: Create individual events with date, location, image, description

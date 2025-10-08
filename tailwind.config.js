@@ -60,10 +60,10 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        'heading': ['Orbitron', 'monospace'], // Futuristic headers
-        'body': ['Ubuntu', 'monospace'], // Tech body text
-        'brand': ['Orbitron', 'monospace'], // Sci-fi brand elements
-        sans: ['Ubuntu', 'monospace'], // Default fallback
+        'heading': ['Orbitron', 'sans-serif'], // Futuristic headers
+        'body': ['Inter', 'sans-serif'], // Clean body text
+        'brand': ['Orbitron', 'sans-serif'], // Sci-fi brand elements
+        sans: ['Inter', 'sans-serif'], // Default fallback
       },
       keyframes: {
         "accordion-down": {

@@ -1,5 +1,15 @@
 # Picktopia Website - Claude Code Instructions
 
+## Typography
+
+### Fonts
+- **Headlines/Brand**: Orbitron (futuristic, sci-fi aesthetic)
+- **Body Content**: Inter (clean, highly legible sans-serif)
+- **Implementation**: Google Fonts loaded in `index.html`, configured in `tailwind.config.js`
+- **Tailwind Classes**:
+  - `font-heading` or `font-brand` for Orbitron
+  - `font-body` or default text for Inter
+
 ## Development Commands
 
 ```bash
@@ -102,16 +112,18 @@ const content = await loadPageContent('page-slug');
 - ✅ **Promotions** - Fully automated
 
 ### CMS Workflow
-1. Content creator publishes via Decap CMS at `/admin/`
-2. GitHub Action detects changes in `public/content/collection-name/**`
-3. Runs `npm run generate-manifests` automatically
-4. Commits updated manifest files with "[skip ci]" tag
-5. Navigation and pages reflect new content automatically
+1. Content creator accesses Decap CMS at `http://localhost:5173/admin/index.html` (development)
+2. CMS authenticates with GitHub and edits content directly in repository
+3. GitHub Action detects changes in `public/content/collection-name/**`
+4. Runs `npm run generate-manifests` automatically
+5. Commits updated manifest files with "[skip ci]" tag
+6. Navigation and pages reflect new content automatically
 
 ### CMS Content Source & Editing
-  - **Content Source**: Decap CMS reads content directly from GitHub repository
+  - **CMS Access**: `http://localhost:5173/admin/index.html` during development
+  - **Content Source**: Decap CMS reads/writes content directly from/to GitHub repository
   (`supertimmyh/picktopia_website` on `main` branch)
-  - **Not Local**: CMS does NOT read from local `public/content/` files
+  - **Backend**: GitHub OAuth authentication (content stored on GitHub, not locally)
   - **Editing Process**: CMS changes commit directly to GitHub repository
   - **Important**: Local file changes must be pushed to GitHub before they appear in CMS editor
   - **Field Updates**: When adding new CMS fields, existing content needs to be pushed to GitHub for
