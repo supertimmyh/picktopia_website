@@ -33,6 +33,6 @@ description: >-
   🐦 EARLY BIRD/MEMBER: $25 (Don't wait!)
 
   🎟️ REGULAR: $35
-registrationLink: https://app.courtreserve.com/Online/Events/List/16040/JHJ11YSC2M16040
+registrationLink: ""
 price: ""
 ---
