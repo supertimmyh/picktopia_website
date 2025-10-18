@@ -134,21 +134,67 @@ const parseFrontmatter = (fileContent) => {
   while (i < lines.length) {
     const line = lines[i];
     const trimmed = line.trim();
-    
+
     if (trimmed && !trimmed.startsWith('#') && !line.startsWith(' ') && !line.startsWith('\t')) {
       const colonIndex = trimmed.indexOf(':');
-      
+
       if (colonIndex > 0) {
         const key = trimmed.substring(0, colonIndex).trim();
         const value = trimmed.substring(colonIndex + 1).trim();
-        
-        if (!value) {
+
+        // Handle multi-line strings with >- or > or |- or |
+        if (value === '>-' || value === '>' || value === '|-' || value === '|') {
+          const multilineContent = [];
+          let j = i + 1;
+
+          // Get the base indentation level from the first content line
+          let baseIndent = -1;
+
+          while (j < lines.length) {
+            const contentLine = lines[j];
+            const contentIndent = contentLine.length - contentLine.trimStart().length;
+
+            // First non-empty line sets the base indentation
+            if (baseIndent === -1 && contentLine.trim()) {
+              baseIndent = contentIndent;
+            }
+
+            // Stop when we reach a line with less indentation than base (new key)
+            if (contentLine.trim() && contentIndent < baseIndent) {
+              break;
+            }
+
+            // Stop if we reach a non-indented line with a colon (new top-level key)
+            if (contentIndent === 0 && contentLine.trim() && contentLine.includes(':')) {
+              break;
+            }
+
+            // Add the line content (preserving relative indentation)
+            if (contentLine.trim() || multilineContent.length > 0) {
+              multilineContent.push(contentLine.substring(baseIndent) || '');
+            }
+
+            j++;
+          }
+
+          // Join lines based on the fold style
+          if (value.startsWith('>')) {
+            // Folded style: newlines become spaces, blank lines separate paragraphs
+            let result = multilineContent.join('\n').trim();
+            frontmatter[key] = result;
+          } else {
+            // Literal style (|): preserve all newlines
+            frontmatter[key] = multilineContent.join('\n').trim();
+          }
+
+          i = j - 1;
+        } else if (!value) {
           // This might be an array or object
           const nextLineIndex = i + 1;
           if (nextLineIndex < lines.length) {
             const nextLine = lines[nextLineIndex];
             const nextTrimmed = nextLine.trim();
-            
+
             if (nextTrimmed.startsWith('- ')) {
               // This is an array
               const indentLevel = nextLine.length - nextLine.trimStart().length;
@@ -160,27 +206,27 @@ const parseFrontmatter = (fileContent) => {
               const nestedObject = {};
               let j = nextLineIndex;
               const expectedIndent = nextLine.length - nextLine.trimStart().length;
-              
+
               while (j < lines.length) {
                 const nestedLine = lines[j];
                 const nestedTrimmed = nestedLine.trim();
                 const currentIndent = nestedLine.length - nestedLine.trimStart().length;
-                
+
                 // Stop if we reach a line that's not indented at the expected level
                 if (currentIndent < expectedIndent || (currentIndent === 0 && nestedTrimmed)) {
                   break;
                 }
-                
+
                 if (currentIndent === expectedIndent && nestedTrimmed.includes(':')) {
                   const nestedColonIndex = nestedTrimmed.indexOf(':');
                   const nestedKey = nestedTrimmed.substring(0, nestedColonIndex).trim();
                   const nestedValue = nestedTrimmed.substring(nestedColonIndex + 1).trim();
                   nestedObject[nestedKey] = parseValue(nestedValue);
                 }
-                
+
                 j++;
               }
-              
+
               frontmatter[key] = nestedObject;
               i = j - 1;
             }
@@ -190,7 +236,7 @@ const parseFrontmatter = (fileContent) => {
         }
       }
     }
-    
+
     i++;
   }
   
