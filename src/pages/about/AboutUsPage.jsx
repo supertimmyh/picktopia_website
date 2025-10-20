@@ -67,7 +67,7 @@ const AboutUsPage = () => {
                     <div className="grid lg:grid-cols-2 gap-8 items-center">
                         {/* Get Notified Component */}
                         <GetNotified />
-                        
+
                         {/* Facility Image */}
                         <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
                             <img
@@ -78,18 +78,64 @@ const AboutUsPage = () => {
                         </div>
                     </div>
 
-                    {/* Closing Statement */}
-                    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 text-center">
-                        <div 
-                            className="font-body text-lg leading-relaxed text-gray-600 mb-8 font-normal prose prose-lg max-w-none"
-                            dangerouslySetInnerHTML={{ 
-                                __html: content.closing
-                                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-picktopia-orange font-semibold">$1</strong>')
-                                    .replace(/\n\n/g, '</p><p class="font-body text-lg leading-relaxed text-gray-600 mb-8 font-normal">')
-                                    .replace(/^/, '<p class="font-body text-lg leading-relaxed text-gray-600 mb-6 font-normal">')
-                                    .replace(/$/, '</p>')
-                            }}
-                        />
+                    {/* Club Policies Section */}
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {/* Code of Conduct */}
+                        <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8">
+                            <h2 className="font-heading text-2xl font-black text-picktopia-blue-dark mb-6 tracking-wider uppercase">
+                                {content.clubPolicies.codeOfConduct.title}
+                            </h2>
+                            <ul className="space-y-4">
+                                {content.clubPolicies.codeOfConduct.rules.map((rule, index) => (
+                                    <li key={index}>
+                                        {typeof rule === 'string' ? (
+                                            <div className="flex items-start">
+                                                <span className="w-2 h-2 bg-picktopia-blue-dark rounded-full mt-2 mr-4 flex-shrink-0"></span>
+                                                <span
+                                                    className="font-body text-base font-normal leading-relaxed text-gray-700"
+                                                    dangerouslySetInnerHTML={{ __html: rule.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>') }}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="ml-0">
+                                                <div
+                                                    className="font-body text-base font-normal leading-relaxed text-gray-700 mb-2"
+                                                    dangerouslySetInnerHTML={{ __html: rule.title.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>') }}
+                                                />
+                                                <ul className="ml-6 space-y-2">
+                                                    {rule.items.map((item, itemIndex) => (
+                                                        <li key={itemIndex} className="flex items-start">
+                                                            <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                                            <span className="font-body text-sm font-normal leading-relaxed text-gray-600">
+                                                                {item}
+                                                            </span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Rules & Regulations */}
+                        <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8">
+                            <h2 className="font-heading text-2xl font-black text-picktopia-blue-dark mb-6 tracking-wider uppercase">
+                                {content.clubPolicies.rulesAndRegulations.title}
+                            </h2>
+                            <ul className="space-y-4">
+                                {content.clubPolicies.rulesAndRegulations.rules.map((rule, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <span className="w-2 h-2 bg-picktopia-blue-dark rounded-full mt-2 mr-4 flex-shrink-0"></span>
+                                        <span
+                                            className="font-body text-base font-normal leading-relaxed text-gray-700"
+                                            dangerouslySetInnerHTML={{ __html: rule.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>') }}
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
