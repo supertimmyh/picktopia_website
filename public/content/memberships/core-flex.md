@@ -1,11 +1,12 @@
 ---
 title: Core Flex
-price: 159/month + Tax
+price: 139/month + Tax
 originalPrice: 179/month + Tax
 duration: Monthly
 popular: false
 features:
-  - LIMITED time discount only. The original price is $179. ⏰
+  - LIMITED time discount only. $139 for one month and $119/month for 3-month
+    commitment. ⏰
   - Month-by-Month Membership. No long term commitment. 📝
   - FREE one program session per day, with no extra charges! 🤸‍♀️
   - Priority access & discounted pricing on lessons and clinics! 🥇
