@@ -1,10 +1,10 @@
 ---
-title: Summer League Signup
-message: Summer League Signups Now Open! 🏓 Join us for competitive play!
+title: Flex Ladder League
+message: Flex Ladder League is ON ! Join us for competitive play!
 linkType: external
-link: https://app.courtreserve.com/Online/Portal/Index/16040
-priority: 3
+link: https://app.courtreserve.com/Online/Events/List/16040/FG2R3DFSGO16040
+priority: 2
 active: true
-startDate: 2025-07-01T00:00:00.000Z
-endDate: 2025-08-31T23:59:59.000Z
+startDate: 2025-11-03T13:28:00.000-05:00
+endDate: ""
 ---
