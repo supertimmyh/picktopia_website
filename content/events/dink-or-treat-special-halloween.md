@@ -17,6 +17,6 @@ description: >-
 
 
   **Regular:** $20/player
-registrationLink: https://widgets.courtreserve.com/Online/Public/EmbedCode?id=16040&embedCodeId=46618&eventId=1579785&occId=&orgLayout=True&memberGroupId=&partialView=False&customLinkId=&isRedirect=true
+registrationLink: ""
 price: All-Access & Core Flex: $8/player - Regular: $20/player
 ---
