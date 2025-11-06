@@ -287,6 +287,14 @@ A CMS-driven modal window designed to display special announcements, events, or 
 - Asset paths automatically adjust for subdirectory vs custom domain
 - Vite config handles base path: `/picktopia_website/` in production
 
+## Agent Interaction & Context
+- **Purpose**: The `context/` folder is used by the Gemini CLI agent to store task-specific information, detailed implementation plans, and logs during ongoing development tasks.
+- **Contents**:
+  - `context.txt`: Contains the detailed plan for the current task.
+  - `errors-log.txt`: Stores logs of errors encountered during agent operations.
+  - `reference.txt`: May contain additional reference material relevant to the current task.
+- **Usage**: This folder is primarily for the agent's internal use to maintain context and provide detailed information to the user. It should not be directly modified by developers unless specifically instructed.
+
 
 **Note: This section is for future reference and not related to any code changes unless indicate otherwise**
 

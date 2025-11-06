@@ -1,5 +1,15 @@
 # Picktopia Website - Claude Code Instructions
 
+## Typography
+
+### Fonts
+- **Headlines/Brand**: Orbitron (futuristic, sci-fi aesthetic)
+- **Body Content**: Inter (clean, highly legible sans-serif)
+- **Implementation**: Google Fonts loaded in `index.html`, configured in `tailwind.config.js`
+- **Tailwind Classes**:
+  - `font-heading` or `font-brand` for Orbitron
+  - `font-body` or default text for Inter
+
 ## Development Commands
 
 ```bash
@@ -17,8 +27,9 @@ npm run deploy                  # Deploy to GitHub Pages
 
 ### Navigation
 - State-based navigation in `src/App.jsx` (no React Router)
-- Dropdown menus for Play section
+- Dropdown menus for Academy, Play, and About sections
 - Dynamic navigation from CMS content via manifest files
+- Current structure: Home, Join, Academy (Training Programs, Free Pickleball Intro), Play (Booking, Program Schedule, Group Bookings), Events, Clubs, About (About Us, Partnerships)
 
 ### CMS Collections
 - **Events**: Individual event pages (`public/content/events/`)
@@ -27,6 +38,39 @@ npm run deploy                  # Deploy to GitHub Pages
 - **Memberships**: Membership tiers and pricing (`public/content/memberships/`)
 - **Promotions**: Modal window for special promotions and events (`public/content/promotions/`)
 - **Generic Pages**: CMS-managed pages (`public/content/pages/`)
+
+### Form Handling System
+All forms are integrated with Formspree for professional email delivery and
+submission management.
+
+#### Formspree Configuration
+- **Config File**: `src/config/formspree.js`
+- **Implementation**: AJAX submissions using `fetch()` API
+- **User Experience**: No page redirects, smooth success/error states
+
+#### Active Forms
+| Form Component | Formspree ID | Location | Purpose |
+|----------------|--------------|----------|---------|
+| IntroSignupForm | `mrbyzklv` | Free Intro section | Free pickleball intro signups |
+| GroupBookingForm | `xdkwnzwo` | Group Bookings page | Event inquiry submissions |
+| PartnershipInquiryForm | `mldprnpj` | Partnerships page | Partnership request submissions |
+| GetNotified | `myzngjnw` | About Us page | Notification signups for updates |
+| Newsletter | `xblzryzb` | Home page | Email newsletter subscriptions |
+
+#### Form Implementation Pattern
+All forms follow consistent implementation:
+- Import `getFormspreeAjaxUrl` from config
+- State management: `isSubmitting`, `submitted`, `submitError`
+- AJAX submission with proper error handling
+- Success states with auto-reset (3-5 seconds)
+- Loading states with disabled form controls
+- Branded success/error messages matching component themes
+
+#### Adding New Forms
+1. Add Formspree ID to `FORMSPREE_IDS` in config file
+2. Follow existing form component patterns
+3. Use `getFormspreeAjaxUrl('formType')` for submissions
+4. Include proper state management and error handling
 
 ## Key Files
 
@@ -50,7 +94,7 @@ const content = await loadPageContent('page-slug');
 ### Asset Management
 - All assets in `public/images/` (not `src/assets/`)
 - Use `getAssetPath('/images/photo.jpg')` for proper deployment paths
-- Smart domain detection handles GitHub Pages � custom domain migration
+- Smart domain detection handles GitHub Pages  custom domain migration
 - For each customized page, storing assets in public/images/ using category folders that match content purpose. For instant, a `category` page stores its assets under `/images/category/filename.ext`
 
 ## Automation
@@ -68,16 +112,18 @@ const content = await loadPageContent('page-slug');
 - ✅ **Promotions** - Fully automated
 
 ### CMS Workflow
-1. Content creator publishes via Decap CMS at `/admin/`
-2. GitHub Action detects changes in `public/content/collection-name/**`
-3. Runs `npm run generate-manifests` automatically
-4. Commits updated manifest files with "[skip ci]" tag
-5. Navigation and pages reflect new content automatically
+1. Content creator accesses Decap CMS at `http://localhost:5173/admin/index.html` (development)
+2. CMS authenticates with GitHub and edits content directly in repository
+3. GitHub Action detects changes in `public/content/collection-name/**`
+4. Runs `npm run generate-manifests` automatically
+5. Commits updated manifest files with "[skip ci]" tag
+6. Navigation and pages reflect new content automatically
 
 ### CMS Content Source & Editing
-  - **Content Source**: Decap CMS reads content directly from GitHub repository
+  - **CMS Access**: `http://localhost:5173/admin/index.html` during development
+  - **Content Source**: Decap CMS reads/writes content directly from/to GitHub repository
   (`supertimmyh/picktopia_website` on `main` branch)
-  - **Not Local**: CMS does NOT read from local `public/content/` files
+  - **Backend**: GitHub OAuth authentication (content stored on GitHub, not locally)
   - **Editing Process**: CMS changes commit directly to GitHub repository
   - **Important**: Local file changes must be pushed to GitHub before they appear in CMS editor
   - **Field Updates**: When adding new CMS fields, existing content needs to be pushed to GitHub for
@@ -233,7 +279,6 @@ A CMS-driven modal window designed to display special announcements, events, or 
   - `title` (string): Main headline for the modal
   - `image` (image): Prominent poster image
   - `body` (markdown): Descriptive text content
-  - `cta_text` (string): Optional call-to-action button text
   - `cta_link` (string): Optional destination URL for CTA button
 - **Automation**: Fully integrated into manifest generation and GitHub Actions workflow
 
@@ -242,9 +287,18 @@ A CMS-driven modal window designed to display special announcements, events, or 
 - Asset paths automatically adjust for subdirectory vs custom domain
 - Vite config handles base path: `/picktopia_website/` in production
 
-## Future Improvements - Error Handling
+## Agent Interaction & Context
+- **Purpose**: The `context/` folder is used by the Gemini CLI agent to store task-specific information, detailed implementation plans, and logs during ongoing development tasks.
+- **Contents**:
+  - `context.txt`: Contains the detailed plan for the current task.
+  - `errors-log.txt`: Stores logs of errors encountered during agent operations.
+  - `reference.txt`: May contain additional reference material relevant to the current task.
+- **Usage**: This folder is primarily for the agent's internal use to maintain context and provide detailed information to the user. It should not be directly modified by developers unless specifically instructed.
+
 
 **Note: This section is for future reference and not related to any code changes unless indicate otherwise**
+
+## Future Improvements - Error Handling
 
 ### Current Implementation
 - Lorem Ipsum fallback content in `src/data/data.js` provides visual indication when CMS fails
@@ -294,3 +348,50 @@ const CONTENT_STATE = {
 1. Environment-aware fallback content (keep Lorem Ipsum for dev, real content for production)
 2. Enhanced console logging with component context and timestamps
 3. Optional: Development-only visual error indicators for immediate feedback
+
+
+## Future Improvements - Firebase Form Integration
+
+#### Current Formspree vs Future Firebase
+- **Current**: Formspree AJAX submissions with email notifications
+- **Future**: Firebase Firestore database + Cloud Functions for advanced
+workflows
+
+#### Firebase Implementation Benefits
+- **Data Persistence**: Store all form submissions in Firestore database
+- **Real-time Admin Dashboard**: View, filter, and manage submissions
+- **Advanced Notifications**: Custom email templates and automated workflows
+- **Analytics Integration**: Track conversion rates and form performance
+- **Offline Support**: Queue submissions when users are offline
+- **Scalability**: Handle unlimited submissions without third-party limits
+
+#### Migration Strategy
+```javascript
+// Future Firebase service structure
+const FIREBASE_COLLECTIONS = {
+intro: 'intro-signups',
+groupBooking: 'group-bookings',
+partnership: 'partnership-inquiries',
+getNotified: 'notification-signups',
+newsletter: 'newsletter-subscriptions'
+};
+
+// Parallel implementation approach
+const submitToFirebase = async (formType, data) => {
+// Store in Firestore + trigger Cloud Function for emails
+};
+
+Implementation Priority
+
+1. Phase 1: Set up Firebase project and Firestore collections
+2. Phase 2: Create admin dashboard for viewing submissions
+3. Phase 3: Migrate forms one-by-one (keeping Formspree as backup)
+4. Phase 4: Add advanced features (analytics, automated workflows)
+5. Phase 5: Remove Formspree dependency
+
+Configuration Considerations
+
+- Maintain existing form UX during migration
+- Keep src/config/formspree.js pattern for src/config/firebase.js
+- Environment variables for Firebase config keys
+- Fallback to Formspree if Firebase fails during transition
