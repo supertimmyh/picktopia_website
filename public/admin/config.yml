@@ -134,11 +134,11 @@ collections:
         file: "public/content/annual-tournament.md"
         fields:
           - { label: "Title", name: "title", widget: "string", default: "The Picktopia Annual Moneyball Classic" }
+          - { label: "Current Prize Pool", name: "currentPrizePool", widget: "number", hint: "Current total prize pool amount in dollars (update periodically)" }
           - { label: "Hero Image", name: "heroImage", widget: "image", hint: "Prominent hero image for the tournament" }
-          - { label: "Tournament Description", name: "description", widget: "markdown", hint: "Detailed description of the tournament" }
-          - { label: "Qualification Process", name: "qualificationProcess", widget: "markdown", hint: "How players qualify via monthly tournaments" }
-          - { label: "Prize Pool Information", name: "prizePool", widget: "markdown", hint: "Prize structure and funding details" }
-          - { label: "Tournament Format", name: "format", widget: "markdown", hint: "Format and seeding details" }
+          - { label: "Tournament Description", name: "description", widget: "text", hint: "Brief description (2-3 sentences)" }
+          - { label: "How to Qualify", name: "howToQualify", widget: "text", hint: "Brief explanation of qualification (2-3 sentences)" }
+          - { label: "Tournament Details", name: "details", widget: "markdown", hint: "Additional details (format, date, etc.)" }
           - { label: "Call to Action Text", name: "ctaText", widget: "string", default: "Sign Up for Next Monthly Tournament", hint: "CTA button text" }
           - { label: "Call to Action Link", name: "ctaLink", widget: "string", hint: "URL for the CTA button" }
 
