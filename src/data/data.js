@@ -24,6 +24,7 @@ export const CMS_DATA = {
             ]
         },
         "Events",
+        "Tournaments",
         "Clubs",
         {
             title: "About",

@@ -9,6 +9,7 @@ on:
       - 'public/content/announcements/**'
       - 'public/content/memberships/**'
       - 'public/content/promotions/**'
+      - 'public/content/tournaments/**'
 
 permissions:
   contents: write
