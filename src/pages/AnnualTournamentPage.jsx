@@ -131,8 +131,11 @@ const AnnualTournamentPage = () => {
                                 Current Prize Pool
                             </span>
                         </div>
-                        <div className="text-white text-6xl md:text-8xl font-black mb-4 font-heading drop-shadow-2xl">
+                        <div className="text-white text-6xl md:text-8xl font-black mb-2 font-heading drop-shadow-2xl">
                             {formatCurrency(displayPrizePool)}
+                        </div>
+                        <div className="text-white text-sm md:text-base opacity-75 mb-4">
+                            As of {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                         </div>
                         <div className="text-white text-lg md:text-xl opacity-90">
                             Growing with every monthly tournament
@@ -164,6 +167,12 @@ const AnnualTournamentPage = () => {
 
                     {/* Tournament Details */}
                     <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-purple-500">
+                        <h2 className="text-2xl font-black text-picktopia-blue-dark uppercase tracking-wide mb-6 flex items-center">
+                            <svg className="w-8 h-8 mr-3 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                            </svg>
+                            Tournament Details
+                        </h2>
                         <div
                             className="prose max-w-none"
                             dangerouslySetInnerHTML={{
