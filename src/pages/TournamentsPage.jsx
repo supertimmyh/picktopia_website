@@ -87,6 +87,13 @@ const TournamentsPage = () => {
                     backgroundImage={getAssetPath("/images/uploads/place-holder.jpg")}
                     size="large"
                     overlayColor="blue"
+                    logo={
+                        <img
+                            src={getAssetPath("/images/logo_simplified.svg")}
+                            alt="Picktopia Logo"
+                            className="w-32 h-32 md:w-40 md:h-40 mx-auto opacity-90 drop-shadow-2xl"
+                        />
+                    }
                 />
 
                 <div className="container mx-auto px-6 py-16">
@@ -117,6 +124,13 @@ const TournamentsPage = () => {
                 backgroundImage={getAssetPath("/images/uploads/place-holder.jpg")}
                 size="large"
                 overlayColor="blue"
+                logo={
+                    <img
+                        src={getAssetPath("/images/logo_simplified.svg")}
+                        alt="Picktopia Logo"
+                        className="w-32 h-32 md:w-40 md:h-40 mx-auto opacity-90 drop-shadow-2xl"
+                    />
+                }
             />
 
             {/* Tournaments Content */}

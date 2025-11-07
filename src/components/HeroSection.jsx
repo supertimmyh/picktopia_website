@@ -1,11 +1,12 @@
 import React from 'react';
 
-const HeroSection = ({ 
-    title, 
-    subtitle, 
+const HeroSection = ({
+    title,
+    subtitle,
     backgroundImage,
     backgroundVideo,
     children,
+    logo, // Optional logo to display above title
     size = 'large', // 'small', 'medium', 'large'
     overlayColor = 'none' // 'orange', 'blue', 'dark', 'none'
 }) => {
@@ -57,6 +58,11 @@ const HeroSection = ({
             
             {/* Content */}
             <div className="relative z-10 container mx-auto px-6 text-center">
+                {logo && (
+                    <div className="mb-8">
+                        {logo}
+                    </div>
+                )}
                 {title && (
                     <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-black mb-6 drop-shadow-lg tracking-wider uppercase text-white">
                         {title}
