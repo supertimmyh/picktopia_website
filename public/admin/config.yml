@@ -125,21 +125,22 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Click Link", name: "cta_link", widget: "string", required: false, hint: "URL to navigate when modal is clicked, e.g., /events or https://example.com" }
 
-  # Tournaments Collection - Prize pool tournaments
-  - name: "tournaments"
-    label: "Tournaments"
-    folder: "public/content/tournaments"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Tournament Name", name: "title", widget: "string" }
-      - { label: "Enabled", name: "enabled", widget: "boolean", default: true, hint: "Toggle to publish/unpublish this tournament" }
-      - { label: "Tournament Date", name: "tournament_date", widget: "datetime", hint: "Date and time of the tournament" }
-      - { label: "Prize Pool", name: "prize_pool", widget: "number", hint: "Total prize pool amount in dollars" }
-      - { label: "Annual Pool Contribution", name: "annual_pool_contribution", widget: "number", hint: "Amount contributed to annual prize pool in dollars" }
-      - { label: "Admin Fee", name: "admin_fee", widget: "number", hint: "Administrative fee amount in dollars" }
-      - { label: "Description", name: "description", widget: "markdown", hint: "Detailed tournament information" }
-      - { label: "Tournament Image", name: "image", widget: "image", required: false, hint: "Promotional image for the tournament" }
+  # Annual Tournament Page - Single page for the prestigious annual tournament
+  - name: "annual_tournament"
+    label: "Annual Tournament"
+    files:
+      - label: "Annual Moneyball Classic"
+        name: "annual_tournament"
+        file: "public/content/annual-tournament.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string", default: "The Picktopia Annual Moneyball Classic" }
+          - { label: "Hero Image", name: "heroImage", widget: "image", hint: "Prominent hero image for the tournament" }
+          - { label: "Tournament Description", name: "description", widget: "markdown", hint: "Detailed description of the tournament" }
+          - { label: "Qualification Process", name: "qualificationProcess", widget: "markdown", hint: "How players qualify via monthly tournaments" }
+          - { label: "Prize Pool Information", name: "prizePool", widget: "markdown", hint: "Prize structure and funding details" }
+          - { label: "Tournament Format", name: "format", widget: "markdown", hint: "Format and seeding details" }
+          - { label: "Call to Action Text", name: "ctaText", widget: "string", default: "Sign Up for Next Monthly Tournament", hint: "CTA button text" }
+          - { label: "Call to Action Link", name: "ctaLink", widget: "string", hint: "URL for the CTA button" }
 
   # Settings Collection - Site-wide settings
   - name: "settings"

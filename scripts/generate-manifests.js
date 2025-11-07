@@ -93,21 +93,3 @@ try {
 } catch (error) {
   console.error('Error generating promotions manifest:', error);
 }
-
-// Generate tournaments manifest
-const tournamentsDir = path.join(__dirname, '../public/content/tournaments');
-const tournamentsManifestPath = path.join(tournamentsDir, 'manifest.json');
-
-try {
-  if (fs.existsSync(tournamentsDir)) {
-    const files = fs.readdirSync(tournamentsDir);
-    const tournamentSlugs = files
-      .filter(file => file.endsWith('.md'))
-      .map(file => file.replace('.md', ''));
-
-    fs.writeFileSync(tournamentsManifestPath, JSON.stringify(tournamentSlugs, null, 2));
-    console.log(`Generated tournaments manifest with ${tournamentSlugs.length} tournaments:`, tournamentSlugs);
-  }
-} catch (error) {
-  console.error('Error generating tournaments manifest:', error);
-}

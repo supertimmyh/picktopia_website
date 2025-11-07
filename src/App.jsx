@@ -10,7 +10,7 @@ import EventCMSPage from './pages/EventCMSPage';
 import EventsPage from './pages/EventsPage';
 import LocationsCMSPage from './pages/LocationsCMSPage';
 import MembershipPage from './pages/MembershipPage';
-import TournamentsPage from './pages/TournamentsPage';
+import AnnualTournamentPage from './pages/AnnualTournamentPage';
 import BookingPage from './pages/play/BookingPage';
 import ProgramSchedulePage from './pages/play/ProgramSchedulePage';
 import TrainingProgramsPage from './pages/academy/TrainingProgramsPage';
@@ -88,8 +88,8 @@ export default function App() {
                 return <GroupBookingsPage />;
             case 'events':
                 return <EventsPage navigateTo={navigateTo} />;
-            case 'tournaments':
-                return <TournamentsPage />;
+            case 'play-annual-tournament':
+                return <AnnualTournamentPage />;
             case 'clubs':
                 return <LocationsCMSPage navigateTo={navigateTo} />;
             case 'about-about-us':

@@ -20,11 +20,11 @@ export const CMS_DATA = {
             subLinks: [
                 "Booking",
                 "Program Schedule",
-                "Group Bookings"
+                "Group Bookings",
+                "Annual Tournament"
             ]
         },
         "Events",
-        "Tournaments",
         "Clubs",
         {
             title: "About",
