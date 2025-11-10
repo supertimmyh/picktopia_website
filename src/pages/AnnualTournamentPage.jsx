@@ -7,6 +7,7 @@ const AnnualTournamentPage = () => {
     const [content, setContent] = useState(null);
     const [loading, setLoading] = useState(true);
     const [displayPrizePool, setDisplayPrizePool] = useState(0);
+    const [activeTab, setActiveTab] = useState('weekly');
 
     useEffect(() => {
         const loadTournamentContent = async () => {
@@ -125,16 +126,16 @@ const AnnualTournamentPage = () => {
             <div className="container mx-auto px-6 py-16">
                 {/* PRIZE POOL COUNTER - Main Feature */}
                 <section className="mb-16 -mt-24 relative z-10">
-                    <div className="bg-gradient-to-br from-picktopia-orange via-orange-500 to-orange-600 rounded-3xl shadow-2xl p-12 text-center transform hover:scale-105 transition-transform duration-300">
+                    <div className="bg-gradient-to-br from-picktopia-orange via-orange-500 to-orange-600 rounded-3xl shadow-2xl p-8 md:p-12 text-center transform hover:scale-105 transition-transform duration-300">
                         <div className="mb-4">
                             <span className="text-white text-xl md:text-2xl font-bold uppercase tracking-wider">
                                 Current Prize Pool
                             </span>
                         </div>
-                        <div className="text-white text-6xl md:text-8xl font-black mb-2 font-heading drop-shadow-2xl">
+                        <div className="text-white text-5xl md:text-7xl font-black mb-2 font-heading drop-shadow-2xl">
                             {formatCurrency(displayPrizePool)}
                         </div>
-                        <div className="text-white text-sm md:text-base opacity-75 mb-4">
+                        <div className="text-white text-sm md:text-base opacity-75 mb-2">
                             As of {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                         </div>
                         <div className="text-white text-lg md:text-xl opacity-90">
@@ -143,59 +144,241 @@ const AnnualTournamentPage = () => {
                     </div>
                 </section>
 
-                {/* Tournament Description */}
-                <section className="mb-12 text-center max-w-4xl mx-auto">
+                {/* Tournament Overview */}
+                <section className="mb-16 text-center max-w-3xl mx-auto">
                     <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
                         {content.description}
                     </p>
                 </section>
 
-                {/* Two Column: How to Qualify & Details */}
-                <div className="grid md:grid-cols-2 gap-8 mb-16">
-                    {/* How to Qualify */}
-                    <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-picktopia-blue-mid">
-                        <h2 className="text-2xl font-black text-picktopia-blue-dark uppercase tracking-wide mb-6 flex items-center">
-                            <svg className="w-8 h-8 mr-3 text-picktopia-blue-mid" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            How to Qualify
-                        </h2>
-                        <p className="text-gray-700 text-lg leading-relaxed">
-                            {content.howToQualify}
-                        </p>
+                {/* Key Info Cards */}
+                <section className="grid md:grid-cols-2 gap-6 mb-16">
+                    {/* Event Date */}
+                    <div className="bg-white rounded-2xl shadow-lg p-8 text-center border-t-4 border-picktopia-blue-mid">
+                        <div className="text-picktopia-blue-mid text-4xl font-bold mb-2">📅</div>
+                        <h3 className="text-lg font-black text-picktopia-blue-dark uppercase mb-2">Event Date</h3>
+                        <p className="text-gray-700 text-lg">{content.eventDate || 'Year End (TBA)'}</p>
                     </div>
 
-                    {/* Tournament Details */}
-                    <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-purple-500">
-                        <h2 className="text-2xl font-black text-picktopia-blue-dark uppercase tracking-wide mb-6 flex items-center">
-                            <svg className="w-8 h-8 mr-3 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                            </svg>
-                            Tournament Details
-                        </h2>
-                        <div
-                            className="prose max-w-none"
-                            dangerouslySetInnerHTML={{
-                                __html: '<p class="mb-4 text-gray-700">' + renderMarkdown(content.details) + '</p>'
-                            }}
-                        />
+                    {/* Member Only */}
+                    <div className="bg-white rounded-2xl shadow-lg p-8 text-center border-t-4 border-purple-500">
+                        <div className="text-purple-500 text-4xl font-bold mb-2">👥</div>
+                        <h3 className="text-lg font-black text-picktopia-blue-dark uppercase mb-2">Members Only</h3>
+                        <p className="text-gray-700 text-lg">Registered Picktopia Members</p>
                     </div>
-                </div>
+                </section>
+
+                {/* Qualification Process */}
+                <section className="mb-16">
+                    <h2 className="text-3xl md:text-4xl font-black text-picktopia-blue-dark uppercase tracking-wide mb-10 text-center">
+                        Path to the Classic
+                    </h2>
+                    <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-l-4 border-picktopia-blue-mid">
+                        <div className="flex items-center justify-center mb-8">
+                            <svg className="w-8 h-8 text-picktopia-blue-mid mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                            </svg>
+                            <h3 className="text-2xl font-black text-picktopia-blue-dark uppercase">How to Qualify</h3>
+                        </div>
+                        <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                            {content.howToQualify}
+                        </p>
+
+                        {/* Qualification Timeline */}
+                        <div className="mt-8 pt-8 border-t border-gray-200">
+                            <h4 className="text-xl font-bold text-picktopia-blue-dark mb-6">Seeding Breakdown</h4>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="bg-blue-50 rounded-lg p-6">
+                                    <div className="flex items-start">
+                                        <div className="bg-picktopia-blue-mid text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                            12
+                                        </div>
+                                        <div>
+                                            <h5 className="font-bold text-picktopia-blue-dark mb-1">Top Seeded Teams</h5>
+                                            <p className="text-sm text-gray-700">Monthly tournament winners automatically qualify (1 per month)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="bg-purple-50 rounded-lg p-6">
+                                    <div className="flex items-start">
+                                        <div className="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                            TBD
+                                        </div>
+                                        <div>
+                                            <h5 className="font-bold text-picktopia-blue-dark mb-1">Wild Card Spots</h5>
+                                            <p className="text-sm text-gray-700">Available based on top finishes and participation</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Skill Divisions */}
+                {content.divisions && (
+                    <section className="mb-16">
+                        <h2 className="text-3xl md:text-4xl font-black text-picktopia-blue-dark uppercase tracking-wide mb-10 text-center">
+                            Skill Divisions
+                        </h2>
+                        <div className="grid md:grid-cols-4 gap-4 mb-8">
+                            {['3.5+', '4.0+', '4.5+', '5.0+'].map((division, idx) => (
+                                <div key={idx} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center border border-blue-200">
+                                    <div className="text-3xl font-black text-picktopia-blue-dark mb-2">{division}</div>
+                                    <p className="text-sm text-gray-700">
+                                        {['Beginner to Intermediate', 'Intermediate', 'Advanced', 'Elite'][idx]}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
+
+                {/* Prize Structure - Tabbed */}
+                <section className="mb-16">
+                    <h2 className="text-3xl md:text-4xl font-black text-picktopia-blue-dark uppercase tracking-wide mb-10 text-center">
+                        Prize Structure
+                    </h2>
+
+                    {/* Tabs */}
+                    <div className="flex justify-center gap-4 mb-8 flex-wrap">
+                        <button
+                            onClick={() => setActiveTab('weekly')}
+                            className={`px-6 py-3 rounded-full font-bold uppercase transition-all ${
+                                activeTab === 'weekly'
+                                    ? 'bg-picktopia-orange text-white shadow-lg'
+                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                            }`}
+                        >
+                            Weekly Tournaments
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('annual')}
+                            className={`px-6 py-3 rounded-full font-bold uppercase transition-all ${
+                                activeTab === 'annual'
+                                    ? 'bg-picktopia-orange text-white shadow-lg'
+                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                            }`}
+                        >
+                            Annual Prize Pool
+                        </button>
+                    </div>
+
+                    {/* Tab Content */}
+                    <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                        {activeTab === 'weekly' && (
+                            <div className="animate-fadeIn">
+                                <h3 className="text-2xl font-black text-picktopia-blue-dark mb-6">Monthly Tournament Prizes</h3>
+                                <p className="text-gray-700 mb-8 text-lg">Each entry fee goes toward immediate cash prizes for top finishers:</p>
+
+                                <div className="space-y-4">
+                                    <div className="flex items-center p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                        <div className="text-3xl font-black text-blue-500 mr-6 w-20 text-center">1st</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-picktopia-blue-dark">50% of Prize Pool</p>
+                                            <p className="text-sm text-gray-600">1st place prize per division</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+                                        <div className="text-3xl font-black text-gray-400 mr-6 w-20 text-center">2nd</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-picktopia-blue-dark">30% of Prize Pool</p>
+                                            <p className="text-sm text-gray-600">2nd place prize per division</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center p-4 bg-amber-50 rounded-lg border-l-4 border-amber-400">
+                                        <div className="text-3xl font-black text-amber-600 mr-6 w-20 text-center">3rd</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-picktopia-blue-dark">20% of Prize Pool</p>
+                                            <p className="text-sm text-gray-600">3rd place prize per division</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-8 p-4 bg-blue-100 border border-blue-300 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Entry Fee Allocation:</strong> $8.00 goes to weekly prizes, $2.00 accumulates to Annual Prize Pool, $0.50 covers processing</p>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === 'annual' && (
+                            <div className="animate-fadeIn">
+                                <h3 className="text-2xl font-black text-picktopia-blue-dark mb-6">Annual Moneyball Classic Distribution</h3>
+                                <p className="text-gray-700 mb-8 text-lg">Prize distribution for the year-end championship tournament:</p>
+
+                                <div className="space-y-4">
+                                    <div className="flex items-center p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
+                                        <div className="text-3xl font-black text-yellow-600 mr-6 w-20 text-center">🏆</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-picktopia-blue-dark">Champion: 30%</p>
+                                            <p className="text-sm text-gray-600">1st place winner of the annual tournament</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center p-4 bg-gray-100 rounded-lg border-l-4 border-gray-400">
+                                        <div className="text-3xl font-black text-gray-500 mr-6 w-20 text-center">🥈</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-picktopia-blue-dark">Runner-up: 20%</p>
+                                            <p className="text-sm text-gray-600">2nd place finisher</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+                                        <div className="text-3xl font-black text-orange-600 mr-6 w-20 text-center">🥉</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-picktopia-blue-dark">Semi-finalists: 12.5% each</p>
+                                            <p className="text-sm text-gray-600">3rd and 4th place finishers</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                        <div className="text-3xl font-black text-blue-500 mr-6 w-20 text-center">4️⃣</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-picktopia-blue-dark">Quarter-finalists: 6.25% each</p>
+                                            <p className="text-sm text-gray-600">5th-8th place finishers</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-8 p-4 bg-orange-100 border border-orange-300 rounded-lg">
+                                    <p className="text-sm text-gray-700"><strong>Note:</strong> The annual prize pool accumulates from $2.00 of each team's monthly entry fee throughout the year.</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </section>
+
+                {/* Tournament Details */}
+                {content.details && (
+                    <section className="mb-16">
+                        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-l-4 border-purple-500">
+                            <h2 className="text-2xl font-black text-picktopia-blue-dark uppercase tracking-wide mb-6 flex items-center">
+                                <svg className="w-8 h-8 mr-3 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                                </svg>
+                                Tournament Details
+                            </h2>
+                            <div
+                                className="prose prose-lg max-w-none text-gray-700"
+                                dangerouslySetInnerHTML={{
+                                    __html: renderMarkdown(content.details)
+                                }}
+                            />
+                        </div>
+                    </section>
+                )}
 
                 {/* Call to Action */}
                 <section className="text-center">
-                    <div className="bg-gradient-to-r from-picktopia-blue-dark to-picktopia-blue-mid rounded-2xl shadow-2xl p-12">
-                        <h2 className="text-3xl md:text-4xl font-black text-white mb-6 uppercase tracking-wide">
+                    <div className="bg-gradient-to-r from-picktopia-blue-dark to-picktopia-blue-mid rounded-2xl shadow-2xl p-8 md:p-12">
+                        <h2 className="text-3xl md:text-4xl font-black text-white mb-4 uppercase tracking-wide">
                             Ready to Compete?
                         </h2>
-                        <p className="text-xl text-white mb-8 max-w-2xl mx-auto opacity-90">
+                        <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto opacity-90">
                             Start qualifying today by participating in our monthly tournaments
                         </p>
                         <a
-                            href={content.ctaLink || '/events'}
+                            href={content.nextQualifyingTournamentLink || content.ctaLink || '/events'}
                             className="inline-block bg-picktopia-orange text-white font-bold py-4 px-12 rounded-full text-lg hover:bg-white hover:text-picktopia-orange transition-all duration-300 transform hover:scale-105 shadow-lg"
                         >
-                            {content.ctaText || 'View Monthly Tournaments'}
+                            {content.nextQualifyingTournamentName || content.ctaText || 'Sign Up for Next Tournament'}
                         </a>
                     </div>
                 </section>
