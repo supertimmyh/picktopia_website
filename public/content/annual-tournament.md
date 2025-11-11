@@ -8,24 +8,31 @@ eventDate: "Year End (TBA)"
 nextQualifyingTournamentLink: "/events"
 nextQualifyingTournamentName: "December Monthly Moneyball"
 howToQualify: Participate in our monthly qualifying tournaments throughout the year to earn your spot. The top 12 teams automatically qualify for seeding positions, with additional wild card spots TBD based on performance and community engagement.
-divisions: |
-  - **3.5+** - Beginner to Intermediate
-  - **4.0+** - Intermediate
-  - **4.5+** - Advanced
-  - **5.0+** - Elite
-prizeStructure: |
-  ## Weekly Tournament Prize Distribution
-  Each $10.50 entry fee is divided:
-  - **$8.00** - Weekly Prize Pool (distributed 50-30-20 to 1st, 2nd, 3rd place)
-  - **$2.00** - Annual Prize Pool (accumulates throughout the year)
-  - **$0.50** - Processing Fee
-
-  ## Annual Prize Distribution
-  The annual prize pool is distributed by final placement:
-  - Champion: 30%
-  - Runner-up: 20%
-  - Semi-finalists: 12.5% each
-  - Quarter-finalists: 6.25% each
+monthlyEntryFee: 10.50
+entryFeeAllocation:
+  monthlyPrizes: 8.00
+  annualPool: 2.00
+  processing: 0.50
+monthlyPrizes:
+  first: 50
+  second: 30
+  third: 20
+annualPrizes:
+  champion: 30
+  runnerUp: 20
+  semifinalist: 12.5
+  quarterfinalist: 6.25
+topSeeds: 12
+wildCardSpots: "TBD"
+divisions:
+  - level: "3.5+"
+    description: "Beginner to Intermediate"
+  - level: "4.0+"
+    description: "Intermediate"
+  - level: "4.5+"
+    description: "Advanced"
+  - level: "5.0+"
+    description: "Elite"
 details: |
   ## Tournament Format
 
@@ -33,11 +40,6 @@ details: |
   **Location:** Picktopia Main Facility
   **Format:** Double elimination with skill-based seeding
   **Divisions:** 3.5+, 4.0+, 4.5+, 5.0+ (Doubles & Mixed)
-  **Qualification:** Top 12 teams seeded from monthly tournaments + additional wildcards (TBD)
-
-  ## How Teams Are Seeded
-
-  Teams earn qualification through consistent performance in our monthly Moneyball tournaments. The top performer from each month receives a guaranteed seed position (up to 12 teams), with remaining spots available through wild card selection based on cumulative wins and top-3 finishes throughout the year.
 
   ## Game Format
 

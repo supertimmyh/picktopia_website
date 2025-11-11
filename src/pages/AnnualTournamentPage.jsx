@@ -7,7 +7,7 @@ const AnnualTournamentPage = () => {
     const [content, setContent] = useState(null);
     const [loading, setLoading] = useState(true);
     const [displayPrizePool, setDisplayPrizePool] = useState(0);
-    const [activeTab, setActiveTab] = useState('weekly');
+    const [activeTab, setActiveTab] = useState('monthly');
 
     useEffect(() => {
         const loadTournamentContent = async () => {
@@ -54,8 +54,8 @@ const AnnualTournamentPage = () => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
         }).format(amount);
     };
 
@@ -185,48 +185,54 @@ const AnnualTournamentPage = () => {
                         </p>
 
                         {/* Qualification Timeline */}
-                        <div className="mt-8 pt-8 border-t border-gray-200">
-                            <h4 className="text-xl font-bold text-picktopia-blue-dark mb-6">Seeding Breakdown</h4>
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div className="bg-blue-50 rounded-lg p-6">
-                                    <div className="flex items-start">
-                                        <div className="bg-picktopia-blue-mid text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 flex-shrink-0">
-                                            12
+                        {(content.topSeeds || content.wildCardSpots) && (
+                            <div className="mt-8 pt-8 border-t border-gray-200">
+                                <h4 className="text-xl font-bold text-picktopia-blue-dark mb-6">Seeding Breakdown</h4>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    {content.topSeeds && (
+                                        <div className="bg-blue-50 rounded-lg p-6">
+                                            <div className="flex items-start">
+                                                <div className="bg-picktopia-blue-mid text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                                    {content.topSeeds}
+                                                </div>
+                                                <div>
+                                                    <h5 className="font-bold text-picktopia-blue-dark mb-1">Top Seeded Teams</h5>
+                                                    <p className="text-sm text-gray-700">Monthly tournament winners automatically qualify (1 per month)</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h5 className="font-bold text-picktopia-blue-dark mb-1">Top Seeded Teams</h5>
-                                            <p className="text-sm text-gray-700">Monthly tournament winners automatically qualify (1 per month)</p>
+                                    )}
+                                    {content.wildCardSpots && (
+                                        <div className="bg-purple-50 rounded-lg p-6">
+                                            <div className="flex items-start">
+                                                <div className="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 flex-shrink-0">
+                                                    {content.wildCardSpots}
+                                                </div>
+                                                <div>
+                                                    <h5 className="font-bold text-picktopia-blue-dark mb-1">Wild Card Spots</h5>
+                                                    <p className="text-sm text-gray-700">Available based on top finishes and participation</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="bg-purple-50 rounded-lg p-6">
-                                    <div className="flex items-start">
-                                        <div className="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4 flex-shrink-0">
-                                            TBD
-                                        </div>
-                                        <div>
-                                            <h5 className="font-bold text-picktopia-blue-dark mb-1">Wild Card Spots</h5>
-                                            <p className="text-sm text-gray-700">Available based on top finishes and participation</p>
-                                        </div>
-                                    </div>
+                                    )}
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </section>
 
                 {/* Skill Divisions */}
-                {content.divisions && (
+                {content.divisions && content.divisions.length > 0 && (
                     <section className="mb-16">
                         <h2 className="text-3xl md:text-4xl font-black text-picktopia-blue-dark uppercase tracking-wide mb-10 text-center">
                             Skill Divisions
                         </h2>
                         <div className="grid md:grid-cols-4 gap-4 mb-8">
-                            {['3.5+', '4.0+', '4.5+', '5.0+'].map((division, idx) => (
+                            {content.divisions.map((division, idx) => (
                                 <div key={idx} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center border border-blue-200">
-                                    <div className="text-3xl font-black text-picktopia-blue-dark mb-2">{division}</div>
+                                    <div className="text-3xl font-black text-picktopia-blue-dark mb-2">{division.level}</div>
                                     <p className="text-sm text-gray-700">
-                                        {['Beginner to Intermediate', 'Intermediate', 'Advanced', 'Elite'][idx]}
+                                        {division.description}
                                     </p>
                                 </div>
                             ))}
@@ -243,14 +249,14 @@ const AnnualTournamentPage = () => {
                     {/* Tabs */}
                     <div className="flex justify-center gap-4 mb-8 flex-wrap">
                         <button
-                            onClick={() => setActiveTab('weekly')}
+                            onClick={() => setActiveTab('monthly')}
                             className={`px-6 py-3 rounded-full font-bold uppercase transition-all ${
-                                activeTab === 'weekly'
+                                activeTab === 'monthly'
                                     ? 'bg-picktopia-orange text-white shadow-lg'
                                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                             }`}
                         >
-                            Weekly Tournaments
+                            Monthly Tournaments
                         </button>
                         <button
                             onClick={() => setActiveTab('annual')}
@@ -266,38 +272,51 @@ const AnnualTournamentPage = () => {
 
                     {/* Tab Content */}
                     <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                        {activeTab === 'weekly' && (
+                        {activeTab === 'monthly' && (
                             <div className="animate-fadeIn">
                                 <h3 className="text-2xl font-black text-picktopia-blue-dark mb-6">Monthly Tournament Prizes</h3>
+                                {content.monthlyEntryFee && (
+                                    <div className="mb-6 p-4 bg-gradient-to-r from-picktopia-blue-mid to-picktopia-blue-dark rounded-lg">
+                                        <p className="text-white text-center text-lg">
+                                            <span className="font-bold">Entry Fee:</span> {formatCurrency(content.monthlyEntryFee)} per player
+                                        </p>
+                                    </div>
+                                )}
                                 <p className="text-gray-700 mb-8 text-lg">Each entry fee goes toward immediate cash prizes for top finishers:</p>
 
-                                <div className="space-y-4">
-                                    <div className="flex items-center p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-                                        <div className="text-3xl font-black text-blue-500 mr-6 w-20 text-center">1st</div>
-                                        <div className="flex-1">
-                                            <p className="font-bold text-picktopia-blue-dark">50% of Prize Pool</p>
-                                            <p className="text-sm text-gray-600">1st place prize per division</p>
+                                {content.monthlyPrizes && (
+                                    <div className="space-y-4">
+                                        <div className="flex items-center p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                            <div className="text-3xl font-black text-blue-500 mr-6 w-20 text-center">1st</div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-picktopia-blue-dark">{content.monthlyPrizes.first}% of Prize Pool</p>
+                                                <p className="text-sm text-gray-600">1st place prize per division</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
+                                            <div className="text-3xl font-black text-gray-400 mr-6 w-20 text-center">2nd</div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-picktopia-blue-dark">{content.monthlyPrizes.second}% of Prize Pool</p>
+                                                <p className="text-sm text-gray-600">2nd place prize per division</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center p-4 bg-amber-50 rounded-lg border-l-4 border-amber-400">
+                                            <div className="text-3xl font-black text-amber-600 mr-6 w-20 text-center">3rd</div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-picktopia-blue-dark">{content.monthlyPrizes.third}% of Prize Pool</p>
+                                                <p className="text-sm text-gray-600">3rd place prize per division</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center p-4 bg-gray-50 rounded-lg border-l-4 border-gray-400">
-                                        <div className="text-3xl font-black text-gray-400 mr-6 w-20 text-center">2nd</div>
-                                        <div className="flex-1">
-                                            <p className="font-bold text-picktopia-blue-dark">30% of Prize Pool</p>
-                                            <p className="text-sm text-gray-600">2nd place prize per division</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center p-4 bg-amber-50 rounded-lg border-l-4 border-amber-400">
-                                        <div className="text-3xl font-black text-amber-600 mr-6 w-20 text-center">3rd</div>
-                                        <div className="flex-1">
-                                            <p className="font-bold text-picktopia-blue-dark">20% of Prize Pool</p>
-                                            <p className="text-sm text-gray-600">3rd place prize per division</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                )}
 
-                                <div className="mt-8 p-4 bg-blue-100 border border-blue-300 rounded-lg">
-                                    <p className="text-sm text-gray-700"><strong>Entry Fee Allocation:</strong> $8.00 goes to weekly prizes, $2.00 accumulates to Annual Prize Pool, $0.50 covers processing</p>
-                                </div>
+                                {content.entryFeeAllocation && (
+                                    <div className="mt-8 p-4 bg-blue-100 border border-blue-300 rounded-lg">
+                                        <p className="text-sm text-gray-700">
+                                            <strong>Entry Fee Allocation:</strong> {formatCurrency(content.entryFeeAllocation.monthlyPrizes)} goes to monthly prizes, {formatCurrency(content.entryFeeAllocation.annualPool)} accumulates to Annual Prize Pool, {formatCurrency(content.entryFeeAllocation.processing)} covers processing
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         )}
 
@@ -306,40 +325,46 @@ const AnnualTournamentPage = () => {
                                 <h3 className="text-2xl font-black text-picktopia-blue-dark mb-6">Annual Moneyball Classic Distribution</h3>
                                 <p className="text-gray-700 mb-8 text-lg">Prize distribution for the year-end championship tournament:</p>
 
-                                <div className="space-y-4">
-                                    <div className="flex items-center p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
-                                        <div className="text-3xl font-black text-yellow-600 mr-6 w-20 text-center">🏆</div>
-                                        <div className="flex-1">
-                                            <p className="font-bold text-picktopia-blue-dark">Champion: 30%</p>
-                                            <p className="text-sm text-gray-600">1st place winner of the annual tournament</p>
+                                {content.annualPrizes && (
+                                    <div className="space-y-4">
+                                        <div className="flex items-center p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
+                                            <div className="text-3xl font-black text-yellow-600 mr-6 w-20 text-center">🏆</div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-picktopia-blue-dark">Champion: {content.annualPrizes.champion}%</p>
+                                                <p className="text-sm text-gray-600">1st place winner of the annual tournament</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center p-4 bg-gray-100 rounded-lg border-l-4 border-gray-400">
+                                            <div className="text-3xl font-black text-gray-500 mr-6 w-20 text-center">🥈</div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-picktopia-blue-dark">Runner-up: {content.annualPrizes.runnerUp}%</p>
+                                                <p className="text-sm text-gray-600">2nd place finisher</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+                                            <div className="text-3xl font-black text-orange-600 mr-6 w-20 text-center">🥉</div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-picktopia-blue-dark">Semi-finalists: {content.annualPrizes.semifinalist}% each</p>
+                                                <p className="text-sm text-gray-600">3rd and 4th place finishers</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                            <div className="text-3xl font-black text-blue-500 mr-6 w-20 text-center">4️⃣</div>
+                                            <div className="flex-1">
+                                                <p className="font-bold text-picktopia-blue-dark">Quarter-finalists: {content.annualPrizes.quarterfinalist}% each</p>
+                                                <p className="text-sm text-gray-600">5th-8th place finishers</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center p-4 bg-gray-100 rounded-lg border-l-4 border-gray-400">
-                                        <div className="text-3xl font-black text-gray-500 mr-6 w-20 text-center">🥈</div>
-                                        <div className="flex-1">
-                                            <p className="font-bold text-picktopia-blue-dark">Runner-up: 20%</p>
-                                            <p className="text-sm text-gray-600">2nd place finisher</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
-                                        <div className="text-3xl font-black text-orange-600 mr-6 w-20 text-center">🥉</div>
-                                        <div className="flex-1">
-                                            <p className="font-bold text-picktopia-blue-dark">Semi-finalists: 12.5% each</p>
-                                            <p className="text-sm text-gray-600">3rd and 4th place finishers</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                                        <div className="text-3xl font-black text-blue-500 mr-6 w-20 text-center">4️⃣</div>
-                                        <div className="flex-1">
-                                            <p className="font-bold text-picktopia-blue-dark">Quarter-finalists: 6.25% each</p>
-                                            <p className="text-sm text-gray-600">5th-8th place finishers</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                )}
 
-                                <div className="mt-8 p-4 bg-orange-100 border border-orange-300 rounded-lg">
-                                    <p className="text-sm text-gray-700"><strong>Note:</strong> The annual prize pool accumulates from $2.00 of each team's monthly entry fee throughout the year.</p>
-                                </div>
+                                {content.entryFeeAllocation && (
+                                    <div className="mt-8 p-4 bg-orange-100 border border-orange-300 rounded-lg">
+                                        <p className="text-sm text-gray-700">
+                                            <strong>Note:</strong> The annual prize pool accumulates from {formatCurrency(content.entryFeeAllocation.annualPool)} of each team's monthly entry fee throughout the year.
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>
