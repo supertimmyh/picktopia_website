@@ -46,7 +46,7 @@ const PromotionModal = ({ content, onClose }) => {
             <img
               src={getAssetPath(content.image)}
               alt={content.title || 'Promotional image'}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             {(content.title || content.body) && (
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-8">
