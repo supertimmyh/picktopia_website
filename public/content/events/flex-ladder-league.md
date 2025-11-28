@@ -43,7 +43,7 @@ description: >-
   6. Easy Setup & Player Accountability! 
 
   	•	We use the efficient "Shootout" format to arrange dynamic doubles matches. Players are responsible for entering match results into the app and verifying their standing before each session, ensuring immediate and accurate court arrangement.
-registrationLink: https://app.courtreserve.com/Online/Events/List/16040/FG2R3DFSGO16040
+registrationLink: ""
 price: Free for All-Access and Core Flex on any leagues session. Free for
   Daytime and Mid-Day on Afternoon league. Regular price $18 and Punch Card
   eligible.
