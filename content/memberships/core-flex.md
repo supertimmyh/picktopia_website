@@ -13,5 +13,5 @@ features:
   - 15% discount for hosting any event! 🎉
 description: Allows you to play any session free without yearly commitment.
 signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/16040?membershipId=211169
-order: 3
+order: 4
 ---
