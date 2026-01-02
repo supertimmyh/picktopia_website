@@ -12,5 +12,5 @@ features:
   - 10% off merchandise! 👕
 description: Ideal for individuals who enjoys social plays during weekday daytime hours.
 signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/16040?membershipId=196493
-order: 2
+order: 5
 ---
