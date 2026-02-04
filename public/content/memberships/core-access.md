@@ -1,11 +1,10 @@
 ---
 title: Core Access
-price: 78/month + Tax
+price: 95/month + Tax
 originalPrice: $99/month + Tax
 duration: 12-month commitment
 popular: true
 features:
-  - LIMITED time discount only. The original price is $99. ⏰
   - 50% Off Your Share of Court Reservation Fees 💲
   - " Enjoy 14-day advanced court booking privileges! 🗓️"
   - FREE one program session per day, with no extra charges! 🤸‍♀️
