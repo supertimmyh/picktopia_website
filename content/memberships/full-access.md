@@ -1,11 +1,10 @@
 ---
 title: Full Access
-price: 109/month + Tax
+price: 125/month + Tax
 originalPrice: $139/month + Tax
 duration: 12-month commitment
 popular: false
 features:
-  - LIMITED time discount only. The original price is $139. ⏰
   - No Charge on Your Share of Court Reservations Fees 💲
   - " Enjoy 14-day advanced court booking privileges! 🗓️"
   - FREE one program session per day, with no extra charges! 🤸‍♀️
