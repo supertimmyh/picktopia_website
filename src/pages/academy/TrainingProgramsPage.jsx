@@ -1,8 +1,5 @@
 import React from 'react';
 import HeroSection from '../../components/HeroSection';
-import CoachBiographyCard from '../../components/CoachBiographyCard';
-import ProgramCard from '../../components/ProgramCard';
-import TestimonialCard from '../../components/TestimonialCard';
 import PricingTable from '../../components/PricingTable';
 import { trainingProgramsData } from '../../data/academy/trainingProgramsData';
 import { withAssetPaths } from '../../utils/dataWithAssets';
@@ -38,57 +35,6 @@ const TrainingProgramsPage = () => {
                             bookingUrl={content.bookingUrl}
                             bookingText={content.bookingText}
                         />
-                    </section>
-                )}
-
-                {/* Special Program Offering */}
-                {content.specialPrograms && content.specialPrograms.length > 0 && (
-                    <section>
-                        <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
-                            Special Program Offering
-                        </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-                            {content.specialPrograms.map((program, index) => (
-                                <ProgramCard
-                                    key={index}
-                                    program={program}
-                                    bookingUrl="mailto:info@rallypicktopia.com"
-                                    bookingText="Contact Us"
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
-
-                {/* Meet Our Pros */}
-                {content.coaches && content.coaches.length > 0 && (
-                    <section>
-                        <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
-                            Meet Our Pros
-                        </h2>
-                        <div className={`grid grid-cols-1 gap-6 max-w-6xl mx-auto ${
-                            content.coaches.length <= 2 
-                                ? 'md:grid-cols-2 justify-items-center' 
-                                : 'md:grid-cols-2 lg:grid-cols-3'
-                        }`}>
-                            {content.coaches.map((coach, index) => (
-                                <CoachBiographyCard key={index} coach={coach} />
-                            ))}
-                        </div>
-                    </section>
-                )}
-
-                {/* Student Testimonials */}
-                {content.testimonials && content.testimonials.length > 0 && (
-                    <section>
-                        <h2 className="text-3xl font-bold font-heading text-picktopia-blue-dark text-center mb-8">
-                            What Our Students Say
-                        </h2>
-                        <div className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory max-w-6xl mx-auto">
-                            {content.testimonials.map((testimonial, index) => (
-                                <TestimonialCard key={index} testimonial={testimonial} />
-                            ))}
-                        </div>
                     </section>
                 )}
             </div>

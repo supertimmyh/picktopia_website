@@ -17,11 +17,24 @@ import FreePickleballIntroPage from './pages/academy/FreePickleballIntroPage';
 import PromotionModal from './components/PromotionModal';
 import { loadContent } from './utils/contentLoader';
 import { getAssetPath } from './utils/assetPath';
+import { getPageFromUrl, updateUrl } from './utils/navigation';
 
 export default function App() {
-    const [page, setPage] = useState('home');
+    // Initialize page from URL slug
+    const [page, setPage] = useState(() => getPageFromUrl(window.location.pathname));
     const [promotion, setPromotion] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        // Handle browser back/forward buttons
+        const handlePopState = (event) => {
+            const pageFromUrl = getPageFromUrl(window.location.pathname);
+            setPage(pageFromUrl);
+        };
+
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, []);
 
     useEffect(() => {
       const showPromotion = async () => {
@@ -60,6 +73,7 @@ export default function App() {
 
     const navigateTo = (pageName) => {
         setPage(pageName);
+        updateUrl(pageName);
         window.scrollTo(0, 0);
     };
 

@@ -72,25 +72,27 @@ const LocationCard = ({ location }) => {
                 </div>
 
                 {/* Hours of Operation */}
-                <div className="border border-gray-200 rounded-lg p-4">
-                    <button
-                        onClick={() => setHoursExpanded(!hoursExpanded)}
-                        className="w-full flex items-center justify-between text-left"
-                    >
-                        <span className="font-heading text-lg font-bold text-picktopia-blue-dark">
-                            Hours of Operation
-                        </span>
-                        <span className={`text-picktopia-orange transition-transform duration-200 ${hoursExpanded ? 'rotate-180' : ''}`}>
-                            ▼
-                        </span>
-                    </button>
+                {location.hours && (
+                    <div className="border border-gray-200 rounded-lg p-4">
+                        <button
+                            onClick={() => setHoursExpanded(!hoursExpanded)}
+                            className="w-full flex items-center justify-between text-left"
+                        >
+                            <span className="font-heading text-lg font-bold text-picktopia-blue-dark">
+                                Hours of Operation
+                            </span>
+                            <span className={`text-picktopia-orange transition-transform duration-200 ${hoursExpanded ? 'rotate-180' : ''}`}>
+                                ▼
+                            </span>
+                        </button>
 
-                    {hoursExpanded && (
-                        <div className="mt-4 space-y-1 text-sm border-t border-gray-100 pt-4">
-                            {formatHours(location.hours)}
-                        </div>
-                    )}
-                </div>
+                        {hoursExpanded && (
+                            <div className="mt-4 space-y-1 text-sm border-t border-gray-100 pt-4">
+                                {formatHours(location.hours)}
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 {/* Facility Layout */}
                 {location.layoutImage && (
