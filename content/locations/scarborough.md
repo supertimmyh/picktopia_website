@@ -2,7 +2,7 @@
 title: Picktopia Scarborough
 address: 3595 St Clair Ave E Unit B2, Scarborough, ON M1K 1L8
 phone: (647) 478-9866
-email: scarborough@rallypicktopia.com
+email: info@rallypicktopia.com
 courtCount: 9
 image: /images/scarborough-facility.jpg
 bookingUrl: https://app.courtreserve.com/Online/Portal/Index/16040
@@ -15,7 +15,6 @@ hours:
   saturday: 8:00 AM - 10:00 PM
   sunday: 8:00 AM - 10:00 PM
 amenities:
-  - Pro Shop
   - Lounge Area
   - Equipment Rental
   - Parking Available
