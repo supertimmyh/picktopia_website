@@ -15,7 +15,9 @@ hours:
   saturday: 12:00 AM - 11:59 PM
   sunday: 12:00 AM - 11:59 PM
 amenities:
+  - Camps & Training Academy
   - Pro Shop
+  - Refreshment Bar
   - Lounge Area
   - Equipment Rental
   - Parking Available
