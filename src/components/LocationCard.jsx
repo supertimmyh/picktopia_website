@@ -126,9 +126,16 @@ const LocationCard = ({ location }) => {
 
                 {/* Description */}
                 {location.description && (
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                        {location.description}
-                    </p>
+                    <div 
+                        className="text-gray-600 text-sm leading-relaxed"
+                        dangerouslySetInnerHTML={{ 
+                            __html: location.description
+                                .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-picktopia-blue-dark">$1</strong>')
+                                .replace(/\n\n/g, '</p><p class="mb-4">')
+                                .replace(/^(?!<)/, '<p class="mb-4">')
+                                .replace(/$/, '</p>')
+                        }}
+                    />
                 )}
 
                 {/* Amenities (if available) */}

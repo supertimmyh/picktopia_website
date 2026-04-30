@@ -1,65 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
 import LocationCard from '../components/LocationCard';
-import { loadContent } from '../utils/contentLoader';
-import { getAssetPath } from '../utils/assetPath';
+import { loadLocations } from '../utils/contentLoader';
 
 const LocationsCMSPage = ({ navigateTo }) => {
     const [locations, setLocations] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const loadLocations = async () => {
+        const fetchLocations = async () => {
             try {
-                // Load manifest to get location slugs
-                const manifestResponse = await fetch(getAssetPath('/content/locations/manifest.json'));
-                let locationSlugs = [];
-                
-                if (manifestResponse.ok) {
-                    locationSlugs = await manifestResponse.json();
-                } else {
-                    locationSlugs = ['scarborough', 'richmond-hill']; // fallback
-                }
-
-                // Load each location
-                const locationPromises = locationSlugs.map(async (slug) => {
-                    try {
-                        const content = await loadContent(`/content/locations/${slug}.md`);
-                        if (content) {
-                            return {
-                                id: slug,
-                                name: content.frontmatter.title,
-                                address: content.frontmatter.address,
-                                phone: content.frontmatter.phone,
-                                email: content.frontmatter.email,
-                                courtCount: content.frontmatter.courtCount,
-                                image: content.frontmatter.image,
-                                bookingUrl: content.frontmatter.bookingUrl,
-                                hours: content.frontmatter.hours,
-                                amenities: content.frontmatter.amenities,
-                                layoutImage: content.frontmatter.layoutImage,
-                                description: content.content.trim()
-                            };
-                        }
-                        return null;
-                    } catch (error) {
-                        console.error(`Error loading location ${slug}:`, error);
-                        return null;
-                    }
-                });
-
-                const loadedLocations = await Promise.all(locationPromises);
-                const validLocations = loadedLocations.filter(loc => loc !== null);
-                
-                setLocations(validLocations);
+                const loadedLocations = await loadLocations();
+                setLocations(loadedLocations);
                 setLoading(false);
             } catch (error) {
-                console.error('Error loading locations:', error);
+                console.error('Error in LocationsCMSPage:', error);
                 setLoading(false);
             }
         };
 
-        loadLocations();
+        fetchLocations();
     }, []);
 
     if (loading) {

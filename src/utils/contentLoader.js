@@ -232,7 +232,23 @@ const parseFrontmatter = (fileContent) => {
             }
           }
         } else {
-          frontmatter[key] = parseValue(value);
+          // Check if this is a multi-line value without explicit markers
+          let j = i + 1;
+          let fullValue = value;
+          
+          while (j < lines.length) {
+            const nextLine = lines[j];
+            // If the next line is indented, it's a continuation of the current value
+            if (nextLine.trim() && (nextLine.startsWith('  ') || nextLine.startsWith('\t'))) {
+              fullValue += ' ' + nextLine.trim();
+              j++;
+            } else {
+              break;
+            }
+          }
+          
+          frontmatter[key] = parseValue(fullValue);
+          i = j - 1;
         }
       }
     }
@@ -316,6 +332,53 @@ export const loadCollectionContent = async (collectionName) => {
     return [];
   } catch (error) {
     console.error(`Error loading collection ${collectionName}:`, error);
+    return [];
+  }
+};
+
+// Load Locations
+export const loadLocations = async () => {
+  try {
+    // Load location slugs from manifest file
+    const manifestResponse = await fetch(getAssetPath('/content/locations/manifest.json'));
+    let locationSlugs = [];
+    
+    if (manifestResponse.ok) {
+      locationSlugs = await manifestResponse.json();
+    } else {
+      console.log('Locations manifest not found');
+      return [];
+    }
+    
+    const locations = [];
+    
+    for (const slug of locationSlugs) {
+      try {
+        const content = await loadContent(`/content/locations/${slug}.md`);
+        if (content) {
+          locations.push({
+            id: slug,
+            name: content.frontmatter.title,
+            address: content.frontmatter.address,
+            phone: content.frontmatter.phone,
+            email: content.frontmatter.email,
+            courtCount: content.frontmatter.courtCount,
+            image: content.frontmatter.image,
+            bookingUrl: content.frontmatter.bookingUrl,
+            hours: content.frontmatter.hours,
+            amenities: content.frontmatter.amenities,
+            layoutImage: content.frontmatter.layoutImage,
+            description: content.frontmatter.description || content.content.trim()
+          });
+        }
+      } catch (error) {
+        console.error(`Error loading location ${slug}:`, error);
+      }
+    }
+    
+    return locations;
+  } catch (error) {
+    console.error('Error loading locations:', error);
     return [];
   }
 };
