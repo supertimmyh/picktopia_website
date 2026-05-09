@@ -3,7 +3,7 @@ export const bookingData = {
     title: "Court Booking",
     subtitle: "Booking your spot at Picktopia is easy. Follow these steps to reserve your court and get ready to play.",
     heroImage: "/images/court-booking/court-booking-hero.jpg",
-    bookingUrl: "https://app.courtreserve.com/Online/Portal/CreateAccountAndRequestAccessToOrg/16040",
+    bookingUrl: "https://app.courtreserve.com/online/publicbookings/16040",
     bookingText: "Book Your Spot",
     whatsappUrl: "https://wa.me/16474789866",
     phoneNumber: "6474789866",
