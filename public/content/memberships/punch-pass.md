@@ -1,5 +1,6 @@
 ---
 title: Punch Pass Package
+locationId: scarborough
 price: 85 / 120 + Tax
 duration: 10 sessions per pass
 popular: false

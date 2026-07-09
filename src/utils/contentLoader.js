@@ -359,12 +359,25 @@ export const loadLocations = async () => {
           locations.push({
             id: slug,
             name: content.frontmatter.title,
+            city: content.frontmatter.city,
+            region: content.frontmatter.region,
+            status: content.frontmatter.status || 'Now Open',
             address: content.frontmatter.address,
             phone: content.frontmatter.phone,
             email: content.frontmatter.email,
             courtCount: content.frontmatter.courtCount,
             image: content.frontmatter.image,
-            bookingUrl: content.frontmatter.bookingUrl,
+            courtReserveId: content.frontmatter.courtReserveId,
+            bookingUrl: content.frontmatter.bookingLink || content.frontmatter.bookingUrl,
+            bookingLink: content.frontmatter.bookingLink || content.frontmatter.bookingUrl,
+            hasMemberships: content.frontmatter.hasMemberships,
+            scheduleEmbedUrl: content.frontmatter.scheduleEmbedUrl,
+            scheduleEmbedClass: content.frontmatter.scheduleEmbedClass,
+            scheduleFile: content.frontmatter.scheduleFile,
+            trainingStaff: content.frontmatter.trainingStaff || [],
+            hasLounge: content.frontmatter.hasLounge,
+            hasProShop: content.frontmatter.hasProShop,
+            faqs: content.frontmatter.faqs || [],
             hours: content.frontmatter.hours,
             amenities: content.frontmatter.amenities,
             layoutImage: content.frontmatter.layoutImage,
@@ -381,6 +394,11 @@ export const loadLocations = async () => {
     console.error('Error loading locations:', error);
     return [];
   }
+};
+
+export const loadLocation = async (locationSlug) => {
+  const locations = await loadLocations();
+  return locations.find((location) => location.id === locationSlug) || null;
 };
 
 // Load Locations for navigation

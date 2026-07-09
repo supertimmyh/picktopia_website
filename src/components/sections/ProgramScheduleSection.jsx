@@ -40,6 +40,9 @@ const ProgramScheduleSection = ({ content }) => {
         }
     }, []);
 
+    const iframeClassName = content?.scheduleEmbedClass || 'form-iframe-46866';
+    const iframeSrc = content?.scheduleEmbedUrl || 'https://widgets.courtreserve.com/Online/Public/EmbedCode/16040/46866';
+
     return (
         <ContentTile
             title={content?.title || "Program Schedule"}
@@ -48,8 +51,8 @@ const ProgramScheduleSection = ({ content }) => {
             <div className="w-full mb-6">
                 <iframe 
                     id="form-iframe" 
-                    className="form-iframe-46866" 
-                    src="https://widgets.courtreserve.com/Online/Public/EmbedCode/16040/46866" 
+                    className={iframeClassName}
+                    src={iframeSrc}
                     style={{
                         margin: 0, 
                         width: '100%', 

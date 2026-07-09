@@ -8,16 +8,8 @@ export const homePageData = {
     navLinks: [
         "Home", 
         "About Us", 
-        {
-            title: "Play",
-            subLinks: [
-                "Booking",
-                "Program Schedule", 
-                "Training Programs",
-                "Free Pickleball Intro"
-            ]
-        },
-        "Group Bookings", 
+        "Programs",
+        "Play",
         "Partnerships",
         "Locations",
         "Events"
@@ -26,8 +18,8 @@ export const homePageData = {
         title: "Welcome to the Heart of Pickleball",
         subtitle: "The premier destination for players of all levels in our community.",
         backgroundVideo: "/images/hero/hero-video.mp4",
-        booking: "Book a Court",
-        schedule: "See Programs",
+        booking: "Choose a Location",
+        schedule: "Find Club Programs",
     },
     whatIsPicktopia: {
         title: "What is Picktopia?",
@@ -41,9 +33,9 @@ export const homePageData = {
     faq: {
         title: "What are you waiting for?",
         questions: [
-            { q: "How do I become a member?", a: "You can sign up online through our 'Membership' page or visit us in person. We have several flexible plans to choose from." },
-            { q: "Can I book a court without a membership?", a: "Yes, non-members can book courts up to 7 days in advance. Members enjoy a 14-day booking window and discounted rates." },
-            { q: "Do you offer lessons for beginners?", a: "Absolutely! We have introductory clinics and private lessons available with our certified instructors. Check the 'Play' section for schedules." },
+            { q: "How do I become a member?", a: "Membership options are managed by location. Choose your preferred club from the Locations page to see the right membership and booking options." },
+            { q: "Can I book a court without a membership?", a: "Yes. Booking rules and availability can vary by club, so start from the Locations page and choose the club where you want to play." },
+            { q: "Do you offer lessons for beginners?", a: "Absolutely. Training and intro options are organized by club. Choose a location to view programs available there." },
             { q: "What is your guest policy?", a: "Members are welcome to bring guests. A guest fee applies unless specified otherwise." },
             { q: "Are there leagues or tournaments?", a: "Yes, we run seasonal leagues and regular tournaments for various skill levels. Keep an eye on our announcements and events calendar." },
         ],
@@ -54,7 +46,7 @@ export const homePageData = {
     },
     footer: {
         description: "The premier destination for players of all levels in our community.",
-        quickLinks: ["About Us", "Locations", "Group Bookings", "Partnerships", "Policies"],
+        quickLinks: ["About Us", "Locations", "Programs", "Play", "Partnerships"],
         contact: {
             address: "3595 St Clair Ave E Unit B2, Scarborough, ON M1K 1L8",
             email: "info@rallypicktopia.com",

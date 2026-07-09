@@ -9,6 +9,9 @@ const Footer = ({ onNavClick }) => {
         const linkMap = {
             'About Us': 'about-us',
             'Locations': 'locations',
+            'Programs': 'programs',
+            'Play': 'play',
+            'Events': 'events',
             'Group Bookings': 'group-bookings',
             'Partnerships': 'partnerships',
             'Policies': null // Will remain as href="#" since page doesn't exist yet

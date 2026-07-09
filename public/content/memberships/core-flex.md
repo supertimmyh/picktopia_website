@@ -1,5 +1,6 @@
 ---
 title: Core Flex
+locationId: scarborough
 price: 139/month + Tax
 originalPrice: ""
 duration: Monthly

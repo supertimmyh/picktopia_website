@@ -4,7 +4,9 @@
 
 const ROUTE_MAP = {
     'home': '/',
-    'join': '/join',
+    'featured-programs': '/programs',
+    'programs': '/programs',
+    'play': '/play',
     'academy-training-programs': '/academy/training-programs',
     'academy-free-pickleball-intro': '/academy/free-pickleball-intro',
     'play-booking': '/play/booking',
@@ -18,8 +20,45 @@ const ROUTE_MAP = {
     'about-us': '/about/about-us',
     'group-bookings': '/play/group-bookings',
     'partnerships': '/about/partnerships',
-    'membership': '/join',
     'locations': '/clubs',
+};
+
+const LOCATION_ROUTE_SECTIONS = ['booking', 'schedule', 'training', 'membership'];
+export const DEFAULT_LOCATION_ID = 'scarborough';
+
+export const getLocationPageName = (locationId = DEFAULT_LOCATION_ID, section = null) => {
+    return section ? `clubs-${locationId}-${section}` : `clubs-${locationId}`;
+};
+
+export const parseLocationPage = (pageName) => {
+    if (!pageName || !pageName.startsWith('clubs-')) {
+        return null;
+    }
+
+    const clubPath = pageName.replace('clubs-', '');
+    const section = LOCATION_ROUTE_SECTIONS.find((routeSection) => clubPath.endsWith(`-${routeSection}`));
+
+    if (!section) {
+        return {
+            locationId: clubPath || DEFAULT_LOCATION_ID,
+            section: null
+        };
+    }
+
+    return {
+        locationId: clubPath.replace(new RegExp(`-${section}$`), '') || DEFAULT_LOCATION_ID,
+        section
+    };
+};
+
+export const getLocationFromPage = (pageName) => {
+    const parsedLocation = parseLocationPage(pageName);
+
+    if (parsedLocation?.locationId) {
+        return parsedLocation.locationId;
+    }
+
+    return null;
 };
 
 /**
@@ -28,10 +67,24 @@ const ROUTE_MAP = {
  * @returns {string} The URL path (e.g., '/academy/training-programs')
  */
 export const getUrlFromPage = (pageName) => {
+    if (pageName === 'join' || pageName === 'membership') {
+        return '/clubs';
+    }
+
+    if (pageName === 'academy' || pageName === 'academy-training-programs' || pageName === 'play-training-programs') {
+        return '/programs';
+    }
+
     // Handle dynamic event routes
     if (pageName.startsWith('events-')) {
         const slug = pageName.replace('events-', '');
         return `/events/${slug}`;
+    }
+
+    const locationRoute = parseLocationPage(pageName);
+    if (locationRoute) {
+        const suffix = locationRoute.section ? `/${locationRoute.section}` : '';
+        return `/clubs/${locationRoute.locationId}${suffix}`;
     }
 
     return ROUTE_MAP[pageName] || '/';
@@ -53,6 +106,28 @@ export const getPageFromUrl = (path) => {
     if (normalizedPath.startsWith('/events/')) {
         const slug = normalizedPath.replace('/events/', '');
         return slug ? `events-${slug}` : 'events';
+    }
+
+    if (normalizedPath.startsWith('/clubs/')) {
+        const [, , locationId, section] = normalizedPath.split('/');
+
+        if (LOCATION_ROUTE_SECTIONS.includes(section)) {
+            return getLocationPageName(locationId || DEFAULT_LOCATION_ID, section);
+        }
+
+        return getLocationPageName(locationId || DEFAULT_LOCATION_ID);
+    }
+
+    if (normalizedPath === '/join') {
+        return 'clubs';
+    }
+
+    if (normalizedPath === '/academy' || normalizedPath === '/academy/training-programs') {
+        return 'featured-programs';
+    }
+
+    if (normalizedPath === '/featured-programs') {
+        return 'featured-programs';
     }
 
     // Exact match search

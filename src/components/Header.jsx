@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { CMS_DATA } from '../data/data';
-import { SearchIcon, UserIcon, CartIcon, MenuIcon, CloseIcon } from './Icons';
+import { UserIcon, MenuIcon, CloseIcon } from './Icons';
+import { CalendarDays } from 'lucide-react';
 import AnnouncementBar from './AnnouncementBar';
-import { loadEventsForNav } from '../utils/contentLoader';
+import { loadEventsForNav, loadLocationsForNav } from '../utils/contentLoader';
+import { DEFAULT_LOCATION_ID, getLocationPageName, parseLocationPage } from '../utils/navigation';
 import logoSvg from '../assets/logo_simplified.svg';
 
-const Header = ({ onNavClick, currentPage }) => {
+const Header = ({ onNavClick, currentPage, currentLocation }) => {
     const { navLinks } = CMS_DATA;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null);
@@ -14,8 +16,11 @@ const Header = ({ onNavClick, currentPage }) => {
     // Load dynamic navigation data
     useEffect(() => {
         const loadDynamicNav = async () => {
-            const events = await loadEventsForNav();
-            setDynamicNavData({ events });
+            const [events, locations] = await Promise.all([
+              loadEventsForNav(),
+              loadLocationsForNav()
+            ]);
+            setDynamicNavData({ events, locations });
         };
         loadDynamicNav();
     }, []);
@@ -23,6 +28,32 @@ const Header = ({ onNavClick, currentPage }) => {
     // Use consistent styling for all pages
     const navbarBg = 'bg-white/90';
     const textColor = 'text-picktopia-blue-dark';
+    const activeLocation = currentLocation || DEFAULT_LOCATION_ID;
+
+    const getCurrentLocationSection = () => {
+      const parsedLocation = parseLocationPage(currentPage);
+      if (parsedLocation?.section) return parsedLocation.section;
+      if (currentPage === 'play-booking') return 'booking';
+      if (currentPage === 'play-program-schedule') return 'schedule';
+      if (currentPage === 'academy-training-programs') return 'training';
+      return null;
+    };
+
+    const getStaticDropdownPageName = (sectionTitle, subLink) => {
+      const prefix = sectionTitle.toLowerCase();
+      const slug = subLink.replace(/\s+/g, '-').toLowerCase();
+
+      return `${prefix}-${slug}`;
+    };
+
+    const handlePrimaryCta = () => {
+      if (currentLocation) {
+        onNavClick(getLocationPageName(activeLocation, 'booking'));
+        return;
+      }
+
+      onNavClick('clubs');
+    };
 
     const NavMenu = ({ isMobile = false }) => (
       <nav className={`${isMobile ? 'flex flex-col space-y-4 text-2xl items-center text-white' : `hidden md:flex items-center space-x-6 lg:space-x-8 ${textColor}`}`}>
@@ -138,8 +169,7 @@ const Header = ({ onNavClick, currentPage }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          const prefix = link.title.toLowerCase();
-                          const pageName = `${prefix}-${subLink.replace(/\s+/g, '-').toLowerCase()}`;
+                          const pageName = getStaticDropdownPageName(link.title, subLink);
                           onNavClick(pageName);
                           setOpenDropdown(null);
                           if (isMobile) setIsMobileMenuOpen(false);
@@ -191,6 +221,29 @@ const Header = ({ onNavClick, currentPage }) => {
                 <NavMenu />
 
                 <div className={`flex items-center space-x-4 ${textColor}`}>
+                    <button
+                        onClick={handlePrimaryCta}
+                        className="hidden sm:inline-flex items-center gap-2 bg-picktopia-orange text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-orange-600 transition-colors"
+                    >
+                        <CalendarDays className="w-4 h-4" />
+                        <span>{currentLocation ? 'Book a Court' : 'Choose Location'}</span>
+                    </button>
+                    {currentLocation && dynamicNavData.locations?.length > 0 && (
+                        <label className="hidden sm:flex items-center gap-2 text-sm font-semibold">
+                            <span>Club</span>
+                            <select
+                                value={activeLocation}
+                                onChange={(event) => onNavClick(getLocationPageName(event.target.value, getCurrentLocationSection()))}
+                                className="bg-white border border-gray-200 rounded-lg px-2 py-1 text-picktopia-blue-dark focus:outline-none focus:ring-2 focus:ring-picktopia-orange"
+                            >
+                                {dynamicNavData.locations.map((location) => (
+                                    <option key={location.slug} value={location.slug}>
+                                        {location.title.replace(/^Picktopia\s+/i, '')}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    )}
                     <a href="https://app.courtreserve.com/Online/Account/LogIn/16040" target="_blank" rel="noopener noreferrer" className="hover:text-picktopia-orange"><UserIcon /></a>
                     <button className="md:hidden hover:text-picktopia-orange" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         {isMobileMenuOpen ? <CloseIcon/> : <MenuIcon />}

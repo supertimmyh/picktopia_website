@@ -1,9 +1,9 @@
 // Footer data - centralized footer content for all pages
 export const FOOTER_DATA = {
-    description: "The premier destination for players of all levels in our community.",
-    quickLinks: ["About Us", "Locations", "Group Bookings", "Partnerships", "Policies"],
+    description: "Picktopia clubs serve players across multiple locations. Choose a club for booking, programs, training, and membership details.",
+    quickLinks: ["Locations", "Programs", "Play", "Events", "About Us", "Partnerships"],
     contact: {
-        address: "3595 St Clair Ave E Unit B2, Scarborough, ON M1K 1L8",
+        address: "Choose a location for club-specific address and hours.",
         email: "info@rallypicktopia.com",
         phone: "(647) 478-9866"
     }

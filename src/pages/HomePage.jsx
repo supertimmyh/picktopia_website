@@ -23,13 +23,13 @@ const HomePage = ({ navigateTo }) => {
       >
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => window.open('https://app.courtreserve.com/online/publicbookings/16040', '_blank')}
+            onClick={() => navigateTo('clubs')}
             className="bg-picktopia-orange text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-white hover:text-picktopia-orange transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             {booking}
           </button>
           <button
-            onClick={() => navigateTo('play-program-schedule')}
+            onClick={() => navigateTo('clubs')}
             className="bg-picktopia-blue-dark text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-white hover:text-picktopia-blue-dark transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             {schedule}

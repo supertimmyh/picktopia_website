@@ -7,22 +7,8 @@ export const CMS_DATA = {
     ],
     navLinks: [
         "Home",
-        "Join",
-        {
-            title: "Academy",
-            subLinks: [
-                "Training Programs",
-                "Free Pickleball Intro"
-            ]
-        },
-        {
-            title: "Play",
-            subLinks: [
-                "Booking",
-                "Program Schedule",
-                "Group Bookings"
-            ]
-        },
+        "Programs",
+        "Play",
         "Events",
         "Clubs",
         {

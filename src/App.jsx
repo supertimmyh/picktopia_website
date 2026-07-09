@@ -3,21 +3,22 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutUsPage from './pages/about/AboutUsPage';
-import GroupBookingsPage from './pages/GroupBookingsPage';
 import PartnershipsPage from './pages/about/PartnershipsPage';
 import CMSPage from './pages/CMSPage';
 import EventCMSPage from './pages/EventCMSPage';
 import EventsPage from './pages/EventsPage';
 import LocationsCMSPage from './pages/LocationsCMSPage';
 import MembershipPage from './pages/MembershipPage';
+import FeaturedProgramsPage from './pages/FeaturedProgramsPage';
+import PlayPage from './pages/PlayPage';
 import BookingPage from './pages/play/BookingPage';
 import ProgramSchedulePage from './pages/play/ProgramSchedulePage';
 import TrainingProgramsPage from './pages/academy/TrainingProgramsPage';
-import FreePickleballIntroPage from './pages/academy/FreePickleballIntroPage';
+import LocationDetailPage from './pages/LocationDetailPage';
 import PromotionModal from './components/PromotionModal';
 import { loadContent } from './utils/contentLoader';
 import { getAssetPath } from './utils/assetPath';
-import { getPageFromUrl, updateUrl } from './utils/navigation';
+import { getLocationFromPage, getPageFromUrl, parseLocationPage, updateUrl } from './utils/navigation';
 
 export default function App() {
     // Initialize page from URL slug
@@ -83,22 +84,43 @@ export default function App() {
             const eventSlug = page.replace('events-', '');
             return <EventCMSPage eventSlug={eventSlug} />;
         }
+
+        const locationRoute = parseLocationPage(page);
+        if (locationRoute) {
+            switch (locationRoute.section) {
+                case 'booking':
+                    return <BookingPage locationId={locationRoute.locationId} navigateTo={navigateTo} />;
+                case 'schedule':
+                    return <ProgramSchedulePage locationId={locationRoute.locationId} navigateTo={navigateTo} />;
+                case 'training':
+                    return <TrainingProgramsPage locationId={locationRoute.locationId} navigateTo={navigateTo} />;
+                case 'membership':
+                    return <MembershipPage locationId={locationRoute.locationId} navigateTo={navigateTo} />;
+                default:
+                    return <LocationDetailPage locationId={locationRoute.locationId} navigateTo={navigateTo} />;
+            }
+        }
         
         switch (page) {
             case 'home':
                 return <HomePage navigateTo={navigateTo} />;
+            case 'featured-programs':
+            case 'programs':
+                return <FeaturedProgramsPage navigateTo={navigateTo} />;
+            case 'play':
+                return <PlayPage navigateTo={navigateTo} />;
             case 'join':
-                return <MembershipPage />;
+                return <LocationsCMSPage navigateTo={navigateTo} />;
             case 'academy-training-programs':
-                return <TrainingProgramsPage />;
+                return <FeaturedProgramsPage navigateTo={navigateTo} />;
             case 'academy-free-pickleball-intro':
-                return <FreePickleballIntroPage />;
+                return <FeaturedProgramsPage navigateTo={navigateTo} />;
             case 'play-booking':
-                return <BookingPage />;
+                return <PlayPage navigateTo={navigateTo} />;
             case 'play-program-schedule':
-                return <ProgramSchedulePage />;
+                return <LocationsCMSPage navigateTo={navigateTo} />;
             case 'play-group-bookings':
-                return <GroupBookingsPage />;
+                return <PlayPage navigateTo={navigateTo} />;
             case 'events':
                 return <EventsPage navigateTo={navigateTo} />;
             case 'clubs':
@@ -111,17 +133,17 @@ export default function App() {
             case 'about-us':
                 return <AboutUsPage />;
             case 'group-bookings':
-                return <GroupBookingsPage />;
+                return <PlayPage navigateTo={navigateTo} />;
             case 'partnerships':
                 return <PartnershipsPage />;
             case 'membership':
-                return <MembershipPage />;
+                return <LocationsCMSPage navigateTo={navigateTo} />;
             case 'locations':
                 return <LocationsCMSPage navigateTo={navigateTo} />;
             case 'play-training-programs':
-                return <TrainingProgramsPage />;
+                return <FeaturedProgramsPage navigateTo={navigateTo} />;
             case 'play-free-pickleball-intro':
-                return <FreePickleballIntroPage />;
+                return <FeaturedProgramsPage navigateTo={navigateTo} />;
             
             default:
                 return <HomePage />;
@@ -131,7 +153,7 @@ export default function App() {
     return (
         <div className="font-sans bg-gray-100 min-h-screen">
             {isModalOpen && <PromotionModal content={promotion} onClose={handleCloseModal} />}
-            <Header onNavClick={navigateTo} currentPage={page} />
+            <Header onNavClick={navigateTo} currentPage={page} currentLocation={getLocationFromPage(page)} />
             <main>
                 {renderPage()}
             </main>
