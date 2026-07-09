@@ -31,12 +31,32 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Name", name: "title", widget: "string" }
+      - { label: "City", name: "city", widget: "string", required: false, hint: "Used for location filters, e.g. Scarborough, Richmond Hill, Markham" }
+      - { label: "Region", name: "region", widget: "string", required: false, hint: "Optional broader area, e.g. GTA" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["Now Open", "Coming Soon", "Under Development"]
+        default: "Now Open"
       - { label: "Address", name: "address", widget: "text" }
       - { label: "Phone", name: "phone", widget: "string" }
       - { label: "Email", name: "email", widget: "string" }
       - { label: "Court Count", name: "courtCount", widget: "number", default: 8 }
       - { label: "Image", name: "image", widget: "image" }
+      - { label: "CourtReserve Club ID", name: "courtReserveId", widget: "string", required: false, hint: "CourtReserve organization or club ID for integrations" }
       - { label: "Booking URL", name: "bookingUrl", widget: "string" }
+      - { label: "Booking Link Override", name: "bookingLink", widget: "string", required: false, hint: "Optional location-specific booking URL. Falls back to Booking URL." }
+      - { label: "Has Memberships Page", name: "hasMemberships", widget: "boolean", default: false, hint: "Show a membership CTA that routes to this location's membership plans." }
+      - { label: "Schedule Embed URL", name: "scheduleEmbedUrl", widget: "string", required: false, hint: "Optional CourtReserve schedule iframe URL for this location" }
+      - { label: "Schedule Embed CSS Class", name: "scheduleEmbedClass", widget: "string", required: false, hint: "Optional CourtReserve iframe class, e.g. form-iframe-46866" }
+      - { label: "Schedule File", name: "scheduleFile", widget: "string", required: false, hint: "Optional path to a location-specific schedule content file" }
+      - { label: "Has Lounge", name: "hasLounge", widget: "boolean", default: true }
+      - { label: "Has Pro Shop", name: "hasProShop", widget: "boolean", default: true }
+      - label: "Training Staff"
+        name: "trainingStaff"
+        widget: "list"
+        required: false
+        field: { label: "Coach Name", name: "coach", widget: "string" }
       - label: "Hours"
         name: "hours"
         widget: "object"
@@ -55,6 +75,13 @@ collections:
         default: ["Pro Shop", "Lounge Area", "Equipment Rental", "Parking Available"]
       - { label: "Description", name: "description", widget: "markdown" }
       - { label: "Facility Layout Image", name: "layoutImage", widget: "image", required: false, hint: "Upload an image showing the facility layout or court diagram" }
+      - label: "Location FAQs"
+        name: "faqs"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Question", name: "question", widget: "string" }
+          - { label: "Answer", name: "answer", widget: "text" }
 
   # Events Collection
   - name: "events"
@@ -99,6 +126,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Membership Title", name: "title", widget: "string" }
+      - { label: "Location ID", name: "locationId", widget: "string", default: "scarborough", hint: "Must match the location slug, e.g. scarborough or picktopia-richmond-hill" }
       - { label: "Price", name: "price", widget: "string", hint: "e.g., $99/month or $999/year" }
       - { label: "Original Price", name: "originalPrice", widget: "string", required: false, hint: "For promotional pricing - original price that will be crossed out" }
       - { label: "Duration", name: "duration", widget: "string", hint: "e.g., Monthly, Annual, Lifetime" }

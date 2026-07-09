@@ -1,5 +1,6 @@
 ---
 title: Daytime
+locationId: scarborough
 price: 69/month + Tax
 duration: 12-month commitment
 popular: false

@@ -1,5 +1,6 @@
 ---
 title: Full Access
+locationId: scarborough
 price: 125/month + Tax
 originalPrice: $139/month + Tax
 duration: 12-month commitment

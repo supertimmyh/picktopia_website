@@ -1,5 +1,6 @@
 ---
 title: Core Access
+locationId: scarborough
 price: 95/month + Tax
 originalPrice: $99/month + Tax
 duration: 12-month commitment

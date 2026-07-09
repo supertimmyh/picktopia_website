@@ -1,5 +1,6 @@
 ---
 title: Community
+locationId: scarborough
 price: Free
 duration: Lifetime
 popular: false
