@@ -8,11 +8,11 @@ popular: false
 features:
   - No charge on your share of court reservations fees 💲
   - Free open play during all operating hours 💲
-  - Enjoy 14-day advanced court booking privileges! 🗓️
+  - 14-day advanced court booking privileges! 🗓️
   - Up to 30 days advance program reservations 🥇
   - Up to 2 hour play session per day and 4 consecutive bookings at a time. 🎫
-  - Member discounts on leagues, clinics, tournaments, and club events
-  - Membership exclusive discount on merchandise! 👕
+  - Member discounts on leagues, clinics, tournaments, and club events. 👕
+  - Membership exclusive discount on merchandise! 🏷️
 description: Play more, book earlier, and enjoy the most complete Picktopia
   experience. Full-Access is built for players who want the freedom to book
   courts and join open play during any operating hours, plus early access and
