@@ -10,8 +10,10 @@ courtCount: 8
 image: /images/uploads/picktopia-rh-rendering.jpg
 bookingUrl: https://www.rallypicktopia.com/clubs
 bookingLink: https://www.rallypicktopia.com/clubs
+hasMemberships: true
 hasLounge: true
 hasProShop: true
+trainingStaff: []
 hours:
   monday: 12:00 AM - 11:59 PM
   tuesday: 12:00 AM - 11:59 PM
@@ -35,7 +37,9 @@ description: Our brand new Richmond Hill location is currently under
 layoutImage: /images/uploads/picktopia-rh-layout.jpeg
 faqs:
   - question: Is Picktopia Richmond Hill open for bookings?
-    answer: Richmond Hill is currently under development. Booking links will be updated as launch details are confirmed.
+    answer: Richmond Hill is currently under development. Booking links will be
+      updated as launch details are confirmed.
   - question: What will the Richmond Hill facility include?
-    answer: The facility is planned to include cushioned indoor pickleball courts, a panoramic padel court, and a premium lounge.
+    answer: The facility is planned to include cushioned indoor pickleball courts, a
+      panoramic padel court, and a premium lounge.
 ---
