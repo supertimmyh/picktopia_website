@@ -7,8 +7,10 @@ duration: 12-month commitment
 popular: true
 spotsFillingFast: false
 features:
-  - No charge on your share of off-peak hours court reservations fees 💲
-  - Free open play during off-peak hours 💲
+  - No charge on your share of court reservations fees and open play during
+    off-peak hours💲
+  - 50% off on your share of court reservations fees and open play during peak
+    hours 💲
   - 14-day advanced court booking privileges! 🗓️
   - Up to 30 days advance program reservations 🥇
   - Up to 2 hour play session per day and 4 consecutive bookings at a time
