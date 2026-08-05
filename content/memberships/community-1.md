@@ -4,6 +4,7 @@ locationId: picktopia-richmond-hill
 price: Free
 duration: Lifetime
 popular: false
+spotsFillingFast: false
 features:
   - 7 Day Advanced Court Booking Privileges! 🗓️
   - Automatic notification of programming announcements! 📣

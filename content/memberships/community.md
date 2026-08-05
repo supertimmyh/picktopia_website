@@ -4,6 +4,7 @@ locationId: scarborough
 price: Free
 duration: Lifetime
 popular: false
+spotsFillingFast: false
 features:
   - 5 Day Advanced Court Booking Privileges! 🗓️
   - Automatic notification of programming announcements! 📣

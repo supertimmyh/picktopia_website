@@ -4,6 +4,7 @@ locationId: scarborough
 price: 69/month + Tax
 duration: 12-month commitment
 popular: false
+spotsFillingFast: false
 features:
   - FREE open play sessions during Monday-Friday off-peak hours, with no extra
     charges! One session per day. ⏰

@@ -4,6 +4,7 @@ locationId: scarborough
 price: 85 / 120 + Tax
 duration: 10 sessions per pass
 popular: false
+spotsFillingFast: false
 features:
   - OFF-PEAK PUNCH CARD $85 + HST - Flexible access during designated daytime
     sessions ☀️
