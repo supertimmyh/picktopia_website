@@ -4,7 +4,9 @@ import ContentTile from '../components/ContentTile';
 import MembershipCard from '../components/MembershipCard';
 import { loadContent, loadLocation } from '../utils/contentLoader';
 import { getAssetPath } from '../utils/assetPath';
+import { getMembershipSignupPageName } from '../utils/navigation';
 import { updateSeo } from '../utils/seo';
+import { getMembershipDeposit, RH_MEMBERSHIP_SIGNUP_LOCATION_ID } from '../config/membershipSignup';
 
 const MembershipPage = ({ locationId, navigateTo }) => {
     const [memberships, setMemberships] = useState([]);
@@ -134,6 +136,8 @@ const MembershipPage = ({ locationId, navigateTo }) => {
                             {memberships.map((membership, index) => {
                                 // Assign color scheme - popular gets special treatment, others cycle through schemes
                                 const colorScheme = membership.popular ? 'popular' : colorSchemes[index % colorSchemes.length];
+                                // Temporary RH deposit flow. Replace this with CourtReserve links when Richmond Hill is set up in CourtReserve.
+                                const useTemporarySignup = locationId === RH_MEMBERSHIP_SIGNUP_LOCATION_ID && getMembershipDeposit(membership.title);
 
                                 return (
                                     <MembershipCard
@@ -141,6 +145,7 @@ const MembershipPage = ({ locationId, navigateTo }) => {
                                         membership={membership}
                                         colorScheme={colorScheme}
                                         isPopular={membership.popular}
+                                        onSignup={useTemporarySignup ? () => navigateTo(getMembershipSignupPageName(locationId, membership.slug)) : null}
                                     />
                                 );
                             })}

@@ -9,6 +9,7 @@ import EventCMSPage from './pages/EventCMSPage';
 import EventsPage from './pages/EventsPage';
 import LocationsCMSPage from './pages/LocationsCMSPage';
 import MembershipPage from './pages/MembershipPage';
+import MembershipSignupPage from './pages/MembershipSignupPage';
 import FeaturedProgramsPage from './pages/FeaturedProgramsPage';
 import PlayPage from './pages/PlayPage';
 import BookingPage from './pages/play/BookingPage';
@@ -18,7 +19,7 @@ import LocationDetailPage from './pages/LocationDetailPage';
 import PromotionModal from './components/PromotionModal';
 import { loadContent } from './utils/contentLoader';
 import { getAssetPath } from './utils/assetPath';
-import { getLocationFromPage, getPageFromUrl, parseLocationPage, updateUrl } from './utils/navigation';
+import { getLocationFromPage, getPageFromUrl, parseLocationPage, parseMembershipSignupPage, updateUrl } from './utils/navigation';
 
 export default function App() {
     // Initialize page from URL slug
@@ -83,6 +84,17 @@ export default function App() {
         if (page.startsWith('events-')) {
             const eventSlug = page.replace('events-', '');
             return <EventCMSPage eventSlug={eventSlug} />;
+        }
+
+        const membershipSignupRoute = parseMembershipSignupPage(page);
+        if (membershipSignupRoute) {
+            return (
+                <MembershipSignupPage
+                    locationId={membershipSignupRoute.locationId}
+                    membershipSlug={membershipSignupRoute.membershipSlug}
+                    navigateTo={navigateTo}
+                />
+            );
         }
 
         const locationRoute = parseLocationPage(page);

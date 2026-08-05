@@ -131,6 +131,7 @@ collections:
       - { label: "Original Price", name: "originalPrice", widget: "string", required: false, hint: "For promotional pricing - original price that will be crossed out" }
       - { label: "Duration", name: "duration", widget: "string", hint: "e.g., Monthly, Annual, Lifetime" }
       - { label: "Popular", name: "popular", widget: "boolean", default: false, hint: "Mark as most popular option" }
+      - { label: "Spots Filling Fast", name: "spotsFillingFast", widget: "boolean", default: false, hint: "Show an urgency indicator on this membership card" }
       - label: "Features"
         name: "features"
         widget: "list"

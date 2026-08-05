@@ -3,7 +3,8 @@ import React from 'react';
 const MembershipCard = ({
     membership,
     colorScheme = 'blue',
-    isPopular = false
+    isPopular = false,
+    onSignup = null
 }) => {
     // Color scheme definitions - lighter version of the popular card's blue/orange palette
     const colorSchemes = {
@@ -107,6 +108,11 @@ const MembershipCard = ({
                     <p className={`${colors.text} text-sm opacity-80`}>
                         {membership.duration}
                     </p>
+                    {membership.spotsFillingFast && (
+                        <div className="mt-4 inline-flex items-center justify-center rounded-full bg-picktopia-orange px-4 py-1.5 text-xs font-black uppercase tracking-wide text-white shadow-md">
+                            Spots Filling Fast
+                        </div>
+                    )}
                 </div>
 
                 {/* Price */}
@@ -174,7 +180,19 @@ const MembershipCard = ({
 
                 {/* Sign Up Button */}
                 <div className="mt-auto">
-                    {membership.signupLink ? (
+                    {onSignup ? (
+                        <button
+                            type="button"
+                            onClick={() => onSignup(membership)}
+                            className={`
+                                block w-full text-center py-3 px-6 rounded-full
+                                font-bold text-sm uppercase tracking-wide
+                                transition-colors duration-300 ${colors.button}
+                            `}
+                        >
+                            Sign Up Now
+                        </button>
+                    ) : membership.signupLink ? (
                         <a
                             href={membership.signupLink}
                             target="_blank"

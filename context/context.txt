@@ -1,77 +1,54 @@
+# Picktopia Richmond Hill Memberships
 
-# Implementation Plan: Tournaments Page
+Picktopia Richmond Hill offers three membership options for players who want priority booking, preferred access, and better value on court time, open play, leagues, clinics, and club programming.
 
-This document outlines the steps to create a new "Tournaments" page to display prize pool information, managed via the CMS.
+All memberships require a 12-month term commitment. A first-month deposit plus HST is collected at registration. Launch pricing applies for the initial 12-month term.
 
-## 1. CMS Configuration
+Full-Access Membership
+$139.99/month launch rate
+Regular rate: $169.99/month
 
-**File:** `public/admin/config.yml`
+Best for dedicated players who want access across peak and off-peak hours.
 
-**Action:** Add a new collection for "Tournaments".
+Includes:
 
-**Details:**
-The new collection will have the following fields:
-- `name`: "tournaments"
-- `label`: "Tournaments"
-- `folder`: "public/content/tournaments"
-- `create`: true
-- `slug`: "{{slug}}"
-- `fields`:
-  - `title`: Tournament Name (String)
-  - `enabled`: Publication status (Boolean)
-  - `tournament_date`: Date of the tournament (Datetime)
-  - `prize_pool`: Total prize pool for the tournament (Number)
-  - `annual_pool_contribution`: Amount contributed to the annual prize pool (Number)
-  - `admin_fee`: Administrative fee portion (Number)
-  - `description`: Detailed information about the tournament (Markdown)
-  - `image`: A promotional image for the tournament (Image)
+- Peak and off-peak court access
+- 14-day advance booking window
+- Member discounts on tournaments, leagues, clinics, and programs
+- Up to 4 consecutive bookings at a time
+- First-month deposit: $139.99 + HST
 
-## 2. Create Placeholder Content
+Core-Access Membership
+$99.99/month launch rate
+Regular rate: $119.99/month
 
-**Action:** Create an initial markdown file for a sample tournament to facilitate development.
+Best for regular players looking for strong value, especially during non-peak hours.
 
-**Steps:**
-1. Create a new directory: `public/content/tournaments/`
-2. Create a new file: `public/content/tournaments/inaugural-cash-tournament.md`
-3. Populate the file with placeholder content matching the fields defined in `config.yml`.
+Includes:
 
-## 3. Automation and Manifest Generation
+- Free non-peak hours
+- 50% off peak court fees and program fees
+- 14-day advance booking window
+- Member privilege access to club programs and events
+- First-month deposit: $99.99 + HST
 
-**File:** `.github/workflows/update-manifests.yml`
-**Action:** Add the new tournaments collection to the GitHub Action workflow to enable automatic manifest generation.
-**Change:** Add `'public/content/tournaments/**'` to the `paths` list.
+General-Access Annual
+$499.99/year launch rate
+Regular rate: $699.99/year
 
-**File:** `scripts/generate-manifests.js`
-**Action:** Add logic to generate a `manifest.json` file for the `tournaments` collection.
-**Change:** Replicate the logic used for existing collections (like events or locations) for the new `tournaments` directory.
+Best for players who want basic member privileges without a monthly membership.
 
-## 4. Frontend Development
+Includes:
 
-**File (New):** `src/pages/TournamentsPage.jsx`
-**Action:** Create a new React component to serve as the main page for tournaments.
-**Logic:**
-- Fetch the list of tournament slugs from `/content/tournaments/manifest.json`.
-- Loop through the slugs and load the content for each tournament using the `loadContent` utility.
-- Store the tournament data in the component's state.
-- Render a list of `TournamentCard` components.
+- 50% off court fees and program fees
+- 14-day advance booking window
+- Member privilege access to leagues and events
+- Annual membership term
+- Initial deposit + HST collected at registration
 
-**File (New):** `src/components/TournamentCard.jsx`
-**Action:** Create a reusable component to display the details of a single tournament.
-**Props:** This component will accept tournament data (title, prize pool, dates, etc.) as props.
-**Content:** It will display the tournament information in a structured and visually appealing format, including the prize pool breakdown.
+Current Non-Member Fees
 
-## 5. Navigation and Routing
-
-**File:** `src/App.jsx`
-**Action:** Add a new route to handle the "Tournaments" page.
-**Change:** In the main switch statement for page rendering, add a new `case` for 'tournaments' that renders the `TournamentsPage` component.
-
-**File:** `src/data/data.js`
-**Action:** Add a navigation link to the new page.
-**Change:** Add a new object to the `navLinks` array. Example: `{ name: 'Tournaments', path: 'tournaments' }`.
-
-## 6. Asset Management
-
-**Action:** Create a dedicated folder for tournament-related images.
-**Path:** `public/images/tournaments/`
-**Usage:** When adding tournament images through the CMS, they should be saved to this directory to maintain project structure.
+- Court booking: $55 + HST
+- Open play: $22 + HST per player
+- Taxes apply at checkout
+- Spaces are subject to availability

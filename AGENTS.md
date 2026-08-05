@@ -19,6 +19,11 @@ npm run build                   # Production build
 npm run deploy                  # Deploy to GitHub Pages
 ```
 
+## Future Task Memory
+
+- Before starting project work, check `context/future-tasks.md` for deferred work and migration notes.
+- When a deferred task is completed, update `context/future-tasks.md` so future agents do not treat it as pending.
+
 ## Architecture Overview
 
 ### Hybrid Content System

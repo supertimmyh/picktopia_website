@@ -5,6 +5,7 @@ price: 99.99/month + Tax
 originalPrice: $119.99/month + Tax
 duration: 12-month commitment
 popular: true
+spotsFillingFast: false
 features:
   - No charge on your share of off-peak hours court reservations fees 💲
   - Free open play during off-peak hours 💲

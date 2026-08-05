@@ -5,6 +5,7 @@ price: 139/month + Tax
 originalPrice: ""
 duration: Monthly
 popular: false
+spotsFillingFast: false
 features:
   - Month-by-Month Membership. Great way to try our programs before a long term
     commitment. 📝

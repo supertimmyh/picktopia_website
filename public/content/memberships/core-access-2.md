@@ -5,6 +5,7 @@ price: 499.99/annual + Tax
 originalPrice: $699.99/annual + Tax
 duration: 12-month commitment
 popular: false
+spotsFillingFast: false
 features:
   - 50% off on your share of court reservations fees anytime 💲
   - Up to 50% off any programs 💲

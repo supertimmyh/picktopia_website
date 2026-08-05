@@ -3,7 +3,8 @@ export const FORMSPREE_IDS = {
   groupBooking: 'xdkwnzwo',
   partnership: 'mldprnpj',
   getNotified: 'myzngjnw',
-  newsletter: 'xblzryzb'
+  newsletter: 'xblzryzb',
+  membershipSignup: 'mljrrzbv'
 };
 
 export const getFormspreeUrl = (formType) => {

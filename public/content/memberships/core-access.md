@@ -5,6 +5,7 @@ price: 95/month + Tax
 originalPrice: $99/month + Tax
 duration: 12-month commitment
 popular: true
+spotsFillingFast: false
 features:
   - 50% Off Your Share of Court Reservation Fees 💲
   - " Enjoy 14-day advanced court booking privileges! 🗓️"
