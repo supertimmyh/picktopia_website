@@ -7,12 +7,14 @@ duration: 12-month commitment
 popular: false
 spotsFillingFast: false
 features:
-  - 50% off on your share of court reservations fees anytime 💲
+  - Special launch discount—time limited! 🚀
+  - 50% off your share of court reservation fees anytime. 🏷️
   - Up to 50% off any programs 💲
-  - Enjoy 14-day advanced court booking privileges! 🗓️
-  - Up to 30 days advance program reservations 🥇
-  - Member discounts on leagues, clinics, tournaments, and club events. 👕
-  - Membership exclusive discount on merchandise! 🏷️
+  - 14-day advance court booking privileges! 📅
+  - Up to 30 days advance program reservations. 🎟️
+  - Exclusive member discounts on leagues, clinics, tournaments, and club
+    events. 🏆
+  - Member-exclusive discounts on merchandise! 🛍️
 description: An easy way to enjoy Picktopia member benefits all year.
   General-Access gives players discounted court fees and open play, advance
   booking privileges, and member access to leagues and events with one simple
