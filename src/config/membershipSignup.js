@@ -8,7 +8,7 @@ export const RH_MEMBERSHIP_DEPOSITS = {
 
 export const RH_MEMBERSHIP_PAYMENT = {
   clubName: 'Picktopia Pickleball Club',
-  etransferEmail: 'info@rallypicktopia.com',
+  etransferEmail: 'rh@rallypicktopia.com',
   contactEmail: 'info@rallypicktopia.com',
   contactPhone: '6474789866',
   noteInstruction: 'Put your name and email in the e-transfer note.',
