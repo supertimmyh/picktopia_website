@@ -7,7 +7,7 @@ address: Richmond Hill, ON
 phone: (647) 478-9866
 email: info@rallypicktopia.com
 courtCount: 8
-image: /images/uploads/picktopia-rh-rendering.jpg
+image: /images/uploads/picktopia-rh-rendering.png
 bookingUrl: https://www.rallypicktopia.com/clubs
 bookingLink: https://www.rallypicktopia.com/clubs
 hasMemberships: true
