@@ -8,7 +8,7 @@ popular: false
 spotsFillingFast: false
 features:
   - Special launch discount—time limited! 🚀
-  - 50% off your share of court reservation fees anytime. 🏷️
+  - 50% off your share of court reservation and open play fees anytime. 🏷️
   - Up to 50% off any programs 💲
   - 14-day advance court booking privileges! 📅
   - Up to 30 days advance program reservations. 🎟️
