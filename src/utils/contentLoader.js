@@ -116,7 +116,29 @@ const parseFrontmatter = (fileContent) => {
           array.push(obj);
         } else {
           // This is a simple string value in the array
-          array.push(parseValue(value));
+          let fullValue = value;
+          let j = i + 1;
+
+          while (j < lines.length) {
+            const nextLine = lines[j];
+            const nextIndent = nextLine.length - nextLine.trimStart().length;
+            const nextTrimmed = nextLine.trim();
+
+            if (!nextTrimmed) {
+              j++;
+              continue;
+            }
+
+            if (nextIndent <= currentIndent || nextTrimmed.startsWith('- ')) {
+              break;
+            }
+
+            fullValue += ' ' + nextTrimmed;
+            j++;
+          }
+
+          array.push(parseValue(fullValue));
+          i = j - 1;
         }
       } else if (currentIndent === indentLevel && trimmed && !trimmed.startsWith('#')) {
         // Handle array items that might not start with '- ' but are at the same indent level
