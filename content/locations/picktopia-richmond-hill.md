@@ -3,7 +3,7 @@ title: Picktopia Richmond Hill
 city: Richmond Hill
 region: GTA
 status: Under Development
-address: Richmond Hill, ON
+address: 20 East Beaver Creek Rd, Richmond Hill, ON L4B 1J2
 phone: (647) 478-9866
 email: info@rallypicktopia.com
 courtCount: 8
