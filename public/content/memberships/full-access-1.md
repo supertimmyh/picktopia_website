@@ -13,6 +13,7 @@ features:
   - Up to 30 days advance program reservations. 🎟️
   - Up to 2 hours of free open play per day. ⏰
   - Up to 4 active bookings at a time. 🔁
+  - Up to one month pause within every 12-month membership period. ⏸️
   - Exclusive member discounts on leagues, clinics, tournaments, and club
     events. 🏆
   - Member-exclusive discounts on merchandise! 🛍️
