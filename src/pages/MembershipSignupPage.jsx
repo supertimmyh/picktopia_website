@@ -104,7 +104,7 @@ const MembershipSignupPage = ({ locationId, membershipSlug, navigateTo }) => {
                     membershipSlug,
                     membershipPrice: membership?.price,
                     depositAmount: `$${depositAmount}`,
-                    acknowledgement: 'Customer understands deposit is sent separately by e-transfer and the membership is a 12-month commitment.',
+                    acknowledgement: 'Customer understands deposit is required to secure the membership spot, the membership is a 12-month commitment, up to one month total pause time is available per 12-month term with a $19.99 administration fee per pause request, and the deposit applies toward the first month membership dues.',
                     _subject: `New RH Membership Deposit Signup - ${membership?.title || 'Membership'}`
                 })
             });
@@ -298,7 +298,7 @@ const MembershipSignupPage = ({ locationId, membershipSlug, navigateTo }) => {
                                             required
                                         />
                                         <span className="text-sm text-gray-700">
-                                            I understand that my membership spot is not secured until Picktopia receives my e-transfer deposit, and that this membership is a 12-month commitment.
+                                            I understand that my membership spot is not secured until Picktopia receives my e-transfer deposit. I understand this membership is a 12-month commitment, with up to one month of pause time available during each 12-month term. Pauses may be used multiple times, up to one month total per term, and each pause request is subject to a $19.99 administration fee. I also understand that my deposit will be applied toward my first month's membership dues.
                                         </span>
                                     </label>
 
