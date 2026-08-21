@@ -2,7 +2,7 @@
 title: Picktopia Markham
 city: Markham
 region: GTA
-status: Coming Soon
+status: Under Development
 address: Markham, ON
 phone: " (647) 478-9866"
 email: " info@rallypicktopia.com"
