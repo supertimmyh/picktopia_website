@@ -7,7 +7,7 @@ duration: 12-month commitment
 popular: false
 spotsFillingFast: false
 features:
-  - Special launch discount—limited to the first 100 players! 🚀
+  - Special launch discount—limited spots available! 🚀
   - No charge for your share of court reservation fees and open play anytime. 🆓
   - 14-day advance court booking privileges! 📅
   - Up to 30 days advance program reservations. 🎟️
