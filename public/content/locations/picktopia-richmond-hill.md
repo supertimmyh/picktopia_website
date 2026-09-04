@@ -2,7 +2,7 @@
 title: Picktopia Richmond Hill
 city: Richmond Hill
 region: GTA
-status: Coming Soon
+status: Now Open
 address: 20 East Beaver Creek Rd, Richmond Hill, ON L4B 1J2
 phone: (647) 478-9866
 email: info@rallypicktopia.com
@@ -19,8 +19,8 @@ hours:
   tuesday: 8:00 AM - 10:00 PM
   wednesday: 8:00 AM - 10:00 PM
   thursday: 8:00 AM - 10:00 PM
-  friday: 8:00 AM - 11:00 PM
-  saturday: 8:00 AM - 11:00 PM
+  friday: 8:00 AM - 10:00 PM
+  saturday: 8:00 AM - 10:00 PM
   sunday: 8:00 AM - 10:00 PM
 amenities:
   - Camps & Training Academy
