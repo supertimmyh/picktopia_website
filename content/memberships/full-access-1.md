@@ -21,6 +21,6 @@ description: Play more, book earlier, and enjoy the most complete Picktopia
   experience. Full-Access is built for players who want the freedom to book
   courts and join open play during any operating hours, plus early access and
   member discounts for leagues, clinics, tournaments, and club events.
-signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/20077?membershipId=271889
+signupLink: ""
 order: 1
 ---
