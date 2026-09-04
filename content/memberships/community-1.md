@@ -12,6 +12,6 @@ description: This is a guest membership for who want to play at our facility
   occasionally or just start one's pickleball journey. This is the base
   membership for all punch card packages and basic court rental and program
   sign-up.
-signupLink: ""
+signupLink: https://app.courtreserve.com/Online/Portal/Index/20077
 order: 4
 ---

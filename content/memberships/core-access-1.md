@@ -24,6 +24,6 @@ description: A smart membership for players who love daytime play and want great
   value year-round. Core-Access includes free non-peak court bookings and open
   play, discounted peak court fees, advance booking privileges, and early access
   to Picktopia leagues, clinics, tournaments, and events.
-signupLink: ""
+signupLink: https://app.courtreserve.com/Online/Memberships/ViewPublicMembership/20077?membershipId=271886
 order: 2
 ---
