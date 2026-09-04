@@ -4,8 +4,8 @@ import { UserIcon, MenuIcon, CloseIcon } from './Icons';
 import { CalendarDays } from 'lucide-react';
 import AnnouncementBar from './AnnouncementBar';
 import { loadEventsForNav, loadLocationsForNav } from '../utils/contentLoader';
+import { getAssetPath } from '../utils/assetPath';
 import { DEFAULT_LOCATION_ID, getLocationPageName, parseLocationPage } from '../utils/navigation';
-import logoSvg from '../assets/logo_simplified.svg';
 
 const Header = ({ onNavClick, currentPage, currentLocation }) => {
     const { navLinks } = CMS_DATA;
@@ -211,11 +211,7 @@ const Header = ({ onNavClick, currentPage, currentLocation }) => {
             <header className="sticky top-0 z-50 px-4 pt-2">
                 <div className={`${navbarBg} backdrop-blur-md shadow-lg rounded-2xl mx-auto max-w-7xl px-6 py-4 flex justify-between items-center ${textColor}`}>
                 <a href="#" onClick={(e) => { e.preventDefault(); onNavClick('home'); }} className="flex items-center space-x-1">
-                    <img src={logoSvg} alt="Picktopia Logo" className="h-12 w-12 lg:h-16 lg:w-16" />
-                    <div className={`flex flex-col text-sm lg:text-base font-brand font-black ${textColor} leading-tight tracking-wider`}>
-                        <span>PICKLEBALL</span>
-                        <span>CLUB</span>
-                    </div>
+                    <img src={getAssetPath('/images/logo_simplified.svg')} alt="Picktopia Logo" className="h-14 w-auto lg:h-20" />
                 </a>
 
                 <NavMenu />
@@ -244,7 +240,7 @@ const Header = ({ onNavClick, currentPage, currentLocation }) => {
                             </select>
                         </label>
                     )}
-                    <a href="https://app.courtreserve.com/Online/Account/LogIn/16040" target="_blank" rel="noopener noreferrer" className="hover:text-picktopia-orange"><UserIcon /></a>
+                    <a href="https://app.courtreserve.com/Account/Login" target="_blank" rel="noopener noreferrer" className="hover:text-picktopia-orange"><UserIcon /></a>
                     <button className="md:hidden hover:text-picktopia-orange" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         {isMobileMenuOpen ? <CloseIcon/> : <MenuIcon />}
                     </button>
