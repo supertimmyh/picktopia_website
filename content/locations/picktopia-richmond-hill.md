@@ -8,9 +8,12 @@ phone: (647) 478-9866
 email: info@rallypicktopia.com
 courtCount: 8
 image: /images/uploads/picktopia-rh-rendering.png
+courtReserveId: "20077"
 bookingUrl: https://www.rallypicktopia.com/clubs
 bookingLink: https://www.rallypicktopia.com/clubs
 hasMemberships: true
+scheduleEmbedUrl: https://widgets.courtreserve.com/Online/Public/EmbedCode/20077/105405
+scheduleEmbedClass: form-iframe-105405
 hasLounge: true
 hasProShop: true
 trainingStaff: []
