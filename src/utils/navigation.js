@@ -24,7 +24,6 @@ const ROUTE_MAP = {
 };
 
 const LOCATION_ROUTE_SECTIONS = ['booking', 'schedule', 'training', 'membership'];
-const MEMBERSHIP_SIGNUP_ROUTE_SECTION = 'membership-signup';
 export const DEFAULT_LOCATION_ID = 'scarborough';
 
 export const getLocationPageName = (locationId = DEFAULT_LOCATION_ID, section = null) => {
@@ -52,36 +51,7 @@ export const parseLocationPage = (pageName) => {
     };
 };
 
-export const getMembershipSignupPageName = (locationId = DEFAULT_LOCATION_ID, membershipSlug = '') => {
-    return `clubs-${locationId}-${MEMBERSHIP_SIGNUP_ROUTE_SECTION}-${membershipSlug}`;
-};
-
-export const parseMembershipSignupPage = (pageName) => {
-    if (!pageName || !pageName.startsWith('clubs-')) {
-        return null;
-    }
-
-    const marker = `-${MEMBERSHIP_SIGNUP_ROUTE_SECTION}-`;
-    const clubPath = pageName.replace('clubs-', '');
-    const markerIndex = clubPath.indexOf(marker);
-
-    if (markerIndex === -1) {
-        return null;
-    }
-
-    return {
-        locationId: clubPath.slice(0, markerIndex) || DEFAULT_LOCATION_ID,
-        membershipSlug: clubPath.slice(markerIndex + marker.length)
-    };
-};
-
 export const getLocationFromPage = (pageName) => {
-    const membershipSignupRoute = parseMembershipSignupPage(pageName);
-
-    if (membershipSignupRoute?.locationId) {
-        return membershipSignupRoute.locationId;
-    }
-
     const parsedLocation = parseLocationPage(pageName);
 
     if (parsedLocation?.locationId) {
@@ -109,11 +79,6 @@ export const getUrlFromPage = (pageName) => {
     if (pageName.startsWith('events-')) {
         const slug = pageName.replace('events-', '');
         return `/events/${slug}`;
-    }
-
-    const membershipSignupRoute = parseMembershipSignupPage(pageName);
-    if (membershipSignupRoute) {
-        return `/clubs/${membershipSignupRoute.locationId}/${MEMBERSHIP_SIGNUP_ROUTE_SECTION}/${membershipSignupRoute.membershipSlug}`;
     }
 
     const locationRoute = parseLocationPage(pageName);
@@ -144,10 +109,10 @@ export const getPageFromUrl = (path) => {
     }
 
     if (normalizedPath.startsWith('/clubs/')) {
-        const [, , locationId, section, membershipSlug] = normalizedPath.split('/');
+        const [, , locationId, section] = normalizedPath.split('/');
 
-        if (section === MEMBERSHIP_SIGNUP_ROUTE_SECTION) {
-            return getMembershipSignupPageName(locationId || DEFAULT_LOCATION_ID, membershipSlug || '');
+        if (section === 'membership-signup') {
+            return getLocationPageName(locationId || DEFAULT_LOCATION_ID, 'membership');
         }
 
         if (LOCATION_ROUTE_SECTIONS.includes(section)) {

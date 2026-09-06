@@ -17,20 +17,7 @@ This file tracks deferred work that future agents should remember when returning
   - Disable or replace GitHub Pages deployment workflows after the new host is verified.
   - Recheck Decap CMS authentication for the production `/admin/` URL.
 
-### 2. Replace temporary Richmond Hill membership signup flow with CourtReserve
-
-- Current Richmond Hill paid membership signup uses a temporary Formspree deposit form:
-  - `src/pages/MembershipSignupPage.jsx`
-  - `src/config/membershipSignup.js`
-  - `membershipSignup: 'mljrrzbv'` in `src/config/formspree.js`
-- This temporary flow exists because Richmond Hill CourtReserve membership signup is not ready yet.
-- When CourtReserve is ready:
-  - Add the CourtReserve public membership signup URLs to the Richmond Hill membership markdown files in `public/content/memberships/`.
-  - Remove or bypass the temporary internal signup route from membership cards.
-  - Remove unused temporary signup page/config/Formspree entry if no longer needed.
-  - Confirm all Richmond Hill `Sign Up Now` buttons open the correct CourtReserve public URLs.
-
-### 3. Add CMS-managed tournaments page
+### 2. Add CMS-managed tournaments page
 
 - Existing detailed plan also exists in `context/tournament_context.txt`; keep this item updated if that file is removed or superseded.
 - Goal: create a CMS-managed Tournaments page to display tournament details and prize pool information.
