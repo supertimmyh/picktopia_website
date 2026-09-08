@@ -1,13 +1,13 @@
 ---
 title: Full Access
 locationId: picktopia-richmond-hill
-price: 139.99/month + Tax
+price: 156.91/month + Tax if pay in full
 originalPrice: $169.99/month + Tax
 duration: 12-month commitment
 popular: false
 spotsFillingFast: false
 features:
-  - Special launch discount—limited spots available! 🚀
+  - Pay 12 for 13 month membership 🚀
   - No charge for your share of court reservation fees and open play anytime. 🆓
   - 14-day advance court booking privileges! 📅
   - Up to 30 days advance program reservations. 🎟️
