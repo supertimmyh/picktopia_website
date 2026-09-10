@@ -28,7 +28,7 @@ amenities:
   - Refreshment Bar
   - Equipment Rental
   - Parking Available
-description: Our brand new Markham location located in the south Markham with
+description: Our brand new Markham location located in the Markham with
   cushioned indoor pickleball courts and a premium lounge. Stay tuned for grand
   opening details!
 faqs: []
