@@ -2,7 +2,7 @@
 title: Full Access
 locationId: picktopia-richmond-hill
 price: 156.91/month + Tax if pay in full
-originalPrice: $169.99/month + Tax
+originalPrice: 169.99/month + Tax
 duration: 12-month commitment
 popular: false
 spotsFillingFast: false
