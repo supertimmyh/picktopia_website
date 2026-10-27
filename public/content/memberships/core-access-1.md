@@ -1,13 +1,12 @@
 ---
 title: Core Access
 locationId: picktopia-richmond-hill
-price: 99.99/month + Tax
-originalPrice: $119.99/month + Tax
+price: 109.99/month + Tax
+originalPrice: 119.99/month + Tax
 duration: 12-month commitment
 popular: true
 spotsFillingFast: true
 features:
-  - Special launch discount—limited to the first 50 players! 🚀
   - No charge for your share of court reservation fees and open play during
     off-peak hours. 🆓
   - 50% off your share of court reservation fees and open play during peak
