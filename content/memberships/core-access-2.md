@@ -2,7 +2,7 @@
 title: General Access
 locationId: picktopia-richmond-hill
 price: 499.99/annual + Tax
-originalPrice: $699.99/annual + Tax
+originalPrice: 699.99/annual + Tax
 duration: 12-month commitment
 popular: false
 spotsFillingFast: false
